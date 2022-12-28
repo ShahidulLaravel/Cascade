@@ -30,14 +30,7 @@
 
                     <!-- LOGO -->
                     <div class="topbar-left">
-                        <a href="index.html" class="logo">
-                            <span>
-                                <img src="{{asset('Backend/images/logo.png')}}" alt="" height="22">
-                            </span>
-                            <i>
-                               
-                            </i>
-                        </a>
+                        <h3>Electro Admin</h3>
                     </div>
 
                     <!-- User box -->
@@ -65,8 +58,7 @@
                             <li>
                                 <a href="javascript: void(0);"><i class="fi-layers"></i> <span> User </span> <span class="menu-arrow"></span></a>
                                 <ul class="nav-second-level" aria-expanded="true">
-                                    <li><a href="apps-calendar.html">Calendar</a></li>
-
+                                    <li><a href="apps-calendar.html">User List</a></li>
                                 </ul>
                             </li>
                         </ul>
@@ -284,8 +276,6 @@
                     </div> <!-- container -->
                 </div> <!-- content -->
 
-
-                
 
                 {{-- footer --}}
                 <footer class="footer">

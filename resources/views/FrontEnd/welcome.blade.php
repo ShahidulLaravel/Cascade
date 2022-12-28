@@ -45,7 +45,9 @@
 						<li><a href="#"><i class="fa fa-dollar"></i> USD</a></li>
 						<li><a href="#"><i class="fa fa-user-o"></i> My Account</a></li>
                     @auth
-                        <a href="{{ url('/home') }}" class="text-primary">Dashboard</a>
+                        <a href="#" style="color:red;" class="">Login User - {{Auth::user()->name}}</a>
+
+                        <a href="{{route('home')}}" style="color:white;margin-left:15px" class="ml-4">Dashboard</a>
                     @else
                        <li><a href="#"><i class="fa fa-user-o"></i> <a href="{{ route('login') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Log in</a></a></li>
 

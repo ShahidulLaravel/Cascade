@@ -4,8 +4,8 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Dashboard') }}</div>
+            <div class="card mt-3">
+                <div class="card-header">Dashboard</div>
 
                 <div class="card-body">
                     @if (session('status'))
@@ -14,7 +14,8 @@
                         </div>
                     @endif
 
-                    {{ __('You are logged in!') }}
+                    <h3>You Are Successfully Loggin <span class="text-primary">{{Auth::user()->name}}</span></h3>
+                    <span>This is Your Dashboard</span>
                 </div>
             </div>
         </div>
