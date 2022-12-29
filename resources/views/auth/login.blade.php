@@ -78,7 +78,7 @@
                     @csrf 
                     <label>Email</label>
                     <div class="mb-3">
-                      <input name="email" type="email" class="form-control" placeholder="Email" aria-label="Email" aria-describedby="email-addon">
+                      <input name="email" type="email" class="@error('email') is-invalid @enderror form-control" placeholder="Email" aria-label="Email" aria-describedby="email-addon">
                     @error('email')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
@@ -88,7 +88,7 @@
 
                     <label>Password</label>
                     <div class="mb-3">
-                      <input name="password" type="password" class="form-control" placeholder="Password" aria-label="Password" aria-describedby="password-addon">
+                      <input name="password" type="password" class="form-control @error('password') is-invalid @enderror" placeholder="Password" aria-label="Password" aria-describedby="password-addon">
                        @error('password')
                             <span class="invalid-feedback" role="alert">
                                <strong>{{ $message }}</strong>

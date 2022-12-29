@@ -50,7 +50,7 @@
                             <!--<li class="menu-title">Navigation</li>-->
 
                             <li>
-                                <a href="index.html">
+                                <a href="{{route('home')}}">
                                     <i class="fi-air-play"></i><span class="badge badge-danger badge-pill float-right"></span> <span> Dashboard </span>
                                 </a>
                             </li>
@@ -58,7 +58,7 @@
                             <li>
                                 <a href="javascript: void(0);"><i class="fi-layers"></i> <span> User </span> <span class="menu-arrow"></span></a>
                                 <ul class="nav-second-level" aria-expanded="true">
-                                    <li><a href="apps-calendar.html">User List</a></li>
+                                    <li><a href="{{route('users')}}">User List</a></li>
                                 </ul>
                             </li>
                         </ul>
