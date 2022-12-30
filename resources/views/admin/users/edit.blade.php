@@ -14,11 +14,11 @@
                 <div class="card-body">
                     <div class="card-body">
 
-                <form method="POST" action="{{route('user.update', $edit->id)}}">
+                <form method="POST" action="{{route('user.update', $user->id)}}">
                 @csrf 
                 @method('PUT')
                 <div class="mb-3">
-                  <input value="{{$edit->name}}" name="name" type="text" class="form-control @error('name') is-invalid @enderror" placeholder="Name" aria-label="Name" aria-describedby="email-addon">
+                  <input value="{{$user->name}}" name="name" type="text" class="form-control @error('name') is-invalid @enderror" placeholder="Name" aria-label="Name" aria-describedby="email-addon">
                     @error('name')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
@@ -27,7 +27,7 @@
                 </div>
 
                 <div class="mb-3">
-                  <input value="{{$edit->email}}" name="email" type="email" class="form-control @error('email') is-invalid @enderror" placeholder="Email" aria-label="Email" aria-describedby="email-addon">
+                  <input value="{{$user->email}}" name="email" type="email" class="form-control @error('email') is-invalid @enderror" placeholder="Email" aria-label="Email" aria-describedby="email-addon">
                   @error('email')
                     <span class="invalid-feedback" role="alert">
                         <strong>{{ $message }}</strong>

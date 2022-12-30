@@ -11,27 +11,24 @@ class UserController extends Controller
         $users = User::all();
         return view('admin.users.users', compact('users'));
     }
-    public function edit($edit_id){
-        $edit = User::find($edit_id);
-        return view('admin.users.edit', compact('edit'));
+    public function edit(User $user){
+        return view('admin.users.edit', compact('user'));
     }
-    public function update(Request $request, $update_id){
-        $update = User::find($update_id);
-        
+    public function update(Request $request, User $user){
+
         $request->validate([
             'name' => ['required', 'string', 'max:50'],
-            'email' => 'required|email|unique:users,email,'. $update->id,
+            'email' => 'required|email|unique:users,email,'. $user->id,
         ]);
 
-        $update->update([
+        $user->update([
             'name' => $request->name,
             'email' => $request->email,
         ]);
         return redirect()->route('users')->with('success', 'User Info updated Successfully');
         
     }
-    public function delete($delete_id){
-        User::find($delete_id)->delete();
+    public function delete(User $user){
         return back()->with('success', 'User Deleted Successfully');
     }
 }

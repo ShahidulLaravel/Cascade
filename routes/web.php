@@ -1,9 +1,10 @@
 <?php
 
-use App\Http\Controllers\FrontEndController;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserController;
-use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\FrontEndController;
 
 //For Auth
 Auth::routes();
@@ -18,10 +19,15 @@ Route::get('/home', [HomeController::class, 'index'])->name('home');
 // user maintain Controller
 Route::get('users/', [UserController::class, 'users'])->name('users');
 
-Route::get('user/edit/{edit_id}', [UserController::class, 'edit'])->name('user.edit');
+//user Route grouping
 
-Route::put('user/update/{update_id}', [UserController::class, 'update'])->name('user.update');
+Route::controller(UserController::class)->prefix('user')->name('user.')->group(function(){
 
-Route::get('user/delete/{delete_id}', [UserController::class, 'delete'])->name('user.delete');
+    Route::get('/edit/{user}', 'edit')->name('edit');
+    Route::put('/update/{user}', 'update')->name('update');
+    Route::delete('/delete/{user}','delete')->name('delete');
+});
+
+
 
 

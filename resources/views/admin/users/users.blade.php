@@ -31,7 +31,12 @@
                             <td>
                                 <a href="{{route('user.edit', $user->id)}}" type="submit" class="btn btn-sm btn-primary">Edit</a>
 
-                                <a href="{{route('user.delete', $user->id)}}" type="submit" class="btn btn-sm btn-warning">Delete</a>
+
+                                <form class="d-inline" action="{{route('user.delete', $user->id)}}" method="POST">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                                </form>
                             </td>
                         </tr>
                         @endforeach
