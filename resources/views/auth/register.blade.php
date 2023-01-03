@@ -111,6 +111,7 @@
                   @enderror
                 </div>
 
+               
                 <div class="mb-3">
                   <input name="password" type="password" class="form-control @error('password') is-invalid @enderror" placeholder="Password" aria-label="Password" aria-describedby="password-addon">
                    @error('password')

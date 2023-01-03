@@ -1,312 +1,283 @@
+
 <!doctype html>
 <html lang="en">
-<head>
-        <meta charset="utf-8" />
-        <title>Admin Dashboard</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <meta content="A fully featured admin theme which can be used to build CRM, CMS, etc." name="description" />
-        <meta content="Coderthemes" name="author" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <!-- App favicon -->
-        <link rel="shortcut icon" href="{{asset('Backend/images/favicon.ico')}}">
-        <!-- App css -->
-        <link href="{{asset('Backend/css/bootstrap.min.css')}}" rel="stylesheet" type="text/css" />
-        <link href="{{asset('Backend/css/icons.css')}}" rel="stylesheet" type="text/css" />
-        <link href="{{asset('Backend/css/metismenu.min.css')}}" rel="stylesheet" type="text/css" />
-        <link href="{{asset('Backend/css/style.css')}}" rel="stylesheet" type="text/css" />
-
-        <script src="{{asset('Backend/js/modernizr.min.js')}}"></script>
-
-    </head>
-    <body>
-
-        <!-- Begin page -->
-        <div id="wrapper">
-
-            <!-- ========== Left Sidebar Start ========== -->
-            <div class="left side-menu">
-
-                <div class="slimscroll-menu" id="remove-scroll">
-
-                    <!-- LOGO -->
-                    <div class="topbar-left">
-                        <h3>Electro Admin</h3>
-                    </div>
-
-                    <!-- User box -->
-                    <div class="user-box">
-                        <div class="user-img">
-                            <img src="{{asset('Backend/images/users/avatar-1.jpg')}}" alt="user-img" title="Mat Helme" class="rounded-circle img-fluid">
-                        </div>
-                        <h5><a href="#">{{Auth::user()->name}}</a> </h5>
-                        <p class="text-muted"><strong>{{Auth::user()->email}}</strong></p>
-                    </div>
-
-                    <!--- Sidemenu -->
-                    <div id="sidebar-menu">
-
-                        <ul class="metismenu" id="side-menu">
-
-                            <!--<li class="menu-title">Navigation</li>-->
-
-                            <li>
-                                <a href="{{route('home')}}">
-                                    <i class="fi-air-play"></i><span class="badge badge-danger badge-pill float-right"></span> <span> Dashboard </span>
-                                </a>
-                            </li>
-
-                            <li>
-                                <a href="javascript: void(0);"><i class="fi-layers"></i> <span> User </span> <span class="menu-arrow"></span></a>
-                                <ul class="nav-second-level" aria-expanded="true">
-                                    <li><a href="{{route('users')}}">User List</a></li>
-                                </ul>
-                            </li>
-                        </ul>
-
-                    </div>
-                    <!-- Sidebar -->
-
-                    <div class="clearfix"></div>
-
-                </div>
-                <!-- Sidebar -left -->
-
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="favicon.ico">
+    <title>Tiny Dashboard - A Bootstrap Dashboard Template</title>
+    <!-- Simple bar CSS -->
+    <link rel="stylesheet" href="{{asset('Admin/css/simplebar.css')}}">
+    <!-- Fonts CSS -->
+    <link href="https://fonts.googleapis.com/css2?family=Overpass:ital,wght@0,100;0,200;0,300;0,400;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <!-- Icons CSS -->
+    <link rel="stylesheet" href="{{asset('Admin/css/feather.css')}}">
+    <!-- Date Range Picker CSS -->
+    <link rel="stylesheet" href="{{asset('Admin/css/daterangepicker.css')}}">
+    <!-- App CSS -->
+    <link rel="stylesheet" href="{{asset('Admin/css/app-light.css')}}" id="lightTheme">
+    <link rel="stylesheet" href="{{asset('Admin/css/app-dark.css')}}" id="darkTheme" disabled>
+  </head>
+  <body class="vertical  light  ">
+    <div class="wrapper">
+      <nav class="topnav navbar navbar-light">
+        <button type="button" class="navbar-toggler text-muted mt-2 p-0 mr-3 collapseSidebar">
+          <i class="fe fe-menu navbar-toggler-icon"></i>
+        </button>
+        <form class="form-inline mr-auto searchform text-muted">
+          <input class="form-control mr-sm-2 bg-transparent border-0 pl-4 text-muted" type="search" placeholder="Type something..." aria-label="Search">
+        </form>
+        <ul class="nav">
+          <li class="nav-item">
+            <a class="nav-link text-muted my-2" href="#" id="modeSwitcher" data-mode="light">
+              <i class="fe fe-sun fe-16"></i>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-muted my-2" href="#" data-toggle="modal" data-target=".modal-shortcut">
+              <span class="fe fe-grid fe-16"></span>
+            </a>
+          </li>
+          <li class="nav-item nav-notif">
+            <a class="nav-link text-muted my-2" href="#" data-toggle="modal" data-target=".modal-notif">
+              <span class="fe fe-bell fe-16"></span>
+              <span class="dot dot-md bg-success"></span>
+            </a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle text-muted pr-0" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <span class="avatar avatar-sm mt-2">
+                <img src="{{asset('Admin/avatars/face-1.jpg')}}" alt="profile here" class="avatar-img rounded-circle">
+              </span>
+            </a>
+            {{-- profile section --}}
+            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
+              <a class="dropdown-item" href="{{route('edit.profile')}}">Edit Profile</a>
+              <a class="dropdown-item" href="#">Settings</a>
+              <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();" >Logout</a>
+              <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+              @csrf
+             </form>
             </div>
-            <!-- Left Sidebar End -->
+
+          </li>
+        </ul>
+      </nav>
+      <aside class="sidebar-left border-right bg-white shadow" id="leftSidebar" data-simplebar>
+        <a href="#" class="btn collapseSidebar toggle-btn d-lg-none text-muted ml-2 mt-3" data-toggle="toggle">
+          <i class="fe fe-x"><span class="sr-only"></span></i>
+        </a>
+        <nav class="vertnav navbar navbar-light">
+          <!-- nav bar -->
+          <div class="w-100 mb-4 d-flex">
+            <a class="navbar-brand mx-auto mt-2 flex-fill text-center" href="./index.html">
+              <svg version="1.1" id="logo" class="navbar-brand-img brand-sm" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 120 120" xml:space="preserve">
+                <g>
+                  <polygon class="st0" points="78,105 15,105 24,87 87,87 	" />
+                  <polygon class="st0" points="96,69 33,69 42,51 105,51 	" />
+                  <polygon class="st0" points="78,33 15,33 24,15 87,15 	" />
+                </g>
+              </svg>
+            </a>
+          </div>
+          
+          <ul class="navbar-nav flex-fill w-100 mb-2">
+            <li class="nav-item dropdown">
+              <a href="#ui-elements-dash" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle nav-link">
+                <i class="fe fe-box fe-16"></i>
+                <span class="ml-3 item-text">Dashboard</span>
+              </a>
+              <ul class="collapse list-unstyled pl-4 w-100" id="ui-elements-dash">
+                <li class="nav-item">
+                  <a class="nav-link pl-3" href="{{route('home')}}"><span class="ml-1 item-text">Admin Dashboard</span>
+                  </a>
+                </li>
+              </ul>
+            </li>
+          </ul>
+
+          <p class="text-muted nav-heading mt-4 mb-1">
+            <span>Admin</span>
+          </p>
+          <ul class="navbar-nav flex-fill w-100 mb-2">
+            <li class="nav-item dropdown">
+              <a href="#ui-elements" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle nav-link">
+                <i class="fe fe-box fe-16"></i>
+                <span class="ml-3 item-text">User Information</span>
+              </a>
+              <ul class="collapse list-unstyled pl-4 w-100" id="ui-elements">
+                <li class="nav-item">
+                  <a class="nav-link pl-3" href="{{route('users')}}"><span class="ml-1 item-text">Users List</span>
+                  </a>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </nav>
+      </aside>
+
+      {{-- side bar end here --}}
+
+        <main role="main" class="main-content">
+            <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                <h3 class="page-title mb-5">Dashboard</h3>
+                    @yield('content')
+                </div> 
+            </div> 
+            </div> 
 
 
-
-            <!-- ============================================================== -->
-            <!-- Start right Content here -->
-            <!-- ============================================================== -->
-
-            <div class="content-page">
-
-                <!-- Top Bar Start -->
-                <div class="topbar">
-
-                    <nav class="navbar-custom">
-
-                        <ul class="list-unstyled topbar-right-menu float-right mb-0">
-
-                            <li class="hide-phone app-search">
-                                <form>
-                                    <input type="text" placeholder="Search..." class="form-control">
-                                    <button type="submit"><i class="fa fa-search"></i></button>
-                                </form>
-                            </li>
-
-                            <li class="dropdown notification-list">
-                                <a class="nav-link dropdown-toggle arrow-none" data-toggle="dropdown" href="#" role="button"
-                                   aria-haspopup="false" aria-expanded="false">
-                                    <i class="fi-bell noti-icon"></i>
-                                    <span class="badge badge-danger badge-pill noti-icon-badge">4</span>
-                                </a>
-                                <div class="dropdown-menu dropdown-menu-right dropdown-menu-animated dropdown-lg">
-
-
-                                    <!-- item-->
-                                    <div class="dropdown-item noti-title">
-                                        <h5 class="m-0"><span class="float-right"><a href="#" class="text-dark"><small>Clear All</small></a> </span>Notification</h5>
-                                    </div>
-
-                                    <div class="slimscroll" style="max-height: 230px;">
-                                        <!-- item-->
-                                        <a href="javascript:void(0);" class="dropdown-item notify-item">
-                                            <div class="notify-icon bg-success"><i class="mdi mdi-comment-account-outline"></i></div>
-                                            <p class="notify-details">Caleb Flakelar commented on Admin<small class="text-muted">1 min ago</small></p>
-                                        </a>
-
-                                        <!-- item-->
-                                        <a href="javascript:void(0);" class="dropdown-item notify-item">
-                                            <div class="notify-icon bg-info"><i class="mdi mdi-account-plus"></i></div>
-                                            <p class="notify-details">New user registered.<small class="text-muted">5 hours ago</small></p>
-                                        </a>
-
-                                        <!-- item-->
-                                        <a href="javascript:void(0);" class="dropdown-item notify-item">
-                                            <div class="notify-icon bg-danger"><i class="mdi mdi-heart"></i></div>
-                                            <p class="notify-details">Carlos Crouch liked <b>Admin</b><small class="text-muted">3 days ago</small></p>
-                                        </a>
-
-                                        <!-- item-->
-                                        <a href="javascript:void(0);" class="dropdown-item notify-item">
-                                            <div class="notify-icon bg-warning"><i class="mdi mdi-comment-account-outline"></i></div>
-                                            <p class="notify-details">Caleb Flakelar commented on Admin<small class="text-muted">4 days ago</small></p>
-                                        </a>
-
-                                        <!-- item-->
-                                        <a href="javascript:void(0);" class="dropdown-item notify-item">
-                                            <div class="notify-icon bg-purple"><i class="mdi mdi-account-plus"></i></div>
-                                            <p class="notify-details">New user registered.<small class="text-muted">7 days ago</small></p>
-                                        </a>
-
-                                        <!-- item-->
-                                        <a href="javascript:void(0);" class="dropdown-item notify-item">
-                                            <div class="notify-icon bg-custom"><i class="mdi mdi-heart"></i></div>
-                                            <p class="notify-details">Carlos Crouch liked <b>Admin</b><small class="text-muted">13 days ago</small></p>
-                                        </a>
-                                    </div>
-
-                                    <!-- All-->
-                                    <a href="javascript:void(0);" class="dropdown-item text-center text-primary notify-item notify-all">
-                                        View all <i class="fi-arrow-right"></i>
-                                    </a>
-
-                                </div>
-                            </li>
-
-                            <li class="dropdown notification-list">
-                                <a class="nav-link dropdown-toggle arrow-none" data-toggle="dropdown" href="#" role="button"
-                                   aria-haspopup="false" aria-expanded="false">
-                                    <i class="fi-speech-bubble noti-icon"></i>
-                                    <span class="badge badge-custom badge-pill noti-icon-badge">6</span>
-                                </a>
-                                <div class="dropdown-menu dropdown-menu-right dropdown-menu-animated dropdown-lg">
-
-
-                                    <!-- item-->
-                                    <div class="dropdown-item noti-title">
-                                        <h5 class="m-0"><span class="float-right"><a href="#" class="text-dark"><small>Clear All</small></a> </span>Chat</h5>
-                                    </div>
-
-                                    <div class="slimscroll" style="max-height: 230px;">
-                                        <!-- item-->
-                                        <a href="javascript:void(0);" class="dropdown-item notify-item">
-                                            <div class="notify-icon"><img src="assets/images/users/avatar-2.jpg" class="img-fluid rounded-circle" alt="" /> </div>
-                                            <p class="notify-details">Cristina Pride</p>
-                                            <p class="text-muted font-13 mb-0 user-msg">Hi, How are you? What about our next meeting</p>
-                                        </a>
-
-                                        <!-- item-->
-                                        <a href="javascript:void(0);" class="dropdown-item notify-item">
-                                            <div class="notify-icon"><img src="assets/images/users/avatar-3.jpg" class="img-fluid rounded-circle" alt="" /> </div>
-                                            <p class="notify-details">Sam Garret</p>
-                                            <p class="text-muted font-13 mb-0 user-msg">Yeah everything is fine</p>
-                                        </a>
-
-                                        <!-- item-->
-                                        <a href="javascript:void(0);" class="dropdown-item notify-item">
-                                            <div class="notify-icon"><img src="assets/images/users/avatar-4.jpg" class="img-fluid rounded-circle" alt="" /> </div>
-                                            <p class="notify-details">Karen Robinson</p>
-                                            <p class="text-muted font-13 mb-0 user-msg">Wow that's great</p>
-                                        </a>
-
-                                        <!-- item-->
-                                        <a href="javascript:void(0);" class="dropdown-item notify-item">
-                                            <div class="notify-icon"><img src="assets/images/users/avatar-5.jpg" class="img-fluid rounded-circle" alt="" /> </div>
-                                            <p class="notify-details">Sherry Marshall</p>
-                                            <p class="text-muted font-13 mb-0 user-msg">Hi, How are you? What about our next meeting</p>
-                                        </a>
-
-                                        <!-- item-->
-                                        <a href="javascript:void(0);" class="dropdown-item notify-item">
-                                            <div class="notify-icon"><img src="assets/images/users/avatar-6.jpg" class="img-fluid rounded-circle" alt="" /> </div>
-                                            <p class="notify-details">Shawn Millard</p>
-                                            <p class="text-muted font-13 mb-0 user-msg">Yeah everything is fine</p>
-                                        </a>
-                                    </div>
-
-                                    <!-- All-->
-                                    <a href="javascript:void(0);" class="dropdown-item text-center text-primary notify-item notify-all">
-                                        View all <i class="fi-arrow-right"></i>
-                                    </a>
-
-                                </div>
-                            </li>
-
-                            <li class="dropdown notification-list">
-                                <a class="nav-link dropdown-toggle nav-user" data-toggle="dropdown" href="#" role="button"
-                                   aria-haspopup="false" aria-expanded="false">
-                                     <span class="ml-1">{{Auth::user()->name}} <i class="mdi mdi-chevron-down"></i> </span>
-                                </a>
-                                <div class="dropdown-menu dropdown-menu-right dropdown-menu-animated profile-dropdown">
-
-                                    <!-- item-->
-                                    <a href="javascript:void(0);" class="dropdown-item notify-item">
-                                        <i class="fi-head"></i> <span>My Profile</span>
-                                    </a>
-
-                                    <!-- item-->
-                                    <a href="javascript:void(0);" class="dropdown-item notify-item">
-                                        <i class="fi-cog"></i> <span>Settings</span>
-                                    </a>
-
-                                    <!-- item-->
-                                    <a href="{{ route('logout') }}" class="dropdown-item notify-item"onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                        <i class="fi-power"></i> <span>Logout</span>                                       
-                                    </a>
-                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                        @csrf
-                                    </form>
-
-                                </div>
-                            </li>
-
-                        </ul>
-
-                        <ul class="list-inline menu-left mb-0">
-                            <li class="float-left">
-                                <button class="button-menu-mobile open-left disable-btn">
-                                    <i class="dripicons-menu"></i>
-                                </button>
-                            </li>
-                            <li>
-                                <div class="page-title-box">
-                                    <h2 class="">Dashboard </h2>                                
-                                </div>
-                            </li>
-
-                        </ul>
-
-                    </nav>
-
-                </div>
-                <!-- Top Bar End -->
-
-                <!-- Start Page content -->
-                <div class="content">
-                    <div class="container-fluid">
-                        <div class="row">
-                            <div class="col-lg-12">
-                                 @yield('content')
-                            </div>
-                        </div>
-                    </div> <!-- container -->
-                </div> <!-- content -->
-
-
-                {{-- footer --}}
-                <footer class="footer">
-                    2018 © Highdmin - Coderthemes.com
-                </footer>
+        {{-- Upper Menu --}}
+        <div class="modal fade modal-notif modal-slide" tabindex="-1" role="dialog" aria-labelledby="defaultModalLabel" aria-hidden="true">
+          <div class="modal-dialog modal-sm" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="defaultModalLabel">Notifications</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <div class="list-group list-group-flush my-n3">
+                  <div class="list-group-item bg-transparent">
+                    <div class="row align-items-center">
+                      <div class="col-auto">
+                        <span class="fe fe-box fe-24"></span>
+                      </div>
+                      <div class="col">
+                        <small><strong>Package has uploaded successfull</strong></small>
+                        <div class="my-0 text-muted small">Package is zipped and uploaded</div>
+                        <small class="badge badge-pill badge-light text-muted">1m ago</small>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="list-group-item bg-transparent">
+                    <div class="row align-items-center">
+                      <div class="col-auto">
+                        <span class="fe fe-download fe-24"></span>
+                      </div>
+                      <div class="col">
+                        <small><strong>Widgets are updated successfull</strong></small>
+                        <div class="my-0 text-muted small">Just create new layout Index, form, table</div>
+                        <small class="badge badge-pill badge-light text-muted">2m ago</small>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="list-group-item bg-transparent">
+                    <div class="row align-items-center">
+                      <div class="col-auto">
+                        <span class="fe fe-inbox fe-24"></span>
+                      </div>
+                      <div class="col">
+                        <small><strong>Notifications have been sent</strong></small>
+                        <div class="my-0 text-muted small">Fusce dapibus, tellus ac cursus commodo</div>
+                        <small class="badge badge-pill badge-light text-muted">30m ago</small>
+                      </div>
+                    </div> <!-- / .row -->
+                  </div>
+                  <div class="list-group-item bg-transparent">
+                    <div class="row align-items-center">
+                      <div class="col-auto">
+                        <span class="fe fe-link fe-24"></span>
+                      </div>
+                      <div class="col">
+                        <small><strong>Link was attached to menu</strong></small>
+                        <div class="my-0 text-muted small">New layout has been attached to the menu</div>
+                        <small class="badge badge-pill badge-light text-muted">1h ago</small>
+                      </div>
+                    </div>
+                  </div> <!-- / .row -->
+                </div> <!-- / .list-group -->
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary btn-block" data-dismiss="modal">Clear All</button>
+              </div>
             </div>
+          </div>
         </div>
-        <!-- END wrapper -->
+        <div class="modal fade modal-shortcut modal-slide" tabindex="-1" role="dialog" aria-labelledby="defaultModalLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="defaultModalLabel">Shortcuts</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body px-5">
+                <div class="row align-items-center">
+                  <div class="col-6 text-center">
+                    <div class="squircle bg-success justify-content-center">
+                      <i class="fe fe-cpu fe-32 align-self-center text-white"></i>
+                    </div>
+                    <p>Control area</p>
+                  </div>
+                  <div class="col-6 text-center">
+                    <div class="squircle bg-primary justify-content-center">
+                      <i class="fe fe-activity fe-32 align-self-center text-white"></i>
+                    </div>
+                    <p>Activity</p>
+                  </div>
+                </div>
+                <div class="row align-items-center">
+                  <div class="col-6 text-center">
+                    <div class="squircle bg-primary justify-content-center">
+                      <i class="fe fe-droplet fe-32 align-self-center text-white"></i>
+                    </div>
+                    <p>Droplet</p>
+                  </div>
+                  <div class="col-6 text-center">
+                    <div class="squircle bg-primary justify-content-center">
+                      <i class="fe fe-upload-cloud fe-32 align-self-center text-white"></i>
+                    </div>
+                    <p>Upload</p>
+                  </div>
+                </div>
+                <div class="row align-items-center">
+                  <div class="col-6 text-center">
+                    <div class="squircle bg-primary justify-content-center">
+                      <i class="fe fe-users fe-32 align-self-center text-white"></i>
+                    </div>
+                    <p>Users</p>
+                  </div>
+                  <div class="col-6 text-center">
+                    <div class="squircle bg-primary justify-content-center">
+                      <i class="fe fe-settings fe-32 align-self-center text-white"></i>
+                    </div>
+                    <p>Settings</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main> <!-- main -->
+    </div> <!-- .wrapper -->
+    <script src="{{asset('Admin/js/jquery.min.js')}}"></script>
+    <script src="{{asset('Admin/js/popper.min.js')}}"></script>
+    <script src="{{asset('Admin/js/moment.min.js')}}"></script>
+    <script src="{{asset('Admin/js/bootstrap.min.js')}}"></script>
+    <script src="{{asset('Admin/js/simplebar.min.js')}}"></script>
+    <script src="{{asset('Admin/js/daterangepicker.js')}}"></script>
+    <script src="{{asset('Admin/js/jquery.stickOnScroll.js')}}"></script>
+    <script src="{{asset('Admin/js/tinycolor-min.js')}}"></script>
+    <script src="{{asset('Admin/js/config.js')}}"></script>
+    <script src="{{asset('Admin/js/apps.js')}}"></script>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-56159088-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
 
-        <!-- jQuery  -->
-        <script src="{{asset('Backend/js/jquery.min.js')}}"></script>
-        <script src="{{asset('Backend/js/bootstrap.bundle.min.js')}}"></script>
-        <script src="{{asset('Backend/js/metisMenu.min.js')}}"></script>
-        <script src="{{asset('Backend/js/waves.js')}}"></script>
-        <script src="{{asset('Backend/js/jquery.slimscroll.js')}}"></script>
-
-        <!-- Flot chart -->
-        <script src="{{asset('Backend/plugins/flot-chart/jquery.flot.min.js')}}"></script>
-        <script src="{{asset('Backend/plugins/flot-chart/jquery.flot.time.js')}}"></script>
-        <script src="{{asset('Backend/plugins/flot-chart/jquery.flot.tooltip.min.js')}}"></script>
-        <script src="{{asset('Backend/plugins/flot-chart/jquery.flot.resize.js')}}"></script>
-        <script src="{{asset('Backend/plugins/flot-chart/jquery.flot.pie.js')}}"></script>
-        <script src="{{asset('Backend/plugins/flot-chart/jquery.flot.crosshair.js')}}"></script>
-        <script src="{{asset('Backend/plugins/flot-chart/curvedLines.js')}}"></script>
-        <script src="{{asset('Backend/plugins/flot-chart/jquery.flot.axislabels.js')}}"></script>
-        <script src="{{asset('Backend/plugins/jquery-knob/jquery.knob.js')}}"></script>
-        <!-- Dashboard Init -->
-        <script src="{{asset('Backend/pages/jquery.dashboard.init.js')}}"></script>
-        <!-- App js -->
-        <script src="{{asset('Backend/js/jquery.core.js')}}"></script>
-        <script src="{{asset('Backend/js/jquery.app.js')}}"></script>
-
-</body>
+      function gtag()
+      {
+        dataLayer.push(arguments);
+      }
+      gtag('js', new Date());
+      gtag('config', 'UA-56159088-1');
+    </script>
+  </body>
 </html>

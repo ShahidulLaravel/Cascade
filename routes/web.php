@@ -17,16 +17,17 @@ Route::get('/home', [HomeController::class, 'index'])->name('home');
 
 
 // user maintain Controller
-Route::get('users/', [UserController::class, 'users'])->name('users');
+Route::get('users/', [UserController::class, 'users'])->name('users')->middleware();
 
-//user Route grouping
+Route::get('users/delete/{user_id}', [UserController::class, 'delete'])->name('user.delete');
 
-Route::controller(UserController::class)->prefix('user')->name('user.')->group(function(){
+Route::get('users/edit_profile/', [UserController::class, 'edit_profile'])->name('edit.profile');
 
-    Route::get('/edit/{user}', 'edit')->name('edit');
-    Route::put('/update/{user}', 'update')->name('update');
-    Route::delete('/delete/{user}','delete')->name('delete');
-});
+Route::post('users/update_info/', [UserController::class, 'update_info'])->name('update.info');
+
+Route::post('users/update_password/', [UserController::class, 'update_password'])->name('update.password');
+
+
 
 
 
