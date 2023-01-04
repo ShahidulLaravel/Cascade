@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\UserPassUpdate;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use App\Http\Requests\UserPassUpdate;
 use Illuminate\Validation\Rules\Password;
-
+use Intervention\Image\Facades\Image;
 
 class UserController extends Controller
 {
@@ -46,4 +46,22 @@ class UserController extends Controller
             return back()->with('old_password', 'Old Password Doesnot Matched');
         }
     }
+
+    function update_image(Request $request){
+        $request->validate([
+            'photo'=> ['required', 'mimes:png,jpg,jpeg,JPEG,JPG,PNG',],
+            'photo' => 'file|max:3072'
+        ]);
+
+        $uploaded_photo =  $request->photo;
+        $extension = $uploaded_photo->getClientOriginalExtension();
+        $file_name = Auth::id(). '.' .$extension;
+        Image::make($uploaded_photo)->save('uploads/users/' . $file_name);
+
+        User::find(Auth::id())->update([
+            'photo' => $file_name, 
+        ]);
+        return back()->with('img_success', 'Profile Photo Updated Successfully');
+    }
 }
+ 

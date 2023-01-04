@@ -36,7 +36,7 @@ class UserPassUpdate extends FormRequest
                     ->symbols()
                     ->numbers()
                     ->mixedCase()
-            ],
+            ],           
             'password_confirmation' => ['required'] 
         ];
     }

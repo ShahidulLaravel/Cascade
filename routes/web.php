@@ -27,6 +27,8 @@ Route::post('users/update_info/', [UserController::class, 'update_info'])->name(
 
 Route::post('users/update_password/', [UserController::class, 'update_password'])->name('update.password');
 
+Route::post('users/update_image/', [UserController::class, 'update_image'])->name('update.image');
+
 
 
 

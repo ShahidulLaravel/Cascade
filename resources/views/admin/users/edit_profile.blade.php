@@ -111,13 +111,29 @@
             <div class="card">
                 <div class="card-header">
                     <h4>Upload Profile Photo</h4>
+                    @error('photo')
+                     <div class="alert alert-danger d-flex align-items-center" role="alert">
+                      <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Danger:"><use xlink:href="#exclamation-triangle-fill"/></svg>
+                      <div>
+                        {{$message}}
+                      </div>
+                    </div>
+                    @enderror
+
+                    @if (session('img_success'))
+                      <strong class="text-success">{{(session('img_success'))}}</strong>
+                    @endif
                 </div>
                 <div class="card-body">
-                    <form action="" method="POST" enctype="multipart/form-data">
+                    <form action="{{route('update.image')}}" method="POST" enctype="multipart/form-data">
+                      @csrf
                         <div class="form-group mb-3">
                         <label for="example-name">Upload Profile Picture</label>
 
-                        <input type="file" id="image" name="photo">
+                        <input type="file"  name="photo" onchange="document.getElementById('blah').src = window.URL.createObjectURL(this.files[0])">
+                      </div>
+                      <div class="my-2">
+                        <img src="" id="blah" width="200" alt="">
                       </div>
                       <button class="btn btn-primary" type="submit">Upload Profile</button>
                     </form>
