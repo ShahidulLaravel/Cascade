@@ -17,6 +17,7 @@
                     <table class="table table-striped">
                         <tr>
                             <th>SL</th>
+                            <th>Profile Photo</th>
                             <th>Name</th>
                             <th>Email</th>
                             <th>Crateat At</th>
@@ -25,6 +26,13 @@
                         @foreach ($users as $sl=> $user)
                         <tr>
                             <td>{{$sl+1}}</td>
+                            <td>
+                                @if($user->photo == null)
+                                    <img style="width:50px; height:50px;" src="{{ Avatar::create($user->name)->toBase64()}}" />
+                                @else
+                                    <img style="width:50px; height:50px;" src="{{asset('uploads/users/')}}/{{$user->photo}}" alt="" class="avatar-img rounded-circle">
+                                @endif
+                            </td>
                             <td>{{$user->name}}</td>
                             <td>{{$user->email}}</td>
                             <td>{{$user->created_at->diffForHumans()}}</td>

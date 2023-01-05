@@ -49,7 +49,11 @@
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle text-muted pr-0" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               <span class="avatar avatar-sm mt-2">
-                <img src="{{asset('Admin/avatars/face-1.jpg')}}" alt="profile here" class="avatar-img rounded-circle">
+                @if(Auth::user()->photo == null)
+                   <img src="{{ Avatar::create(Auth::user()->name)->toBase64() }}" />
+                @else
+                  <img style="width: 35px; height:35px;" src="{{asset('uploads/users/')}}/{{Auth::user()->photo}}" alt="..." class="avatar-img rounded-circle">
+                @endif
               </span>
             </a>
             {{-- profile section --}}
@@ -102,6 +106,7 @@
             <span>Admin</span>
           </p>
           <ul class="navbar-nav flex-fill w-100 mb-2">
+            {{-- copy this --}}
             <li class="nav-item dropdown">
               <a href="#ui-elements" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle nav-link">
                 <i class="fe fe-box fe-16"></i>
@@ -114,6 +119,21 @@
                 </li>
               </ul>
             </li>
+            {{-- copy end --}}
+
+            <li class="nav-item dropdown">
+              <a href="#category" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle nav-link">
+                <i class="fe fe-box fe-16"></i>
+                <span class="ml-3 item-text">Product Category</span>
+              </a>
+              <ul class="collapse list-unstyled pl-4 w-100" id="category">
+                <li class="nav-item">
+                  <a class="nav-link pl-3" href="{{route('category')}}"><span class="ml-1 item-text">Add Category</span>
+                  </a>
+                </li>
+              </ul>
+            </li>
+
           </ul>
         </nav>
       </aside>

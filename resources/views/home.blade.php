@@ -13,11 +13,16 @@
             <div class="col-12">
                 
               <div class="row mt-5 align-items-center">
-                
                 <div class="col-md-3 text-center mb-5">
                      
                   <div class="avatar avatar-xl">
-                    <img src="{{asset('Admin/avatars/face-1.jpg')}}" alt="..." class="avatar-img rounded-circle">
+
+                    @if(Auth::user()->photo == null)
+                      <img src="{{ Avatar::create(Auth::user()->name)->toBase64() }}" />
+                    @else
+                      <img style="width: 140px; height:140px;" src="{{asset('uploads/users/')}}/{{Auth::user()->photo}}" alt="..." class="avatar-img rounded-circle">
+                    @endif
+
                   </div>
                 </div>
 
