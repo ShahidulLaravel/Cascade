@@ -12,13 +12,56 @@
 
 <div class="container">
     <div class="row">
-        <div class="col-lg-8"></div>
+        <div class="col-lg-8">
+            <div class="card">
+                <div class="card-header">
+                    <h2>Show Category List</h2>
+                    @if (session('cat_success'))
+                        <strong class="text-success">{{session('cat_success')}}</strong>
+                    @endif
+                </div>
+                <div class="card-body">
+                    <table class="table table-bordered text-center">
+                        <tr>
+                            <th>SL</th>
+                            <th>Category Name</th>
+                            <th>Category Image</th>
+                            <th>Action</th>
+                        </tr>
+                        @foreach ($show_category as $key=> $category )
+                            <tr>
+                                <td>{{$key + 1}}</td>
+                                <td>{{$category->category_name}}</td>
+                                <td>
+                                    <img width="50" src="{{asset('uploads/categories/'. $category->category_image)}}" alt="">
+                                </td>
+                                <td>
+                                   <div class="dropdown">
+                                    <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        Steps
+                                    </button>
+                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                        <a class="dropdown-item" href="#">Edit</a>
+                                        <a class="dropdown-item" href="{{route('category.delete',$category->id)}}">Delete</a>
+
+                                    </div>
+                                    </div> 
+                                </td>
+                            </tr>
+                        @endforeach
+                    </table>
+                </div>
+            </div>
+        </div>
         <div class="col-lg-4">
             <div class="card">
                 <div class="card-header">
                     <h4>Add Product Category</h4>
+                    @if (session('success'))
+                        <strong class="text-success">{{session('success')}}</strong>
+                    @endif
                 </div>
-
+            
                 <div class="card-body">
                 
                <form action="{{route('category.sort')}}" method="POST" enctype="multipart/form-data">

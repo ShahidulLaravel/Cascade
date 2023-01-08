@@ -29,6 +29,7 @@ Route::post('users/update_image/', [UserController::class, 'update_image'])->nam
 
 Route::get('/category', [CategoryController::class, 'category'])->name('category');
 Route::post('/category/sort', [CategoryController::class, 'add_category'])->name('category.sort');
+Route::get('/category/delete/{category_id}', [CategoryController::class, 'delete_category'])->name('category.delete');
 
 
 
