@@ -9,10 +9,12 @@ use Intervention\Image\Facades\Image;
 
 class CategoryController extends Controller
 {
-    public function category(Request $request){
+    public function category(){
         $show_category = Category::all();
+        $trash_category = Category::onlyTrashed()->get();
         return view('admin.category.category', [
-            'show_category' => $show_category
+            'show_category' => $show_category,
+            'trash_category' => $trash_category
         ]);
     }
 
@@ -46,4 +48,64 @@ class CategoryController extends Controller
         Category::find($category_id)->delete();
         return back()->with('cat_success', 'Category Deleted Successfully');
     }
+
+    public function edit_category($category_edit_id){
+        $category_info = Category::find($category_edit_id);
+        return view('admin.category.edit_category',[
+            'category_info' => $category_info,
+        ]);
+    }
+
+    public function update_category(Request $request){
+        if($request->category_image == null){
+            Category::find($request->update_id)->update([
+                'category_name' => $request->category_name
+            ]);
+        }
+        else{
+            $category_image = $request->category_image;
+            $extension = $category_image->getClientOriginalExtension();
+            $file_name = Str::lower(str_replace(' ', '-', $request->category_name)) . '-' . rand(10, 100000) . '.' . $extension;
+
+            Image::make($category_image)->save(public_path('uploads/categories/' . $file_name));
+
+            Category::find($request->update_id)->update([
+                'category_name' => $request->category_name,
+                'category_image' => $file_name
+            ]);
+        }
+        return back();
+    }
+
+    // soft delete and restore
+    public function category_trash(){
+        $trash_category = Category::onlyTrashed()->get();
+        return view('admin.category.trash',[
+            'trash_category' => $trash_category,
+        ]);
+    }
+    //single restore
+    public function category_restore_single($user_id){
+        Category::onlyTrashed()->find($user_id)->restore();
+        return back();
+    }
+    //single delete permanently
+    public function category_perDelete_single($user_id){
+        //delete previous
+        $present_img = Category::onlyTrashed()->find($user_id);
+        $delete_from = public_path('uploads/categories/' . $present_img->category_image);
+        unlink($delete_from);
+        Category::onlyTrashed()->find($user_id)->forceDelete();
+        return back();
+    }
+    //restore all 
+    public function category_restoreAll(Request $request){
+        
+        foreach($request->trash as $category){
+            Category::onlyTrashed()->find($category)->restore();
+        }
+        return back();
+    }
+
 }
+

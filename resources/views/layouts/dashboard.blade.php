@@ -6,8 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
-    <link rel="icon" href="favicon.ico">
-    <title>Tiny Dashboard - A Bootstrap Dashboard Template</title>
+    <title>E Commerce Dashboard</title>
     <!-- Simple bar CSS -->
     <link rel="stylesheet" href="{{asset('Admin/css/simplebar.css')}}">
     <!-- Fonts CSS -->
@@ -129,6 +128,10 @@
               <ul class="collapse list-unstyled pl-4 w-100" id="category">
                 <li class="nav-item">
                   <a class="nav-link pl-3" href="{{route('category')}}"><span class="ml-1 item-text">Add Category</span>
+
+                  <a class="nav-link pl-3" href="{{route('subcategory')}}"><span class="ml-1 item-text">Add Subcategory</span>
+
+                  <a class="nav-link pl-3" href="{{route('category.trash')}}"><span class="ml-1 item-text">Deleted Category</span>
                   </a>
                 </li>
               </ul>
@@ -289,6 +292,7 @@
     <script src="{{asset('Admin/js/apps.js')}}"></script>
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-56159088-1"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
 
@@ -299,5 +303,6 @@
       gtag('js', new Date());
       gtag('config', 'UA-56159088-1');
     </script>
+    @yield('javascript')
   </body>
 </html>

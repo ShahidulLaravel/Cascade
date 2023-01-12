@@ -41,9 +41,9 @@
                                         Steps
                                     </button>
                                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                        <a class="dropdown-item" href="#">Edit</a>
-                                        <a class="dropdown-item" href="{{route('category.delete',$category->id)}}">Delete</a>
+                                        <a class="dropdown-item" href="{{route('category.edit',$category->id)}}">Edit</a>
 
+                                        <a class="dropdown-item" href="{{route('category.delete',$category->id)}}">Delete</a>
                                     </div>
                                     </div> 
                                 </td>
@@ -53,6 +53,7 @@
                 </div>
             </div>
         </div>
+        {{-- add category form --}}
         <div class="col-lg-4">
             <div class="card">
                 <div class="card-header">
