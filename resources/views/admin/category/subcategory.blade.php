@@ -35,7 +35,11 @@
                                     <img width="50" src="{{asset('uploads/subcategories')}}/{{$subcategory->subcategory_image}}" alt="">
                                 </td>
                                 <td>
-                                    <button class="btn btn-danger btn-sm">Delete</button>
+
+                                <a href="{{route('subcategory.edit', $subcategory->id)}}" class=" mt-2 text-white btn btn-warning btn-sm"><i class="fa-solid fa-pen-to-square"></i></a>
+
+                                <a href="{{route('subcategory.delete', $subcategory->id)}}" class=" mt-2 text-white btn btn-danger btn-sm"><i class="fa-solid fa-trash"></i></a>
+
                                 </td>
                             </tr>
                         @endforeach
@@ -89,6 +93,28 @@
             title: '{{session('success')}}',
             showConfirmButton: true,
             timer: 2500
+            })
+    </script>  
+@endif
+@if (session('sub_restore'))
+    <script>
+            Swal.fire({
+            position: 'center',
+            icon: 'success',
+            title: '{{session('sub_restore')}}',
+            showConfirmButton: false,
+            timer: 1800
+            })
+    </script>  
+@endif
+@if (session('sub_del'))
+    <script>
+            Swal.fire({
+            position: 'center',
+            icon: 'success',
+            title: '{{session('sub_del')}}',
+            showConfirmButton: false,
+            timer: 1800
             })
     </script>  
 @endif

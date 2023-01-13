@@ -7,6 +7,8 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <title>E Commerce Dashboard</title>
+    {{-- font awesome --}}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <!-- Simple bar CSS -->
     <link rel="stylesheet" href="{{asset('Admin/css/simplebar.css')}}">
     <!-- Fonts CSS -->
@@ -131,7 +133,10 @@
 
                   <a class="nav-link pl-3" href="{{route('subcategory')}}"><span class="ml-1 item-text">Add Subcategory</span>
 
-                  <a class="nav-link pl-3" href="{{route('category.trash')}}"><span class="ml-1 item-text">Deleted Category</span>
+                  <a class="nav-link pl-3" href="{{route('category.trash')}}"><span class="ml-1 item-text">Category Trash</span>
+
+                  <a class="nav-link pl-3" href="{{route('subcategory.trash')}}"><span class="ml-1 item-text">Subcategory Trash</span>
+
                   </a>
                 </li>
               </ul>
@@ -280,6 +285,7 @@
         </div>
       </main> <!-- main -->
     </div> <!-- .wrapper -->
+    
     <script src="{{asset('Admin/js/jquery.min.js')}}"></script>
     <script src="{{asset('Admin/js/popper.min.js')}}"></script>
     <script src="{{asset('Admin/js/moment.min.js')}}"></script>

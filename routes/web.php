@@ -50,6 +50,18 @@ Route::get('/add/sub_category/', [SubCategoryController::class, 'subcategory'])-
 
 Route::post('/sub_category/store', [SubCategoryController::class, 'subcategory_insert'])->name('subcategory.insert');
 
+Route::get('/sub_category/delete/{delete_id}', [SubCategoryController::class, 'subcategory_delete'])->name('subcategory.delete');
+
+Route::get('/sub_category/edit/{edit_id}', [SubCategoryController::class, 'subcategory_edit'])->name('subcategory.edit');
+
+Route::get('/subcategory/trash/', [SubCategoryController::class, 'subcategory_trash'])->name('subcategory.trash');
+
+Route::get('/subcategory/restore/{restore_id}', [SubCategoryController::class, 'subcategory_restore'])->name('subcategory.restore');
+
+Route::post('/subcategory/restore_all/', [SubCategoryController::class, 'subcategory_restore_all'])->name('subcategory.restore_all');
+
+Route::get('/subcategory/delete_all/{delete_id}', [SubCategoryController::class, 'subcategory_delete_single'])->name('subcategorysingel.delete');
+
 
 
 
