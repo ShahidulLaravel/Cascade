@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use App\Models\SubCategory;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Intervention\Image\Facades\Image;
@@ -95,6 +96,16 @@ class CategoryController extends Controller
         $present_img = Category::onlyTrashed()->find($user_id);
         $delete_from = public_path('uploads/categories/' . $present_img->category_image);
         unlink($delete_from);
+
+        $subcategories = SubCategory::where('category_id', $user_id)->get();
+        foreach ($subcategories as $sub) {
+            $present_img = SubCategory::find($sub->id);
+            $delete_from = public_path('uploads/subcategories/' . $present_img->subcategory_image);
+            unlink($delete_from);
+
+            SubCategory::find($sub->id)->delete();
+        }
+
         Category::onlyTrashed()->find($user_id)->forceDelete();
         return back();
     }

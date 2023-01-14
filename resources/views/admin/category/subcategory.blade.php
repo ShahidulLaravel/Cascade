@@ -11,43 +11,9 @@
 </nav>
 
 <div class="container">
-    <div class="row">
-        <div class="col-lg-8">
-            <div class="card">
-                <div class="card-header">
-                    <h4>Show Subcategory</h4>
-                </div>
-                <div class="card-body">
-                    <table class="table table-bordered">
-                        <tr>
-                            <th>SL</th>
-                            <th>Category</th>
-                            <th>Subcategory Name</th>
-                            <th>Subcategory Image</th>
-                            <th>Action</th>
-                        </tr>
-                        @foreach ($subcategories as $sl=> $subcategory )
-                            <tr>
-                                <td>{{$sl + 1}}</td>
-                                <td>{{$subcategory->rel_to_category->category_name}}</td>
-                                <td>{{$subcategory->subcategory_name}}</td>
-                                <td>
-                                    <img width="50" src="{{asset('uploads/subcategories')}}/{{$subcategory->subcategory_image}}" alt="">
-                                </td>
-                                <td>
-
-                                <a href="{{route('subcategory.edit', $subcategory->id)}}" class=" mt-2 text-white btn btn-warning btn-sm"><i class="fa-solid fa-pen-to-square"></i></a>
-
-                                <a href="{{route('subcategory.delete', $subcategory->id)}}" class=" mt-2 text-white btn btn-danger btn-sm"><i class="fa-solid fa-trash"></i></a>
-
-                                </td>
-                            </tr>
-                        @endforeach
-                    </table>
-                </div>
-            </div>
-        </div>
-        <div class="col-lg-4">
+    <div class="row">     
+   
+        <div class="col-lg-12 m-auto">
             <div class="card">
                 <div class="card-header">
                     <h4>Add Subcategory</h4>
@@ -67,6 +33,7 @@
                     <div class="mb-3">
                         <label for="">Main Category</label>
                         <select name="category_id" class="form-control">
+                            <option value="">--Selcet Category--</option>
                             @foreach ( $categories as $category)
                                 <option value="{{$category->id}}">{{$category->category_name}}</option> 
                             @endforeach                         
@@ -79,7 +46,41 @@
                 </div>
             </div>
         </div>
+
+        @foreach ($categories as $category)
+           <div class="col-lg-6 mt-4">
+            <div class="card" style="height: 400px;">
+                <div class="card-header">
+                    <h4>{{$category->category_name}}</h4>
+                </div>
+                <div class="card-body">
+                   <table class="table table-bordered">
+                    <tr>
+                        <th>Subcategory Name</th>
+                        <th>Subcategory Image</th>
+                        <th>Action</th>
+                    </tr>
+                    @foreach (App\Models\SubCategory::where('category_id', $category->id)->get() as $subcategory)
+                        <tr>
+                            <td>{{$subcategory->subcategory_name}}</td>
+                            <td>
+                                <img width="50" src="{{asset('uploads/subcategories')}}/{{$subcategory->subcategory_image}}" alt="">
+                            </td>
+                            <td>
+                                <a href="{{route('subcategory.edit', $subcategory->id)}}" class=" mt-2 text-white btn btn-warning btn-sm"><i class="fa-solid fa-pen-to-square"></i></a>
+
+                                <a href="{{route('subcategory.delete', $subcategory->id)}}" class=" mt-2 text-white btn btn-danger btn-sm"><i class="fa-solid fa-trash"></i></a> 
+                            </td>
+                        </tr>
+                    @endforeach
+                   </table>
+                </div>
+            </div>
+            </div> 
+        @endforeach
     </div>
+    </div>
+
 </div>
 @endsection
 
@@ -113,6 +114,17 @@
             position: 'center',
             icon: 'success',
             title: '{{session('sub_del')}}',
+            showConfirmButton: false,
+            timer: 1800
+            })
+    </script>  
+@endif
+@if (session('update_two'))
+    <script>
+            Swal.fire({
+            position: 'center',
+            icon: 'success',
+            title: '{{session('update_two')}}',
             showConfirmButton: false,
             timer: 1800
             })

@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\FrontEndController;
+use App\Http\Controllers\ProductController;
 use App\Http\Controllers\SubCategoryController;
 
 //For Auth
@@ -61,6 +62,14 @@ Route::get('/subcategory/restore/{restore_id}', [SubCategoryController::class, '
 Route::post('/subcategory/restore_all/', [SubCategoryController::class, 'subcategory_restore_all'])->name('subcategory.restore_all');
 
 Route::get('/subcategory/delete_all/{delete_id}', [SubCategoryController::class, 'subcategory_delete_single'])->name('subcategorysingel.delete');
+
+Route::post('/subcategory/update', [SubCategoryController::class, 'subcategory_update'])->name('subcategory.update');
+
+
+//add product
+Route::get('/add/product', [ProductController::class, 'add_product'])->name('add.product');
+
+
 
 
 

@@ -142,6 +142,21 @@
               </ul>
             </li>
 
+             <li class="nav-item dropdown">
+              <a href="#product" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle nav-link">
+                <i class="fe fe-box fe-16"></i>
+                <span class="ml-3 item-text">Add Product</span>
+              </a>
+              <ul class="collapse list-unstyled pl-4 w-100" id="product">
+                <li class="nav-item">
+
+                  <a class="nav-link pl-3" href="{{route('add.product')}}"><span class="ml-1 item-text">Add Product</span>
+                  </a>
+
+                </li>
+              </ul>
+            </li>
+
           </ul>
         </nav>
       </aside>
