@@ -10,7 +10,7 @@
 </nav>
 
 <div>
-  <form action="" method="POST" enctype="multipart/form-data">
+  <form action="{{route('product.insert')}}" method="POST" enctype="multipart/form-data">
     @csrf
     <div class="card">
       <div class="card-header">
@@ -39,16 +39,22 @@
           <div class="col-lg-6">
               <div class="mb-3">
                 <label for="" class="form-label">Select Category</label>
-                <select name="category_id" id="" class="form-control">
+                <select name="category_id"  id="category_id" class="form-control">
                   <option value="">-- Select Category --</option>
+                  @foreach ($categories as $category)
+                    <option value="{{$category->id}}">{{$category->category_name}}</option>
+                  @endforeach
                 </select>
               </div>
           </div>
           <div class="col-lg-6">
               <div class="mb-3">
                 <label for="" class="form-label">Select Subcategory</label>
-                <select name="subcategory_id" id="" class="form-control">
+                <select name="subcategory_id" id="subcategory" class="form-control">
                   <option value="">-- Select Subcategory --</option>
+                  @foreach ($subcategories as $subcategory)
+                    <option value="{{$subcategory->id}}">{{$subcategory->subcategory_name}}</option>
+                  @endforeach
                 </select>
               </div>
           </div>
@@ -76,6 +82,23 @@
                  <textarea id="summernoteTwo" name="additional_info"></textarea>
               </div>
             </div> 
+            <div class="col-lg-6">
+              <div class="mb-3">
+                <label for="" class="form-label">Product Preview</label>
+                 <input type="file" class="form-control" name="preview">
+              </div>
+            </div>
+            <div class="col-lg-6">
+              <div class="mb-3">
+                <label for="" class="form-label">Product Gallery</label>
+                 <input type="file" class="form-control" name="gallery">
+              </div>
+            </div>
+            <div class="col-lg-8 m-auto">
+              <div class="mt-3">
+                <button class="btn btn-primary btn-block" type="submit">Add Product</button>
+              </div>
+            </div>
         </div>
       </div>
     </div>
@@ -95,6 +118,26 @@
 });
 </script>
 <script>
-  
+    $('#category_id').change(function(){
+      var category_id = $(this).val();
+    
+      $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+      });
+
+      $.ajax({
+        type:'POST',
+        url: '/getSubcategory',
+        data:{'category_id': category_id},
+        success:function(data){
+          $('#subcategory').html(data);
+        }
+      });
+
+  });
+
 </script>
+
 @endsection

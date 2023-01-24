@@ -69,6 +69,9 @@ Route::post('/subcategory/update', [SubCategoryController::class, 'subcategory_u
 //add product
 Route::get('/add/product', [ProductController::class, 'add_product'])->name('add.product');
 
+Route::post('/getSubcategory', [ProductController::class, 'getSubcategory']);
+Route::post('/product/store', [ProductController::class, 'insert_product'])->name('product.insert');
+
 
 
 
