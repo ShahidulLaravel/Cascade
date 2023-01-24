@@ -8,6 +8,7 @@
     <meta name="author" content="">
     <title>E Commerce Dashboard</title>
     {{-- font awesome --}}
+    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <!-- Simple bar CSS -->
     <link rel="stylesheet" href="{{asset('Admin/css/simplebar.css')}}">
@@ -310,6 +311,7 @@
     <script src="{{asset('Admin/js/jquery.stickOnScroll.js')}}"></script>
     <script src="{{asset('Admin/js/tinycolor-min.js')}}"></script>
     <script src="{{asset('Admin/js/config.js')}}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
     <script src="{{asset('Admin/js/apps.js')}}"></script>
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-56159088-1"></script>
