@@ -2,11 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use App\Models\Product;
 use App\Models\Category;
 use App\Models\SubCategory;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use App\Models\ProductGallery;
+use Intervention\Image\Facades\Image;
 
 class ProductController extends Controller
 {
@@ -29,13 +32,14 @@ class ProductController extends Controller
     }
 
     public function insert_product(Request $request){
+        //identify the after discount, product code and slug 
         $after_discount =  $request->price - ( $request->price * $request->discount ) / 100 ;
 
         $sku = Str::upper(str_replace(' ', '-', substr($request->product_name,'0','1'))) . '-' . rand(10, 100000);
         $slug = Str::lower(str_replace(' ', '-', $request->product_name)) . '-' . rand(10, 100000);
 
-
-        Product::insert([
+        // insert product without preview/thumb image
+        $product_id = Product::insertGetId([
             'product_name' => $request->product_name,
             'price' => $request->price,
             'discount' => $request->discount,
@@ -48,7 +52,33 @@ class ProductController extends Controller
             'additional_info' => $request->additional_info,
             'sku' => $sku,
             'slug' => $slug,
+            'created_at' => Carbon::now(),
         ]);
+        // update product image 
+        $preview_image = $request->preview;
+        $extension = $preview_image->getClientOriginalExtension();
+        $file_name = Str::lower(str_replace(' ', '-', $request->product_name)) . '-' . rand(10, 100000) . '.' . $extension;
+        Image::make($preview_image)->save(public_path('uploads/Products/preview/' . $file_name));
+
+        Product::find($product_id)->update([
+            'preview' => $file_name
+        ]);
+
+        // insert product gallery image
+        $product_gallery = $request->product_gallery;
+        foreach($product_gallery as $gallery){
+            $gallery_extension = $gallery->getClientOriginalExtension();
+            $file_name_two =
+            Str::lower(str_replace(' ', '-', $request->product_name)) . '-' . rand(10, 100000) . '.' . $gallery_extension;
+
+            Image::make($gallery)->save(public_path('uploads/Products/gallery/' . $file_name_two));
+
+            ProductGallery::insert([
+                'product_id' => $product_id,
+                'product_gallery' => $file_name_two,
+                'created_at' =>Carbon::now(),
+            ]);
+        }
         return back();
     }
 }

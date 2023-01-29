@@ -91,14 +91,14 @@
             <div class="col-lg-6">
               <div class="mb-3">
                 <label for="" class="form-label">Product Gallery</label>
-                 <input type="file" class="form-control" name="gallery">
+                 <input type="file" multiple class="form-control" name="product_gallery[]">
               </div>
             </div>
             <div class="col-lg-8 m-auto">
               <div class="mt-3">
                 <button class="btn btn-primary btn-block" type="submit">Add Product</button>
               </div>
-            </div>
+          </div>
         </div>
       </div>
     </div>
