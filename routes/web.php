@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\BrandController;
 use App\Http\Controllers\CategoryController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -71,6 +72,11 @@ Route::get('/add/product', [ProductController::class, 'add_product'])->name('add
 
 Route::post('/getSubcategory', [ProductController::class, 'getSubcategory']);
 Route::post('/product/store', [ProductController::class, 'insert_product'])->name('product.insert');
+
+//product brand
+
+Route::get('/brands', [BrandController::class, 'brand'])->name('brands');
+Route::post('/brands/insert', [BrandController::class, 'brand_insert'])->name('brand.insert');
 
 
 

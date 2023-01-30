@@ -15,6 +15,10 @@
     <div class="card">
       <div class="card-header">
         <h3>Add Product</h3>
+           
+           @if (session('success'))
+              <strong class="text-success">{{session('success')}}</strong>
+            @endif
       </div>
       <div class="card-body">
         <div class="row">
