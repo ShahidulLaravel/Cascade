@@ -157,6 +157,8 @@
 
                   <a class="nav-link pl-3" href="{{route('add.product')}}"><span class="ml-1 item-text">Add Product</span>
                   </a>
+                   <a class="nav-link pl-3" href="{{route('show.product')}}"><span class="ml-1 item-text">Show Product</span>
+                  </a>
 
                 </li>
               </ul>

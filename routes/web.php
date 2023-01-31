@@ -70,13 +70,19 @@ Route::post('/subcategory/update', [SubCategoryController::class, 'subcategory_u
 //add product
 Route::get('/add/product', [ProductController::class, 'add_product'])->name('add.product');
 
+Route::get('/show/product', [ProductController::class, 'show_product'])->name('show.product');
+
 Route::post('/getSubcategory', [ProductController::class, 'getSubcategory']);
 Route::post('/product/store', [ProductController::class, 'insert_product'])->name('product.insert');
 
 //product brand
 
 Route::get('/brands', [BrandController::class, 'brand'])->name('brands');
+
 Route::post('/brands/insert', [BrandController::class, 'brand_insert'])->name('brand.insert');
+
+
+
 
 
 

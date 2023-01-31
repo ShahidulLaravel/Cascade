@@ -4,7 +4,7 @@
 @section('content')
 
 <div class="row">
-    <div class="col-lg-5">
+    <div class="col-lg-4">
         <div class="card">
             <div class="card-header">
                 <h3>Add Product Brand</h3>
@@ -28,7 +28,7 @@
         </div>
     </div>
 
-    <div class="col-lg-7">
+    <div class="col-lg-8">
         <div class="card">
             <div class="card-header">
                 <h3>Show Brands</h3>
@@ -39,17 +39,23 @@
                         <th>SL</th>
                         <th>Brand Name</th>
                         <th>Brand Logo</th>
+                        <th>Action</th>
                     </tr>
                     @foreach ($brands as $key=> $brand)
                         <tr class="text-center">
                             <td>{{$key + 1}}</td>
                             <td>{{$brand->brand_name}}</td>
                             <td>
-                                <img width="110" src="{{asset('uploads/products/brand')}}/{{$brand->brand_logo}}" alt="">
+                                <img width="100" src="{{asset('uploads/products/brand')}}/{{$brand->brand_logo}}" alt="">
+                            </td>
+                            <td>
+                                <button class="btn btn-danger btn-sm">Delete</button>
                             </td>
                         </tr>
                     @endforeach
+                    
                 </table>
+                {{$brands->links()}}
             </div>
         </div>
     </div>

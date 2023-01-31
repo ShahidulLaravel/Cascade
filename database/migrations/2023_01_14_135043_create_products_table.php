@@ -21,7 +21,7 @@ return new class extends Migration
             $table->float('after_discount');
             $table->integer('category_id');
             $table->integer('subcategory_id')->nullable();
-            $table->string('brand');
+            $table->integer('brand')->nullable();
             $table->string('short_desp');
             $table->longText('long_desp');
             $table->longText('additional_info')->nullable();

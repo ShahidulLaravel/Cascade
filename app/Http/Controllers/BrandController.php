@@ -11,7 +11,7 @@ class BrandController extends Controller
 {
     public function brand()
     {
-        $brands = Brand::all();
+        $brands = Brand::Paginate(5);
         return view('admin.Brand.add_brand',[
             'brands' => $brands
         ]);
@@ -29,4 +29,6 @@ class BrandController extends Controller
         ]);
         return back();
     }
+
+
 }

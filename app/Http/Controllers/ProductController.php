@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Carbon\Carbon;
+use App\Models\Brand;
 use App\Models\Product;
 use App\Models\Category;
 use App\Models\SubCategory;
@@ -16,9 +17,11 @@ class ProductController extends Controller
     public function add_product(){
         $categories = Category::all();
         $subcategories = SubCategory::all();
+        $brands = Brand::all();
         return view('admin.product.add_product', [
             'categories' => $categories,
             'subcategories' => $subcategories,
+            'brands' => $brands
         ]);
     }
 
@@ -82,5 +85,14 @@ class ProductController extends Controller
         } 
         return back()->with('success', 'Product Addedd Successfully');
     }     
+
+    public function show_product(){
+        $all_prodcuts = Product::Paginate(7);
+        $brands = Brand::all();
+        return view('admin.product.show', [
+            'all_prodcuts' => $all_prodcuts,
+            'brands' => $brands,
+        ]);
+    }
 
 }
