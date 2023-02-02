@@ -95,4 +95,19 @@ class ProductController extends Controller
         ]);
     }
 
+    public function edit_product($product_id){
+        $categories = Category::all();
+        $subcategories = SubCategory::all();
+        $brands = Brand::all();
+        $all_products = Product::find($product_id);
+        $product_gallery = ProductGallery::where('product_id', $product_id)->get();
+        return view('admin.product.edit_product',[
+            'categories' => $categories,
+            'subcategories' => $subcategories,
+            'brands' => $brands,
+            'all_products' => $all_products,
+            'product_gallery' => $product_gallery,
+        ]);
+    }
+
 }

@@ -9,6 +9,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\FrontEndController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\SubCategoryController;
+use App\Http\Controllers\UpdateProdcutController;
 
 //For Auth
 Auth::routes();
@@ -66,6 +67,12 @@ Route::get('/subcategory/delete_all/{delete_id}', [SubCategoryController::class,
 
 Route::post('/subcategory/update', [SubCategoryController::class, 'subcategory_update'])->name('subcategory.update');
 
+//product brand
+
+Route::get('/brands', [BrandController::class, 'brand'])->name('brands');
+
+Route::post('/brands/insert', [BrandController::class, 'brand_insert'])->name('brand.insert');
+
 
 //add product
 Route::get('/add/product', [ProductController::class, 'add_product'])->name('add.product');
@@ -75,11 +82,11 @@ Route::get('/show/product', [ProductController::class, 'show_product'])->name('s
 Route::post('/getSubcategory', [ProductController::class, 'getSubcategory']);
 Route::post('/product/store', [ProductController::class, 'insert_product'])->name('product.insert');
 
-//product brand
+Route::get('/product/edit/{product_id}', [ProductController::class, 'edit_product'])->name('edit.product');
 
-Route::get('/brands', [BrandController::class, 'brand'])->name('brands');
+Route::post('/product/update', [UpdateProdcutController::class, 'update_product'])->name('product.update');
 
-Route::post('/brands/insert', [BrandController::class, 'brand_insert'])->name('brand.insert');
+
 
 
 
