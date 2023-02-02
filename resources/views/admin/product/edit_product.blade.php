@@ -50,12 +50,12 @@
           <div class="col-lg-6">
               <div class="mb-3">
                 <label for="" class="form-label">Select Subcategory</label>
-                <select name="subcategory_id" id="subcategory" class="form-control">
-                  <option value="">-- Select Subcategory --</option>
-                  @foreach ($subcategories as $subcategory)
-                    <option {{$subcategory->id == $all_products->subcategory_id ? 'selected' : ''}} value="{{$subcategory->id}}">{{$subcategory->subcategory_name}}</option>
-                  @endforeach
-                </select>
+                  <select name="subcategory_id" id="subcategory" class="form-control">
+                    <option value="">-- Select Subcategory --</option>
+                    @foreach ($subcategories as $subcategory)
+                      <option {{$subcategory->id == $all_products->subcategory_id ? 'selected' : ''}} value="{{$subcategory->id}}">{{$subcategory->subcategory_name}}</option>
+                    @endforeach
+                  </select>
               </div>
           </div>
           <div class="col-lg-4">

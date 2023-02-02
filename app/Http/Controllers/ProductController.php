@@ -56,7 +56,7 @@ class ProductController extends Controller
                 'slug' => $slug,
                 'created_at' => Carbon::now(),
             ]);
-            // update product image 
+            // update preview image 
             $preview_image = $request->preview;
             if($preview_image != ''){
                 $extension = $preview_image->getClientOriginalExtension();
@@ -69,7 +69,6 @@ class ProductController extends Controller
             }
         // insert product gallery
         $product_gel = $request->product_gallery;
-
         foreach ($product_gel as $product) {
             
             $extension_two = $product->getClientOriginalExtension();
