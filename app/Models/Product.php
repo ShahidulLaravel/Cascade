@@ -11,5 +11,8 @@ class Product extends Model
 
     protected $guarded = ['id'];
 
-    
+    function rel_to_category()
+    {
+        return $this->belongsTo(Category::class, 'category_id');
+    }
 }
