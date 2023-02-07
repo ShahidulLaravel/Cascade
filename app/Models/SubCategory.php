@@ -18,6 +18,11 @@ class SubCategory extends Model
         return $this->belongsTo(Category::class, 'category_id');
     }
 
+    function rel_to_cat()
+    {
+        return $this->belongsTo(Size::class, 'category_id');
+    }
+
 }
 
 

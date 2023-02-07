@@ -140,13 +140,11 @@
 								<div class="card-footer b-0 p-0 pt-2 bg-white d-flex align-items-start justify-content-between">
 									<div class="text-left">
 										<div class="text-left">
-											@foreach ($categories as $category)
-                                                
-                                            @endforeach
-                                          
+								                              
                                             <div class="elso_titl"><span class="small"></span></div>
 											<h5 class="fs-md mb-0 lh-1 mb-1"><a href="shop-single-v1.html">{{$product->product_name}}</a></h5>
-                                            
+                                            <span>Brand: {{$product->rel_to_brand->brand_name}}</span>
+											<p>{{$product->rel_to_cat->category_name}}</p>
 											<div class="star-rating align-items-center d-flex justify-content-left mb-2 p-0">
 												<i class="fas fa-star filled"></i>
 												<i class="fas fa-star filled"></i>

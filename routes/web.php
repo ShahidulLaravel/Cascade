@@ -95,6 +95,11 @@ Route::get('/porduct/variation', [InventoryController::class, 'add_inventory'])-
 Route::post('/porduct/variation/insert', [InventoryController::class, 'variation_store'])->name('product.store');
 
 
+//inventory
+
+Route::get('/inventory/add/{inventory_add}', [InventoryController::class, 'add_invetory'])->name('product.inventory');
+
+Route::post('/inventory/store/', [InventoryController::class, 'inventory_store'])->name('inventory.store');
 
 
 

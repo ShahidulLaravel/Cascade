@@ -12,6 +12,10 @@ class Category extends Model
     use SoftDeletes;
 
     protected $guarded = ['id'];
+
+    function catt(){
+        return $this->belongsTo(Size::class, 'category_id');
+    }
 }
 
 // guarded

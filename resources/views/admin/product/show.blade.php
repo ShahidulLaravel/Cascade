@@ -9,6 +9,8 @@
             <tr>
                 <th>Serial</th>
                 <th>Product Name</th>
+                <th>Brand</th>
+                <th>Category</th>
                 <th>Price</th>
                 <th>Discount</th>
                 <th>After Discount</th>
@@ -19,16 +21,20 @@
                 <tr>
                     <td>{{$key + 1}}</td>
                     <td>{{$product->product_name}}</td>
+                    <td>{{$product->rel_to_brand->brand_name}}</td>
+                    <td>{{$product->rel_to_cat->category_name}}</td>
                     <td>&#2547; {{$product->price}}</td>
                     <td>{{$product->discount == null ? '0' : $product->discount}}%</td>
                     <td>&#2547; {{$product->after_discount}}</td>
                     <td>
                         <img class="rounded" width="50" src="{{asset('uploads/Products/preview')}}/{{$product->preview}}" alt="">
                     </td>
-                    <td>
-                        <a href="{{route('edit.product', $product->id)}}" class="btn btn-sm btn-primary"><i class="fa-solid fa-pen-to-square"></i></a>
+                    <td class="mx-2-">  
+                        <a href="{{route('product.inventory', $product->id)}}" class="text-warning"><i class="fa-solid fa-store"></i></a>
 
-                        <button class="text-white ml-2 btn btn-sm btn-danger"><i class="delete-btn fa-solid fa-trash"></i></button>
+                        <a href="{{route('edit.product', $product->id)}}" class="ml-2"><i class="fa-solid fa-pen-to-square"></i></a>
+
+                        <button class="btn text-danger"><i class="delete-btn fa-solid fa-trash"></i></button>
                     </td>
                 </tr>
             @endforeach 

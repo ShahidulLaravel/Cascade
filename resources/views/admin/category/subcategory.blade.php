@@ -49,7 +49,7 @@
 
         @foreach ($categories as $category)
            <div class="col-lg-6 mt-4">
-            <div class="card" style="height: 400px;">
+            <div class="card" style="">
                 <div class="card-header">
                     <h4>{{$category->category_name}}</h4>
                 </div>
@@ -59,6 +59,7 @@
                         <th>Subcategory Name</th>
                         <th>Subcategory Image</th>
                         <th>Action</th>
+                        
                     </tr>
                     @foreach (App\Models\SubCategory::where('category_id', $category->id)->get() as $subcategory)
                         <tr>
@@ -66,6 +67,7 @@
                             <td>
                                 <img width="50" src="{{asset('uploads/subcategories')}}/{{$subcategory->subcategory_image}}" alt="">
                             </td>
+                                                 
                             <td>
                                 <a href="{{route('subcategory.edit', $subcategory->id)}}" class=" mt-2 text-white btn btn-warning btn-sm"><i class="fa-solid fa-pen-to-square"></i></a>
 
@@ -73,16 +75,19 @@
                             </td>
                         </tr>
                     @endforeach
-                   </table>
+                   </table>    
                 </div>
             </div>
             </div> 
         @endforeach
+  
     </div>
     </div>
 
 </div>
 @endsection
+
+
 
 {{-- extra javascript code --}}
 @section('javascript')

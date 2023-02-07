@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Size;
 use App\Models\Category;
 use App\Models\SubCategory;
 use Illuminate\Support\Str;
@@ -13,9 +14,11 @@ class SubCategoryController extends Controller
     public function subcategory(){
         $categories = Category::all();
         $subcategories = SubCategory::all();
+        $sizes = Size::all();
          return view('admin.category.subcategory',[
             'categories' => $categories,
             'subcategories'=> $subcategories,
+            'sizes' => $sizes,
         ]);
     }
 
