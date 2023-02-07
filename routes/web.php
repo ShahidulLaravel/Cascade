@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\FrontEndController;
+use App\Http\Controllers\InventoryController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\SubCategoryController;
 use App\Http\Controllers\UpdateProdcutController;
@@ -86,6 +87,12 @@ Route::get('/product/edit/{product_id}', [ProductController::class, 'edit_produc
 
 Route::post('/product/update', [UpdateProdcutController::class, 'update_product'])->name('product.update');
 
+
+// product inventory and variation
+
+Route::get('/porduct/variation', [InventoryController::class, 'add_inventory'])->name('product.variation');
+
+Route::post('/porduct/variation/insert', [InventoryController::class, 'variation_store'])->name('product.store');
 
 
 

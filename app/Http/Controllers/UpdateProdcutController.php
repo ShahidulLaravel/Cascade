@@ -28,7 +28,16 @@ class UpdateProdcutController extends Controller
                     'created_at' => Carbon::now(),
                 ]);
             }else{
-                   
+                $preview_image = $request->preview;
+                if ($preview_image != '') {
+                    $extension = $preview_image->getClientOriginalExtension();
+                    $file_name = Str::lower(str_replace(' ', '-', $request->product_name)) . '-' . rand(10, 100000) . '.' . $extension;
+                    Image::make($preview_image)->save(public_path('uploads/Products/preview/' . $file_name));
+
+                    Product::find($request->product_id)->update([
+                        'preview' => $file_name
+                    ]);
+                }  
         }
         //preview have 
         }else{

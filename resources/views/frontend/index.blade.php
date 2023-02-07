@@ -143,8 +143,7 @@
 											@foreach ($categories as $category)
                                                 
                                             @endforeach
-                                           <span>{{$category->id == $product->id ? 'same' : 'vua'}}</span> 
-                                           
+                                          
                                             <div class="elso_titl"><span class="small"></span></div>
 											<h5 class="fs-md mb-0 lh-1 mb-1"><a href="shop-single-v1.html">{{$product->product_name}}</a></h5>
                                             
@@ -229,91 +228,16 @@
 					</div>
 					
 					<div class="row align-items-center justify-content-center">
-						<div class="col-xl-2 col-lg-2 col-md-3 col-sm-6 col-4">
+						@foreach ($categories as $category )
+							<div class="col-xl-2 col-lg-2 col-md-3 col-sm-6 col-4">
 							<div class="cats_side_wrap text-center mx-auto mb-3">
-								<div class="sl_cat_01"><div class="d-inline-flex align-items-center justify-content-center p-4 circle mb-2 border"><a href="javascript:void(0);" class="d-block"><img src="assets/img/headphones.png" class="img-fluid" width="40" alt=""></a></div></div>
-								<div class="sl_cat_02"><h6 class="m-0 ft-medium fs-sm"><a href="javascript:void(0);">Headphones</a></h6></div>
+								<div class="sl_cat_01"><div class="d-inline-flex align-items-center justify-content-center p-4 circle mb-2 border"><a href="javascript:void(0);" class="d-block">
+									<img src="{{asset('uploads/categories')}}/{{$category->category_image}}" class="img-fluid" width="40" alt=""></a></div></div>
+								<div class="sl_cat_02"><h6 class="m-0 ft-medium fs-sm"><a href="javascript:void(0);">{{$category->category_name}}</a></h6></div>
 							</div>
 						</div>
-						
-						<div class="col-xl-2 col-lg-2 col-md-3 col-sm-6 col-4">
-							<div class="cats_side_wrap text-center mx-auto mb-3">
-								<div class="sl_cat_01"><div class="d-inline-flex align-items-center justify-content-center p-4 circle mb-2 border"><a href="javascript:void(0);" class="d-block"><img src="assets/img/watch.png" class="img-fluid" width="40" alt=""></a></div></div>
-								<div class="sl_cat_02"><h6 class="m-0 ft-medium fs-sm"><a href="javascript:void(0);">Watches</a></h6></div>
-							</div>
-						</div>
-						
-						<div class="col-xl-2 col-lg-2 col-md-3 col-sm-6 col-4">
-							<div class="cats_side_wrap text-center mx-auto mb-3">
-								<div class="sl_cat_01"><div class="d-inline-flex align-items-center justify-content-center p-4 circle mb-2 border"><a href="javascript:void(0);" class="d-block"><img src="assets/img/washing-machine.png" class="img-fluid" width="40" alt=""></a></div></div>
-								<div class="sl_cat_02"><h6 class="m-0 ft-medium fs-sm"><a href="javascript:void(0);">Washing Machine</a></h6></div>
-							</div>
-						</div>
-						
-						<div class="col-xl-2 col-lg-2 col-md-3 col-sm-6 col-4">
-							<div class="cats_side_wrap text-center mx-auto mb-3">
-								<div class="sl_cat_01"><div class="d-inline-flex align-items-center justify-content-center p-4 circle mb-2 border"><a href="javascript:void(0);" class="d-block"><img src="assets/img/cell-phone.png" class="img-fluid" width="40" alt=""></a></div></div>
-								<div class="sl_cat_02"><h6 class="m-0 ft-medium fs-sm"><a href="javascript:void(0);">iPhones</a></h6></div>
-							</div>
-						</div>
-						
-						<div class="col-xl-2 col-lg-2 col-md-3 col-sm-6 col-4">
-							<div class="cats_side_wrap text-center mx-auto mb-3">
-								<div class="sl_cat_01"><div class="d-inline-flex align-items-center justify-content-center p-4 circle mb-2 border"><a href="javascript:void(0);" class="d-block"><img src="assets/img/safety-goggles.png" class="img-fluid" width="40" alt=""></a></div></div>
-								<div class="sl_cat_02"><h6 class="m-0 ft-medium fs-sm"><a href="javascript:void(0);">Goggles</a></h6></div>
-							</div>
-						</div>
-						
-						<div class="col-xl-2 col-lg-2 col-md-3 col-sm-6 col-4">
-							<div class="cats_side_wrap text-center mx-auto mb-3">
-								<div class="sl_cat_01"><div class="d-inline-flex align-items-center justify-content-center p-4 circle mb-2 border"><a href="javascript:void(0);" class="d-block"><img src="assets/img/camera.png" class="img-fluid" width="40" alt=""></a></div></div>
-								<div class="sl_cat_02"><h6 class="m-0 ft-medium fs-sm"><a href="javascript:void(0);">Video Camera</a></h6></div>
-							</div>
-						</div>
-						
-						<div class="col-xl-2 col-lg-2 col-md-3 col-sm-6 col-4">
-							<div class="cats_side_wrap text-center mx-auto mb-3">
-								<div class="sl_cat_01"><div class="d-inline-flex align-items-center justify-content-center p-4 circle mb-2 border"><a href="javascript:void(0);" class="d-block"><img src="assets/img/fashion.png" class="img-fluid" width="40" alt=""></a></div></div>
-								<div class="sl_cat_02"><h6 class="m-0 ft-medium fs-sm"><a href="javascript:void(0);">Men's Wear</a></h6></div>
-							</div>
-						</div>
-						
-						<div class="col-xl-2 col-lg-2 col-md-3 col-sm-6 col-4">
-							<div class="cats_side_wrap text-center mx-auto mb-3">
-								<div class="sl_cat_01"><div class="d-inline-flex align-items-center justify-content-center p-4 circle mb-2 border"><a href="javascript:void(0);" class="d-block"><img src="assets/img/tshirt.png" class="img-fluid" width="40" alt=""></a></div></div>
-								<div class="sl_cat_02"><h6 class="m-0 ft-medium fs-sm"><a href="javascript:void(0);">Kid's Wear</a></h6></div>
-							</div>
-						</div>
-						
-						<div class="col-xl-2 col-lg-2 col-md-3 col-sm-6 col-4">
-							<div class="cats_side_wrap text-center mx-auto mb-3">
-								<div class="sl_cat_01"><div class="d-inline-flex align-items-center justify-content-center p-4 circle mb-2 border"><a href="javascript:void(0);" class="d-block"><img src="assets/img/accessories.png" class="img-fluid" width="40" alt=""></a></div></div>
-								<div class="sl_cat_02"><h6 class="m-0 ft-medium fs-sm"><a href="javascript:void(0);">Accessories</a></h6></div>
-							</div>
-						</div>
-						
-						<div class="col-xl-2 col-lg-2 col-md-3 col-sm-6 col-4">
-							<div class="cats_side_wrap text-center mx-auto mb-3">
-								<div class="sl_cat_01"><div class="d-inline-flex align-items-center justify-content-center p-4 circle mb-2 border"><a href="javascript:void(0);" class="d-block"><img src="assets/img/sneakers.png" class="img-fluid" width="40" alt=""></a></div></div>
-								<div class="sl_cat_02"><h6 class="m-0 ft-medium fs-sm"><a href="javascript:void(0);">Men's Shoes</a></h6></div>
-							</div>
-						</div>
-						
-						<div class="col-xl-2 col-lg-2 col-md-3 col-sm-6 col-4">
-							<div class="cats_side_wrap text-center mx-auto mb-3">
-								<div class="sl_cat_01"><div class="d-inline-flex align-items-center justify-content-center p-4 circle mb-2 border"><a href="javascript:void(0);" class="d-block"><img src="assets/img/television.png" class="img-fluid" width="40" alt=""></a></div></div>
-								<div class="sl_cat_02"><h6 class="m-0 ft-medium fs-sm"><a href="javascript:void(0);">Television</a></h6></div>
-							</div>
-						</div>
-						
-						<div class="col-xl-2 col-lg-2 col-md-3 col-sm-6 col-4">
-							<div class="cats_side_wrap text-center mx-auto mb-3">
-								<div class="sl_cat_01"><div class="d-inline-flex align-items-center justify-content-center p-4 circle mb-2 border"><a href="javascript:void(0);" class="d-block"><img src="assets/img/pant.png" class="img-fluid" width="40" alt=""></a></div></div>
-								<div class="sl_cat_02"><h6 class="m-0 ft-medium fs-sm"><a href="javascript:void(0);">Men's Pants</a></h6></div>
-							</div>
-						</div>
+						@endforeach						
 					</div>
-					
 				</div>
 			</section>
 			<!-- ======================= All Category ======================== -->

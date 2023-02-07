@@ -26,8 +26,9 @@
                         <img class="rounded" width="50" src="{{asset('uploads/Products/preview')}}/{{$product->preview}}" alt="">
                     </td>
                     <td>
-                        <a href="{{route('edit.product', $product->id)}}" class="btn btn-sm btn-secondary"><i class="fa-solid fa-pen-to-square"></i></button>
-                        <a class="text-white ml-2 btn btn-sm btn-danger"><i class="fa-solid fa-trash"></i></a>
+                        <a href="{{route('edit.product', $product->id)}}" class="btn btn-sm btn-primary"><i class="fa-solid fa-pen-to-square"></i></a>
+
+                        <button class="text-white ml-2 btn btn-sm btn-danger"><i class="delete-btn fa-solid fa-trash"></i></button>
                     </td>
                 </tr>
             @endforeach 
@@ -37,4 +38,6 @@
 </div>
 
 
+
 @endsection
+
