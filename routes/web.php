@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\BrandController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\DeleteController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
@@ -101,7 +102,9 @@ Route::get('/inventory/add/{inventory_add}', [InventoryController::class, 'add_i
 
 Route::post('/inventory/store/', [InventoryController::class, 'inventory_store'])->name('inventory.store');
 
+// deleted task
 
+Route::get('/delete/{delete_id}', [DeleteController::class, 'delete_execute'])->name('delete');
 
 
 

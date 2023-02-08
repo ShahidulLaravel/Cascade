@@ -32,6 +32,14 @@
         <div class="card">
             <div class="card-header">
                 <h3>Show Brands</h3>
+                @if (session('success'))
+                    <div class="alert alert-success d-flex align-items-center" role="alert">
+                    <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Success:"><use xlink:href="#check-circle-fill"/></svg>
+                    <div>
+                        {{session('success')}}
+                    </div>
+                    </div>
+                @endif
             </div>
             <div class="card-body">
                 <table class="table table-bordered">
@@ -49,7 +57,7 @@
                                 <img width="100" src="{{asset('uploads/products/brand')}}/{{$brand->brand_logo}}" alt="">
                             </td>
                             <td>
-                                <button class="btn btn-danger btn-sm">Delete</button>
+                                <a href="{{route('delete', $brand->id)}}" class="btn btn-danger btn-sm">Delete</a>
                             </td>
                         </tr>
                     @endforeach

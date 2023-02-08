@@ -14,11 +14,9 @@ class SubCategoryController extends Controller
     public function subcategory(){
         $categories = Category::all();
         $subcategories = SubCategory::all();
-        $sizes = Size::all();
          return view('admin.category.subcategory',[
             'categories' => $categories,
             'subcategories'=> $subcategories,
-            'sizes' => $sizes,
         ]);
     }
 

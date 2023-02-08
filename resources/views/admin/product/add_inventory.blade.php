@@ -8,6 +8,9 @@
         <div class="card">
             <div class="card-header">
                 <h4>Show Color Variation</h4>
+                @if (session('success'))
+                    <strong class="text-success">{{session('success')}}</strong>
+                @endif
             </div>
 
             <div class="card-body">
@@ -21,7 +24,8 @@
                         <tr>
                             <td>{{$colors->color_name}}</td>
                             <td><span class="badge" style="background: {{$colors->color_code}}; color:transparent" >primary</span></td>
-                            <td><button class="btn btn-sm btn-primary"><i class="fa-solid fa-trash"></i></button></td>
+
+                            <td><a href="{{route('delete', $colors->id)}}" class="btn btn-sm btn-primary"><i class="fa-solid fa-trash"></i></a></td>
                         </tr>
                     @empty
                         <tr>
@@ -36,6 +40,9 @@
         <div class="card mt-5">
             <div class="card-header">
                 <h4>Show Size</h4>
+                @if (session('success'))
+                    <strong class="text-success">{{session('success')}}</strong>
+                @endif
             </div>
 
             <div class="card-body">
@@ -50,7 +57,9 @@
                             <td>{{$size->category_id == null ? 'N/A' : $size->rel_to_cat->category_name }}</td>
 
                             <td>{{$size->size_name}}</td>
-                            <td><button class="btn btn-sm btn-primary"><i class="fa-solid fa-trash"></i></button></td>
+
+                            <td><a href="{{route('delete', $size->id)}}" class="btn btn-sm btn-primary"><i class="fa-solid fa-trash"></i></a></td>
+
                         </tr>
                     @empty
                         <tr>

@@ -23,6 +23,7 @@ class SubCategory extends Model
         return $this->belongsTo(Size::class, 'category_id');
     }
 
+
 }
 
 
