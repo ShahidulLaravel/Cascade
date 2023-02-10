@@ -16,20 +16,20 @@
             <div class="card-body">
                 <table class="table table-bordered">
                     <tr>
-                        <th>Product Name</th>
+                        <th>Product Id</th>
                         <th>Color</th>
-                        <th>Size</th>
+                        <th>Size</th>                        
                         <th>Quantity</th>
                         <th>Action</th>
                     </tr>
                     @foreach ($inventories as $inventory )
                        <tr>
-                            <td>{{$inventory->product_rel->product_name}}</td>
+                            <td>{{$inventory->product_id}}</td>
                             <td>{{$inventory->color_rel->color_name}}</td>
-                            <td>{{$inventory->size_rel->size_name}}</td>
+                            <td>{{$inventory->size_id}}</td>
                             <td>{{$inventory->qtty}} Pcs</td>
 
-                            <td><a href="{{route('delete', $inventory->id)}}" class="btn btn-danger btn-sm"><i class="delete-btn fa-solid fa-trash"></i></a></td>
+                            <td><a href="{{route('inventory.delete', $inventory->id)}}" class="btn btn-danger btn-sm"><i class="delete-btn fa-solid fa-trash"></i></a></td>
 
                         </tr> 
                     @endforeach

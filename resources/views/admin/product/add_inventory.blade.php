@@ -25,7 +25,7 @@
                             <td>{{$colors->color_name}}</td>
                             <td><span class="badge" style="background: {{$colors->color_code}}; color:transparent" >primary</span></td>
 
-                            <td><a href="{{route('delete', $colors->id)}}" class="btn btn-sm btn-primary"><i class="fa-solid fa-trash"></i></a></td>
+                            <td><a href="{{route('colors_delete', $colors->id)}}" class="btn btn-sm btn-primary"><i class="fa-solid fa-trash"></i></a></td>
                         </tr>
                     @empty
                         <tr>
@@ -58,7 +58,7 @@
 
                             <td>{{$size->size_name}}</td>
 
-                            <td><a href="{{route('delete', $size->id)}}" class="btn btn-sm btn-primary"><i class="fa-solid fa-trash"></i></a></td>
+                            <td><a href="{{route('size.delete', $size->id)}}" class="btn btn-sm btn-primary"><i class="fa-solid fa-trash"></i></a></td>
 
                         </tr>
                     @empty

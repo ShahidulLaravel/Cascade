@@ -104,7 +104,18 @@ Route::post('/inventory/store/', [InventoryController::class, 'inventory_store']
 
 // deleted task
 
-Route::get('/delete/{delete_id}', [DeleteController::class, 'delete_execute'])->name('delete');
+Route::get('/inventory/delete/{delete_id}', [InventoryController::class, 'inventory_delete'])->name('inventory.delete');
+
+Route::get('/colors/delete/{delete_id_colors}', [InventoryController::class, 'colors_delete'])->name('colors_delete');
+
+Route::get('/size/delete/{delete_id_size}', [InventoryController::class, 'size_delete'])->name('size.delete');
+
+Route::get('/brand/delete/{delete_id_brand}', [InventoryController::class, 'brand_delete'])->name('brand.delete');
+
+Route::get('/product/delete/{delete_id_product}', [InventoryController::class, 'product_delete'])->name('product.delete');
+
+
+
 
 
 

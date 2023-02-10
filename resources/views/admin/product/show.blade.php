@@ -41,7 +41,7 @@
 
                         <a href="{{route('edit.product', $product->id)}}" class="ml-2"><i class="fa-solid fa-pen-to-square"></i></a>
 
-                        <a href="{{route('delete', $product->id)}}" class="btn text-danger"><i class="delete-btn fa-solid fa-trash"></i></a>
+                        <a href="{{route('product.delete', $product->id)}}" class="btn text-danger"><i class="delete-btn fa-solid fa-trash"></i></a>
                     </td>
                 </tr>
             @endforeach 

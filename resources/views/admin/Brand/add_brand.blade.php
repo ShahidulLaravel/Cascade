@@ -57,7 +57,7 @@
                                 <img width="100" src="{{asset('uploads/products/brand')}}/{{$brand->brand_logo}}" alt="">
                             </td>
                             <td>
-                                <a href="{{route('delete', $brand->id)}}" class="btn btn-danger btn-sm">Delete</a>
+                                <a href="{{route('brand.delete', $brand->id)}}" class="btn btn-danger btn-sm">Delete</a>
                             </td>
                         </tr>
                     @endforeach

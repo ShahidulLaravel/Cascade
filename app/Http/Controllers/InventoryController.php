@@ -4,11 +4,12 @@ namespace App\Http\Controllers;
 
 use Carbon\Carbon;
 use App\Models\Size;
+use App\Models\Brand;
 use App\Models\Colors;
 use App\Models\Product;
 use App\Models\Category;
-use App\Models\InventoryStore;
 use Illuminate\Http\Request;
+use App\Models\InventoryStore;
 
 class InventoryController extends Controller
 {
@@ -68,6 +69,28 @@ class InventoryController extends Controller
             ]);
         }
         return back();
+    }
+
+    public function inventory_delete($delete_id){
+        InventoryStore::where('id', $delete_id)->delete();
+        return back()->with('success', 'Inventory Deleted Successfully');
+    }
+
+    public function colors_delete($delete_id_colors){
+        Colors::where('id', $delete_id_colors)->delete();
+        return back()->with('success', 'Colors Deleted Successfully');
+    } 
+    public function size_delete($delete_id_size){
+        Size::where('id', $delete_id_size)->delete();
+        return back()->with('success', 'Size Deleted Successfully');
+    } 
+    public function brand_delete($delete_id_brand){
+        Brand::where('id', $delete_id_brand)->delete();
+        return back()->with('success', 'Brand Deleted Successfully');
+    }
+    public function product_delete($delete_id_product){
+        Product::where('id', $delete_id_product)->delete();
+        return back()->with('success', 'Your Product is Deleted Successfully');
     }
 }
 
