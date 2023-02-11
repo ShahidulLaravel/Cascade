@@ -16,7 +16,7 @@
             <div class="card-body">
                 <table class="table table-bordered">
                     <tr>
-                        <th>Product Id</th>
+                        <th>Product Name</th>
                         <th>Color</th>
                         <th>Size</th>                        
                         <th>Quantity</th>
@@ -24,7 +24,7 @@
                     </tr>
                     @foreach ($inventories as $inventory )
                        <tr>
-                            <td>{{$inventory->product_id}}</td>
+                            <td>{{$inventory->product_rel->product_name}}</td>
                             <td>{{$inventory->color_rel->color_name}}</td>
                             <td>{{$inventory->size_id}}</td>
                             <td>{{$inventory->qtty}} Pcs</td>

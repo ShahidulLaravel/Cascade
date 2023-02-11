@@ -115,7 +115,9 @@ Route::get('/brand/delete/{delete_id_brand}', [InventoryController::class, 'bran
 Route::get('/product/delete/{delete_id_product}', [InventoryController::class, 'product_delete'])->name('product.delete');
 
 
+// single page show
 
+Route::get('/product/details/{product_id}', [FrontEndController::class, 'details'])->name('details');
 
 
 
