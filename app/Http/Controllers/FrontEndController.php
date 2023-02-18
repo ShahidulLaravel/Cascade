@@ -36,6 +36,7 @@ class FrontEndController extends Controller
         ->groupBy('size_id')
         ->selectRaw('count(*) as total, size_id')
         ->get();
+
         return view('frontend.details',[
             'product_info' => $product_info,
             'product_gallery' => $product_gallery,
@@ -43,5 +44,17 @@ class FrontEndController extends Controller
             'colors' => $colors,
             'sizes' => $sizes,
         ]);
+    }
+
+    public function getSize(Request $request){
+        $sizes = InventoryStore::where('product_id', $request->product_id)->where('color_id', $request->color_id)->get();
+        $str = '';
+
+        foreach($sizes as $size){
+            $str .= '<div class="form-check size-option form-option form-check-inline mb-2"><input class="form-check-input" type="radio" name="size_id" value="'. $size->size_id.'" id="size'.$size->size_id.'"/>
+            <label class="form-option-label"for="size'.$size->size_id.'">'.$size->size_rel->size_name.'</label>
+			</div>';
+        }
+        echo $str;
     }
 }

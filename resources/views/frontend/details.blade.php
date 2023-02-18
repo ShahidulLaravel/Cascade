@@ -59,7 +59,11 @@
 								<div class="prt_03 mb-4">
 									<p>{{$product_info->short_desp}}</p>
 								</div>
-								
+
+								{{-- form start --}}
+								<form action="{{route('add_cart')}}" method="POST">
+									@csrf
+
 								<div class="prt_04 mb-2">
 									<p class="d-flex align-items-center mb-0 text-dark ft-medium">Color:</p>
                                                          
@@ -67,25 +71,38 @@
                                         
                                         @foreach ($colors as $color)
 										<div class="form-check form-option form-check-inline mb-1">
-											<input class="form-check-input" type="radio" name="color_id" id="white{{$color->color_id}}">
-											<label class="form-option-label rounded-circle" for="white{{$color->color_id}}"><span class="form-option-color rounded-circle" style="background:{{$color->color_rel->color_code}}"></span></label>
+											<input data-product="{{$product_info->id}}"class="color_id form-check-input" type="radio" value="{{$color->color_id}}" name="color_id" id="white{{$color->color_id}}">
+
+											<label class="form-option-label rounded-circle" for="white{{$color->color_id}}"><span class="form-option-color  rounded-circle" style="background:{{$color->color_rel->color_code}}"></span></label>
+
 										</div>
                                         @endforeach
-
-                                       
-									</div>
-                                    
+                                     
+									</div>                                 
 								</div>
 								
 								<div class="prt_04 mb-4">
+									
 									<p class="d-flex align-items-center mb-0 text-dark ft-medium">Size:</p>
-									<div class="text-left pb-0 pt-2">
+									<div class="text-left pb-0 pt-2" id="size">
+										
+
                                         @foreach ($sizes as $size)
-                                                                                
-                                       <div class="form-check size-option form-option form-check-inline mb-2">
-											<input class="form-check-input" type="radio" name="size_id" id="28" checked="">
-											<label class="form-option-label" for="28">{{$size->size_rel->size_name}}</label>
+											
+										@if($size->size_rel->size_name == 'NA')
+											<div class="form-check size-option form-option form-check-inline mb-2">
+											<input checked class="form-check-input" type="radio" name="size_id" id="size_id" >
+
+											<label class="form-option-label" for="size_id">{{$size->size_rel->size_name}}</label>
 										</div>
+										@else
+											<div class="form-check size-option form-option form-check-inline mb-2">
+											<input class="form-check-input" type="radio" name="size_id" id="size_id" >
+
+											<label class="form-option-label" for="size_id">{{$size->size_rel->size_name}}</label>
+										</div>
+										@endif
+                                                                           
                                         @endforeach
 									</div>
 								</div>
@@ -94,18 +111,17 @@
 									<div class="form-row mb-7">
 										<div class="col-12 col-lg-auto">
 											<!-- Quantity -->
-											<select class="mb-2 custom-select">
-											  <option value="1" selected="">1</option>
-											  <option value="2">2</option>
-											  <option value="3">3</option>
-											  <option value="4">4</option>
-											  <option value="5">5</option>
+											<select name="quantity" class="mb-2 custom-select">
+												@for ($i = 1; $i < 15; $i++)
+													<option value="{{$i}}" >{{$i}}</option>
+												@endfor
 											</select>
 										</div>
 										<div class="col-12 col-lg">
 											<!-- Submit -->
+											<input type="hidden" name="product_id" value="{{$product_info->id}}">
 											<button type="submit" class="btn btn-block custom-height bg-dark mb-2">
-												<i class="lni lni-shopping-basket mr-2"></i>Add to Cart 
+												<i class="lni lni-shopping-basket mr-2"></i>Add to Cart
 											</button>
 										</div>
 										<div class="col-12 col-lg-auto">
@@ -131,7 +147,7 @@
 									  </a>
 									</p>
 								</div>
-								
+							</form>
 							</div>
 						</div>
 					</div>
@@ -388,9 +404,30 @@
 					</div>	
 				</div>
 			</section>
-           
-			
-			
+@endsection
 
 
+@section('javascript')
+	<script>
+		$('.color_id').click(function(){
+			var color_id = $(this).val();
+			var product_id = $(this).attr('data-product');
+
+			
+			$.ajaxSetup({
+				headers: {
+					'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+				}
+			});
+
+			$.ajax({
+				type:'POST',
+				url:'/getSize',
+				data:{'color_id' : color_id, 'product_id' : product_id},
+				success:function(data){
+					 $('#size').html(data);					
+				}
+			});
+		});
+	</script>
 @endsection

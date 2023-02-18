@@ -109,4 +109,8 @@ class ProductController extends Controller
         ]);
     }
 
+    public function add_cart(Request $request){
+        
+    }
+
 }

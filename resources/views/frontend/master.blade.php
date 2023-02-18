@@ -4,6 +4,7 @@
 <head>
 		<meta charset="utf-8" />
 		<meta name="author" content="Themezhub" />
+		<meta name="csrf-token" content="{{ csrf_token() }}">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		
         <title>Kumo- Fashion eCommerce HTML Template</title>
@@ -495,6 +496,9 @@
 		<script src="{{asset('Ecom/js/snackbar.min.js')}}"></script>
 		<script src="{{asset('Ecom/js/jQuery.style.switcher.js')}}"></script>
 		<script src="{{asset('Ecom/js/custom.js')}}"></script>
+
+		@yield('javascript')
+
 		<!-- ============================================================== -->
 		<!-- This page plugins -->
 		<!-- ============================================================== -->	

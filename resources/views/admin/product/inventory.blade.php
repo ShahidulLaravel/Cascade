@@ -26,7 +26,7 @@
                        <tr>
                             <td>{{$inventory->product_rel->product_name}}</td>
                             <td>{{$inventory->color_rel->color_name}}</td>
-                            <td>{{$inventory->size_id}}</td>
+                            <td>{{$inventory->size_rel->size_name}}</td>
                             <td>{{$inventory->qtty}} Pcs</td>
 
                             <td><a href="{{route('inventory.delete', $inventory->id)}}" class="btn btn-danger btn-sm"><i class="delete-btn fa-solid fa-trash"></i></a></td>

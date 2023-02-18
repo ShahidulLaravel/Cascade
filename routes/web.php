@@ -119,7 +119,9 @@ Route::get('/product/delete/{delete_id_product}', [InventoryController::class, '
 
 Route::get('/product/details/{product_id}', [FrontEndController::class, 'details'])->name('details');
 
+Route::post('/getSize', [FrontEndController::class, 'getSize']);
 
+Route::post('add/card', [ProductController::class, 'add_cart'])->name('add_cart'); 
 
 
 
