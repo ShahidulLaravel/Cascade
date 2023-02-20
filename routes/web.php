@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\BrandController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\DeleteController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -121,8 +122,22 @@ Route::get('/product/details/{product_id}', [FrontEndController::class, 'details
 
 Route::post('/getSize', [FrontEndController::class, 'getSize']);
 
-Route::post('add/card', [ProductController::class, 'add_cart'])->name('add_cart'); 
+Route::post('add/cart', [ProductController::class, 'add_cart'])->name('add_cart');
 
+
+// Customer controller
+
+Route::get('/customer/Authentication', [CustomerController::class, 'customer_reg_log'])->name('customer.register.login');
+
+Route::post('/customer/registration', [CustomerController::class, 'customer_registration'])->name('customer.register.store');
+
+Route::post('/customer/login', [CustomerController::class, 'customer_login'])->name('customer.login');
+
+Route::get('/customer/logout', [CustomerController::class, 'customer_logout'])->name('customer.logout');
+
+Route::get('/customer/profile', [CustomerController::class, 'customer_profile'])->name('customer.profile');
+
+Route::post('/customer/information/update',[CustomerController::class, 'customer_profile_update'])->name('customer_info.update');
 
 
 

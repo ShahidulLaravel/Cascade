@@ -66,10 +66,21 @@
 							</div>
 							
 							<div class="currency-selector dropdown js-dropdown float-right mr-3">
-								<a href="javascript:void(0);" class="text-muted medium"><i class="lni lni-user mr-1"></i>Sign In / Register</a>
-							</div>
-						</div>
-						
+								@auth('customerlogin')
+								<div class="dropdown">
+								<a style="cursor:pointer" class="dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">
+									{{Auth::guard('customerlogin')->user()->name}}
+								</a>
+								<div class="dropdown-menu">
+									<a class="dropdown-item" href="{{route('customer.profile')}}">My Porofile</a>
+									<a class="dropdown-item" href="{{route('customer.logout')}}">Logout</a>
+								</div>
+								</div>
+							</div>	
+								@else
+								<a href="{{route('customer.register.login')}}" class="text-muted medium"><i class="lni lni-user mr-1"></i>Sign In / Register</a>	
+								@endauth
+						</div>	
 					</div>
 				</div>
 			</div>

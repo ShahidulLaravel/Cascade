@@ -89,7 +89,7 @@
 
                                         @foreach ($sizes as $size)
 											
-										@if($size->size_rel->size_name == 'NA')
+										@if($size->size_id == 1)
 											<div class="form-check size-option form-option form-check-inline mb-2">
 											<input checked class="form-check-input" type="radio" name="size_id" id="size_id" >
 
@@ -121,7 +121,7 @@
 											<!-- Submit -->
 											<input type="hidden" name="product_id" value="{{$product_info->id}}">
 											<button type="submit" class="btn btn-block custom-height bg-dark mb-2">
-												<i class="lni lni-shopping-basket mr-2"></i>Add to Cart
+												<i class="lni lni-shopping-basket mr-2"></i>Add to Cart</i>
 											</button>
 										</div>
 										<div class="col-12 col-lg-auto">

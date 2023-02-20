@@ -6,6 +6,7 @@ use Carbon\Carbon;
 use App\Models\Brand;
 use App\Models\Product;
 use App\Models\Category;
+use App\Models\InventoryStore;
 use App\Models\SubCategory;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
@@ -109,8 +110,10 @@ class ProductController extends Controller
         ]);
     }
 
+
     public function add_cart(Request $request){
-        
+           
     }
+
 
 }

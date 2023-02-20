@@ -50,10 +50,18 @@ class FrontEndController extends Controller
         $sizes = InventoryStore::where('product_id', $request->product_id)->where('color_id', $request->color_id)->get();
         $str = '';
 
+       
         foreach($sizes as $size){
-            $str .= '<div class="form-check size-option form-option form-check-inline mb-2"><input class="form-check-input" type="radio" name="size_id" value="'. $size->size_id.'" id="size'.$size->size_id.'"/>
-            <label class="form-option-label"for="size'.$size->size_id.'">'.$size->size_rel->size_name.'</label>
-			</div>';
+            if($size->id == 1){
+                $str .= '<div class="form-check size-option form-option form-check-inline mb-2"><input checked class="form-check-input" type="radio" name="size_id" value="' . $size->size_id . '" id="size' . $size->size_id . '"/>
+                <label class="form-option-label"for="size' . $size->size_id . '">' . $size->size_rel->size_name . '</label>
+                </div>';
+            }else{
+                $str .= '<div class="form-check size-option form-option form-check-inline mb-2"><input class="form-check-input" type="radio" name="size_id" value="' . $size->size_id . '" id="size' . $size->size_id . '"/>
+                <label class="form-option-label"for="size' . $size->size_id . '">' . $size->size_rel->size_name . '</label>
+                </div>';
+            }
+           
         }
         echo $str;
     }
