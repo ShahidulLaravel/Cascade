@@ -30,11 +30,18 @@
 							<div class="d-block border rounded mfliud-bot">
 								<div class="dashboard_author px-2 py-5">
 									<div class="dash_auth_thumb circle p-1 border d-inline-flex mx-auto mb-2">
-										
+
+										@if(Auth::guard('customerlogin')->user()->photo == null)
+                                            <img src="{{ Avatar::create(Auth::guard('customerlogin')->user()->name)->toBase64() }}" />
+                                        @else
+
+                                            <img style="width: 140px; height:140px;" src="" alt="profile here" class="avatar-img rounded-circle">
+                                            
+                                        @endif
 									</div>
 									<div class="dash_caption">
 										<h4 class="fs-md ft-medium mb-0 lh-1">{{Auth::guard('customerlogin')->user()->name}}</h4>
-										<span class="text-muted smalls">Australia</span>
+										<span class="text-muted smalls">{{Auth::guard('customerlogin')->user()->country}}</span>
 									</div>
 								</div>
 								
@@ -87,13 +94,13 @@
 									<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
 										<div class="form-group">
 											<label class="small text-dark ft-medium">Country</label>
-											<input name="country" type="text" class="form-control" placeholder="Country" />
+											<input name="country" type="text" class="form-control" value="{{Auth::guard('customerlogin')->user()->country}}" />
 										</div>
 									</div>
 									<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
 										<div class="form-group">
 											<label class="small text-dark ft-medium">Address</label>
-											<input name="address" type="text" class="form-control" placeholder="Address" />
+											<input name="address" type="text" class="form-control" value="{{Auth::guard('customerlogin')->user()->address}}" />
 										</div>
 									</div>
 
