@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\BrandController;
+use App\Http\Controllers\CartController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\DeleteController;
@@ -122,7 +123,7 @@ Route::get('/product/details/{product_id}', [FrontEndController::class, 'details
 
 Route::post('/getSize', [FrontEndController::class, 'getSize']);
 
-Route::post('add/cart', [ProductController::class, 'add_cart'])->name('add_cart');
+Route::post('add/cart', [CartController::class, 'add_cart'])->name('add_cart');
 
 
 // Customer controller
@@ -140,7 +141,9 @@ Route::get('/customer/profile', [CustomerController::class, 'customer_profile'])
 Route::post('/customer/information/update',[CustomerController::class, 'customer_profile_update'])->name('customer_info.update');
 
 
+// cart controller 
 
+Route::get('/remove/cart/{cart_id}', [CartController::class, 'remove_cart'])->name('remove.cart');
 
 
 

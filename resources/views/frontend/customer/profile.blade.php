@@ -60,10 +60,24 @@
 						
 						<div class="col-12 col-md-12 col-lg-8 col-xl-8">
 							<!-- row -->
+							@if(session('old'))
+								<div class="alert alert-danger">{{session('old')}}</div>
+							@endif
+
+							@if(session('success_one'))
+								<div class="alert alert-success">{{session('success_one')}}</div>
+							@endif
+
+							@if(session('success_two'))
+								<div class="alert alert-success">{{session('success_two')}}</div>
+							@endif
+
 							<div class="row align-items-center">
-								<form action="{{route('customer_info.update')}}" class="row m-0">
-									
+								<form action="{{route('customer_info.update')}}"class="row m-0" method="POST" enctype="multipart/form-data
+								">
+									@csrf 
 									<div class="col-xl-6 col-lg-6 col-md-12 col-sm-12">
+										
 										<div class="form-group">
 											<label class="small text-dark ft-medium">First Name *</label>
 											<input name="name" type="text" class="form-control" value="{{Auth::guard('customerlogin')->user()->name}}" />
@@ -82,6 +96,7 @@
 											<label class="small text-dark ft-medium">Current Password *</label>
 											<input name="old_password" type="password" class="form-control" placeholder="Current Password" />
 										</div>
+										
 									</div>
 									
 									<div class="col-xl-6 col-lg-6 col-md-12 col-sm-12">

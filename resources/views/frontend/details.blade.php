@@ -63,21 +63,19 @@
 								{{-- form start --}}
 								<form action="{{route('add_cart')}}" method="POST">
 									@csrf
-
 								<div class="prt_04 mb-2">
-									<p class="d-flex align-items-center mb-0 text-dark ft-medium">Color:</p>
+									<p class="d-flex align-items-center mb-0 text-dark ft-medium">Color: </p>
                                                          
-									<div class="text-left">
-                                        
+									<div class="text-left">                         
                                         @foreach ($colors as $color)
-										<div class="form-check form-option form-check-inline mb-1">
+										
+											<div class="form-check form-option form-check-inline mb-1">
 											<input data-product="{{$product_info->id}}"class="color_id form-check-input" type="radio" value="{{$color->color_id}}" name="color_id" id="white{{$color->color_id}}">
 
 											<label class="form-option-label rounded-circle" for="white{{$color->color_id}}"><span class="form-option-color  rounded-circle" style="background:{{$color->color_rel->color_code}}"></span></label>
 
-										</div>
-                                        @endforeach
-                                     
+										</div>							
+                                        @endforeach                                  
 									</div>                                 
 								</div>
 								
@@ -101,6 +99,7 @@
 
 											<label class="form-option-label" for="size_id">{{$size->size_rel->size_name}}</label>
 										</div>
+										
 										@endif
                                                                            
                                         @endforeach
@@ -430,4 +429,26 @@
 			});
 		});
 	</script>
+
+<script>
+	@if(Session::has('success'))
+			toastr.options =
+			{
+				"closeButton" : true,
+				"progressBar" : true
+			}
+			toastr.success("{{session('success')}}");
+	@endif
+</script>
+<script>
+	@if(Session::has('delete'))
+			toastr.options =
+			{
+				"closeButton" : true,
+				"progressBar" : true
+			}
+			toastr.success("{{session('delete')}}");
+	@endif
+</script>
+		
 @endsection

@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\CustomerLogin;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Intervention\Image\Facades\Image;
 use App\Providers\RouteServiceProvider;
 
 class CustomerController extends Controller
@@ -44,6 +45,72 @@ class CustomerController extends Controller
     }
 
     public function customer_profile_update(Request $request){
-        
+        if($request->photo == ''){
+            if($request->password == ''){
+                CustomerLogin::find(Auth::guard('customerlogin')->id())->update([
+                    'name' => $request->name,
+                    'email' => $request->email,
+                    'country' => $request->country,
+                    'address' => $request->address,
+                ]);
+                return back()->with('success_one', 'Inforamtion Updated Successfully');
+            }
+            //password not blank 
+            else{
+                if(Hash::check($request->old_password, Auth::guard('customerlogin')->user()->password)){
+                    CustomerLogin::find(Auth::guard('customerlogin')->id())->update([
+                        'name' => $request->name,
+                        'email' => $request->email,
+                        'country' => $request->country,
+                        'address' => $request->address,
+                        'password' => Hash::make($request->password),
+                    ]);
+                    return back()->with('success_two', 'Information Updated Successfully');
+                }else{
+                    return back()->with('old', 'Your Old Password is Invalid'); 
+                }
+            }
+        }
+
+        // image not blank - else body 
+        else{
+            if ($request->password == '') {
+                // image processing
+                $photo = $request->photo;
+                $extension = $photo->getClientOriginalExtension();
+                $file_name = Auth::guard('customerlogin')->id(). '.'.$extension;
+                Image::make($photo)->save(public_path('uploads/customer/'. $file_name)); 
+                CustomerLogin::find(Auth::guard('customerlogin')->id())->update([
+                    'name' => $request->name,
+                    'email' => $request->email,
+                    'country' => $request->country,
+                    'address' => $request->address,
+                    'photo' => $file_name,
+                ]);
+                return back()->with('success_one', 'Inforamtion Updated Successfully');
+            }
+            //password not blank 
+            else {
+                if (Hash::check($request->old_password, Auth::guard('customerlogin')->user()->password)) {
+                    //image processing and update
+                    $photo = $request->photo;
+                    $extension = $photo->getClientoriginalExtension();
+                    $file_name = Auth::guard('customerlogin')->id() . '.' . $extension;
+                    Image::make($photo)->save(public_path('uploads/customer/' . $file_name)); 
+                    CustomerLogin::find(Auth::guard('customerlogin')->id())->update([
+                        'name' => $request->name,
+                        'email' => $request->email,
+                        'country' => $request->country,
+                        'address' => $request->address,
+                        'password' => Hash::make($request->password),
+                        'photo' => $file_name,
+                    ]);
+                    return back()->with('success_two', 'Information Updated Successfully');
+                } 
+                else {
+                    return back()->with('old', 'Your Old Password is Invalid');
+                }
+            }
+        }
     }
 }
