@@ -11,6 +11,8 @@ class Product extends Model
 
     protected $guarded = ['id'];
 
+
+
     function rel_to_brand(){
         return $this->belongsTo(Brand::class, 'brand');
     }

@@ -22,25 +22,37 @@
       </div>
       <div class="card-body">
         <div class="row">
-          <div class="col-lg-4">
+          <div class="col-lg-3">
               <div class="mb-3">
                 <label for="" class="form-label">Product Name</label>
                 <input type="text" name="product_name" class="form-control">
               </div>
           </div>
-          <div class="col-lg-4">
+          <div class="col-lg-3">
               <div class="mb-3">
                 <label for="" class="form-label">Product Price</label>
                 <input type="number" name="price" class="form-control">
               </div>
           </div>
-          <div class="col-lg-4">
+          <div class="col-lg-3">
               <div class="mb-3">
                 <label for="" class="form-label">Product Discount</label>
                 <input type="number" name="discount" class="form-control">
               </div>
           </div>
-          <div class="col-lg-6">
+           <div class="col-lg-3">
+              <div class="mb-3">
+                <label for="" class="form-label">Available Color</label>
+                <select name="color_id"  id="color_id" class="form-control">
+                  <option value="">-- Select Color --</option>
+                  @foreach ($colors as $color)
+                    <option value="{{$color->id}}">{{$color->color_name}}</option>
+                  @endforeach
+                </select>
+              </div>
+          </div>
+
+          <div class="col-lg-4">
               <div class="mb-3">
                 <label for="" class="form-label">Select Category</label>
                 <select name="category_id"  id="category_id" class="form-control">
@@ -51,7 +63,7 @@
                 </select>
               </div>
           </div>
-          <div class="col-lg-6">
+          <div class="col-lg-4">
               <div class="mb-3">
                 <label for="" class="form-label">Select Subcategory</label>
                 <select name="subcategory_id" id="subcategory" class="form-control">
@@ -62,6 +74,18 @@
                 </select>
               </div>
           </div>
+          <div class="col-lg-4">
+              <div class="mb-3">
+                <label for="" class="form-label">Available Size</label>
+                <select name="size_id"  id="size_id" class="form-control">
+                  <option value="">-- Select Size --</option>
+                  @foreach ($sizes as $size)
+                    <option value="{{$size->id}}">{{$size->size_name}}</option>
+                  @endforeach
+                </select>
+              </div>
+          </div>
+
           <div class="col-lg-4">
               <div class="mb-3">
                 <label for="" class="form-label">Product Brand</label>

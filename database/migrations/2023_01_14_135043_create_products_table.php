@@ -20,6 +20,8 @@ return new class extends Migration
             $table->float('discount')->default(0);
             $table->float('after_discount');
             $table->integer('category_id');
+            $table->integer('color_id');
+            $table->integer('size_id');
             $table->integer('subcategory_id')->nullable();
             $table->integer('brand')->nullable();
             $table->string('short_desp');

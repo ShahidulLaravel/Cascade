@@ -3,13 +3,15 @@
 namespace App\Http\Controllers;
 
 use Carbon\Carbon;
+use App\Models\Size;
 use App\Models\Brand;
 use App\Models\Product;
 use App\Models\Category;
-use App\Models\InventoryStore;
+use App\Models\Colors;
 use App\Models\SubCategory;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use App\Models\InventoryStore;
 use App\Models\ProductGallery;
 use Intervention\Image\Facades\Image;
 
@@ -19,10 +21,14 @@ class ProductController extends Controller
         $categories = Category::all();
         $subcategories = SubCategory::all();
         $brands = Brand::all();
+        $sizes = Size::all();
+        $colors = Colors::all();
         return view('admin.product.add_product', [
             'categories' => $categories,
             'subcategories' => $subcategories,
-            'brands' => $brands
+            'brands' => $brands,
+            'sizes' => $sizes,
+            'colors' => $colors,
         ]);
     }
 
