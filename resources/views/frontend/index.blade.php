@@ -138,7 +138,7 @@
 
 								<div class="card-body p-0">
 									<div class="shop_thumb position-relative">
-										<a class="card-img-top d-block overflow-hidden" href="{{route('details',$product->id)}}"><img width="100" class="card-img-top" src="{{asset('uploads/Products/preview')}}/{{$product->preview}}" alt="img here"></a>
+										<a class="card-img-top d-block overflow-hidden" href="{{route('details',$product->id)}}"><img style="width:162px;height:162px;" class="card-img-top" src="{{asset('uploads/Products/preview')}}/{{$product->preview}}" alt="img here"></a>
 									</div>
 								</div>
                                 
@@ -174,7 +174,7 @@
 					<div class="row justify-content-center">
 						<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
 							<div class="position-relative text-center">
-								<a href="shop-style-1.html" class="btn stretched-link borders">Explore More<i class="lni lni-arrow-right ml-2"></i></a>
+								<a href="{{route('products.all')}}" class="btn stretched-link borders">Explore More<i class="lni lni-arrow-right ml-2"></i></a>
 							</div>
 						</div>
 					</div>
@@ -192,7 +192,7 @@
 
 								@foreach ($brands as $brimg)
                                     <div class="single-brnads">
-									<img style="width:80px;" src="{{asset('uploads/Products/brand')}}/{{$brimg->brand_logo}}" class="img-fluid" alt="" />
+									<img style="width:90px;height:30px;" src="{{asset('uploads/Products/brand')}}/{{$brimg->brand_logo}}" class="img-fluid" alt="" />
 								</div>
                                 @endforeach
 														

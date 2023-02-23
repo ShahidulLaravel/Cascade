@@ -20,6 +20,7 @@ Auth::routes();
 
 //Front end Controller
 Route::get('/', [FrontEndController::class, 'frontEnd'])->name('frontEnd');
+Route::get('/products/all', [FrontEndController::class, 'show_all'])->name('products.all');
 
 // Backend / Dashboard Controller
 Route::get('/home', [HomeController::class, 'index'])->name('home');

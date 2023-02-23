@@ -15,10 +15,23 @@ class FrontEndController extends Controller
 {
     function frontEnd(){
         $categories = Category::all();
-        $products = Product::all();
+        $products = Product::take(8)->latest()->get();
         $brands = Brand::all();
         $sizes = Size::all();
         return view('Frontend.index',[
+            'categories' => $categories,
+            'products' => $products,
+            'brands' => $brands,
+            'sizes' => $sizes,
+        ]);
+    }
+
+    public function show_all(){
+        $categories = Category::all();
+        $products = Product::all();
+        $brands = Brand::all();
+        $sizes = Size::all();
+        return view('frontend.all_products', [
             'categories' => $categories,
             'products' => $products,
             'brands' => $brands,

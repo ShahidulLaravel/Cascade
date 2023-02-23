@@ -56,8 +56,8 @@
 									</div>
 								</div>
 								
-								<div class="prt_03 mb-4">
-									<p>{{$product_info->short_desp}}</p>
+								<div class="prt_03 mb-4 text-dark">
+									<strong>{{$product_info->short_desp}}</strong>
 								</div>
 
 								{{-- form start --}}
