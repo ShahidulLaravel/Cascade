@@ -33,6 +33,11 @@
 										<strong>{{session('warning')}}</strong>
 									</div>
 								@endif
+								@if (session('warn'))
+									<div class="alert alert-danger" role="alert">
+										<strong>{{session('warn')}}</strong>
+									</div>
+								@endif
 							</div>
 							<form action="{{route('customer.login')}}" method="POST" class="border p-3 rounded">	
 								@csrf			

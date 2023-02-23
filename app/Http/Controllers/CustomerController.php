@@ -28,7 +28,8 @@ class CustomerController extends Controller
 
     public function customer_login(Request $request){
         if(Auth::guard('customerlogin')->attempt(['email' => $request->email, 'password' => $request->password])){
-            return redirect('/');
+             return redirect('/');
+            
         }else{
             return back()->with('warning', 'Invalid Login Credintials ! Try Again');
         }
