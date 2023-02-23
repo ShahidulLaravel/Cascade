@@ -423,17 +423,18 @@
 						@php
 							$sub_total = 0;
 						@endphp
+
 						<div class="cart_select_items py-2">
 							<!-- Single Item -->
 							@foreach (App\Models\Cart::where('customer_id', Auth::guard('customerlogin')->id())->get() as $cart)
 								<div class="d-flex align-items-center justify-content-between br-bottom px-3 py-3">
 								<div class="cart_single d-flex align-items-center">
 									<div class="cart_selected_single_thumb">
-										<a href="#"><img src="{{asset('uploads/products')}}/{{$cart->preview}}" width="60" class="img-fluid" alt="" /></a>
+										<a href="#"><img src="{{asset('uploads/products/preview')}}/{{$cart->rel_with_product->preview}}" width="60" class="img-fluid" alt="" /></a>
 									</div>
 									<div class="cart_single_caption pl-2">
 										<h4 class="product_title fs-sm ft-medium mb-0 lh-1">{{$cart->rel_with_product->product_name}}</h4>
-										<p class="mb-2"><span class="text-dark ft-medium small">{{$cart->rel_with_sizes->size_name}}</span>, <span class="text-dark small">{{$cart->rel_with_colors->color_name}}</span></p>
+										<p class="mb-2"><span class="text-dark ft-medium small">{{$cart->rel_with_product->size_name}}</span>, <span class="text-dark small">{{$cart->rel_with_product->color_name}}</span></p>
 										<h4 class="fs-md ft-medium mb-0 lh-1">&#2547;{{$cart->rel_with_product->after_discount}} x {{$cart->quantity}}</h4>
 									</div>
 								</div>
@@ -450,6 +451,7 @@
 								@endphp
 							@endforeach													
 						</div>
+
 						
 						<div class="d-flex align-items-center justify-content-between br-top br-bottom px-3 py-3">
 							<h6 class="mb-0">Subtotal</h6>

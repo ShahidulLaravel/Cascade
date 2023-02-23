@@ -14,7 +14,7 @@
             </div>
         @endif
 
-        <table class="table table-bordered">
+        <table class="table table-striped">
             <tr>
                 <th>Serial</th>
                 <th>Product Name</th>
@@ -37,7 +37,6 @@
                         <img class="rounded" width="50" src="{{asset('uploads/Products/preview')}}/{{$product->preview}}" alt="">
                     </td>
                     <td class="mx-2-">  
-                        <a href="{{route('product.inventory', $product->id)}}" class="text-warning"><i class="fa-solid fa-store"></i></a>
 
                         <a href="{{route('edit.product', $product->id)}}" class="ml-2"><i class="fa-solid fa-pen-to-square"></i></a>
 

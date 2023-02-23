@@ -2,13 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Size;
 use App\Models\Brand;
 use App\Models\Product;
 use App\Models\Category;
-use App\Models\InventoryStore;
-use App\Models\ProductGallery;
 use App\Models\SubCategory;
 use Illuminate\Http\Request;
+use App\Models\InventoryStore;
+use App\Models\ProductGallery;
 
 class FrontEndController extends Controller
 {
@@ -16,10 +17,12 @@ class FrontEndController extends Controller
         $categories = Category::all();
         $products = Product::all();
         $brands = Brand::all();
+        $sizes = Size::all();
         return view('Frontend.index',[
             'categories' => $categories,
             'products' => $products,
             'brands' => $brands,
+            'sizes' => $sizes,
         ]);
     }
 
@@ -28,11 +31,11 @@ class FrontEndController extends Controller
         $product_gallery = ProductGallery::where('product_id',$product_id)->get();
         $related_product = Product::where('category_id', $product_info->category_id)->where('id', '!=', $product_id)->get();
 
-        $colors = InventoryStore::where('product_id', $product_info->id)->groupBy('color_id')
+        $colors = Product::where('id', $product_info->id)->groupBy('color_id')
         ->selectRaw('count(*) as total, color_id')
         ->get();
 
-        $sizes = InventoryStore::where('product_id', $product_info->id)
+        $sizes = Product::where('id', $product_info->id)
         ->groupBy('size_id')
         ->selectRaw('count(*) as total, size_id')
         ->get();
@@ -47,7 +50,7 @@ class FrontEndController extends Controller
     }
 
     public function getSize(Request $request){
-        $sizes = InventoryStore::where('product_id', $request->product_id)->where('color_id', $request->color_id)->get();
+        $sizes = Product::where('id', $request->product_id)->where('color_id', $request->color_id)->get();
         $str = '';
 
        

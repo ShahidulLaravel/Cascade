@@ -63,6 +63,7 @@
 								{{-- form start --}}
 								<form action="{{route('add_cart')}}" method="POST">
 									@csrf
+									
 								<div class="prt_04 mb-2">
 									<p class="d-flex align-items-center mb-0 text-dark ft-medium">Color: </p>
                                                          

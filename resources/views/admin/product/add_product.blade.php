@@ -52,7 +52,7 @@
               </div>
           </div>
 
-          <div class="col-lg-4">
+          <div class="col-lg-3">
               <div class="mb-3">
                 <label for="" class="form-label">Select Category</label>
                 <select name="category_id"  id="category_id" class="form-control">
@@ -63,7 +63,7 @@
                 </select>
               </div>
           </div>
-          <div class="col-lg-4">
+          <div class="col-lg-3">
               <div class="mb-3">
                 <label for="" class="form-label">Select Subcategory</label>
                 <select name="subcategory_id" id="subcategory" class="form-control">
@@ -74,7 +74,7 @@
                 </select>
               </div>
           </div>
-          <div class="col-lg-4">
+          <div class="col-lg-3">
               <div class="mb-3">
                 <label for="" class="form-label">Available Size</label>
                 <select name="size_id"  id="size_id" class="form-control">
@@ -86,10 +86,16 @@
               </div>
           </div>
 
+          <div class="col-lg-3">
+              <div class="mb-3">
+                <label for="" class="form-label">Product Quantity</label>
+                <input type="number" name="quantity" class="form-control">
+              </div>
+          </div>
+
           <div class="col-lg-4">
               <div class="mb-3">
                 <label for="" class="form-label">Product Brand</label>
-
                   <select name="brand" class="form-control">
                     <option value="">-- Select Brand --</option>
                     @foreach ($brands as $brand)
