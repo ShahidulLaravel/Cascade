@@ -120,13 +120,13 @@
 										<div class="col-12 col-lg">
 											<!-- Submit -->
 											<input type="hidden" name="product_id" value="{{$product_info->id}}">
-											<button type="submit" class="btn btn-block custom-height bg-dark mb-2">
+											<button name="one" value="1" type="submit" class="btn btn-block custom-height bg-dark mb-2">
 												<i class="lni lni-shopping-basket mr-2"></i>Add to Cart</i>
 											</button>
 										</div>
 										<div class="col-12 col-lg-auto">
 											<!-- Wishlist -->
-											<button class="btn custom-height btn-default btn-block mb-2 text-dark" data-toggle="button">
+											<button name="two" value="2" type="submit" class="btn custom-height btn-default btn-block mb-2 text-dark">
 												<i class="lni lni-heart mr-2"></i>Wishlist
 											</button>
 										</div>
@@ -449,6 +449,16 @@
 				"progressBar" : true
 			}
 			toastr.success("{{session('delete')}}");
+	@endif
+</script>
+<script>
+	@if(Session::has('wish_success'))
+			toastr.options =
+			{
+				"closeButton" : true,
+				"progressBar" : true
+			}
+			toastr.success("{{session('wish_success')}}");
 	@endif
 </script>
 		

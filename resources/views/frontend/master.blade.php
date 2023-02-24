@@ -117,7 +117,7 @@
 										</li>
 										<li>
 											<a href="#" onclick="openWishlist()">
-												<i class="far fa-heart fs-lg"></i><span class="dn-counter bg-success">2</span>
+												<i class="far fa-heart fs-lg"></i><span class="dn-counter bg-success">{{App\Models\Wishlist::where('customer_id', Auth::guard('customerlogin')->id())->count()}}</span>
 											</a>
 										</li>
 										<a href="#" onclick="openCart()">
@@ -352,52 +352,29 @@
 						<button onclick="closeWishlist()" class="close_slide"><i class="ti-close"></i></button>
 					</div>
 					<div class="right-ch-sideBar">
-						
+						@php
+							$sub_total = 0;
+						@endphp
 						<div class="cart_select_items py-2">
 							<!-- Single Item /   -->
-							<div class="d-flex align-items-center justify-content-between br-bottom px-3 py-3">
+							@foreach (App\Models\Wishlist::where('customer_id', Auth::guard('customerlogin')->id())->get() as $wish)
+								<div class="d-flex align-items-center justify-content-between br-bottom px-3 py-3">
 								<div class="cart_single d-flex align-items-center">
 									<div class="cart_selected_single_thumb">
-										<a href="#"><img src="assets/img/product/4.jpg" width="60" class="img-fluid" alt="" /></a>
+										<a href="#"><img src="{{asset('uploads/products/preview')}}/{{$wish->rel_with_product->preview}}" width="60" class="img-fluid" alt="" /></a>
 									</div>
 									<div class="cart_single_caption pl-2">
-										<h4 class="product_title fs-sm ft-medium mb-0 lh-1">Women Striped Shirt Dress</h4>
-										<p class="mb-2"><span class="text-dark ft-medium small">36</span>, <span class="text-dark small">Red</span></p>
-										<h4 class="fs-md ft-medium mb-0 lh-1">$129</h4>
+										<h4 class="product_title fs-sm ft-medium mb-0 lh-1">{{$wish->rel_with_product->product_name}}</h4>
+										<p class="mb-2"><span class="text-dark ft-medium small">{{$wish->rel_with_sizes->size_name}}</span>, <span class="text-dark small">{{$wish->rel_with_colors->color_name}}</span></p>
+										<h4 class="fs-md ft-medium mb-0 lh-1">&#2547;{{$wish->rel_with_product->after_discount}}</h4>
 									</div>
 								</div>
 								<div class="fls_last"><button class="close_slide gray"><i class="ti-close"></i></button></div>
 							</div>
-							
-							<!-- Single Item -->
-							<div class="d-flex align-items-center justify-content-between br-bottom px-3 py-3">
-								<div class="cart_single d-flex align-items-center">
-									<div class="cart_selected_single_thumb">
-										<a href="#"><img src="assets/img/product/7.jpg" width="60" class="img-fluid" alt="" /></a>
-									</div>
-									<div class="cart_single_caption pl-2">
-										<h4 class="product_title fs-sm ft-medium mb-0 lh-1">Girls Floral Print Jumpsuit</h4>
-										<p class="mb-2"><span class="text-dark ft-medium small">36</span>, <span class="text-dark small">Red</span></p>
-										<h4 class="fs-md ft-medium mb-0 lh-1">$129</h4>
-									</div>
-								</div>
-								<div class="fls_last"><button class="close_slide gray"><i class="ti-close"></i></button></div>
-							</div>
-							
-							<!-- Single Item -->
-							<div class="d-flex align-items-center justify-content-between px-3 py-3">
-								<div class="cart_single d-flex align-items-center">
-									<div class="cart_selected_single_thumb">
-										<a href="#"><img src="assets/img/product/8.jpg" width="60" class="img-fluid" alt="" /></a>
-									</div>
-									<div class="cart_single_caption pl-2">
-										<h4 class="product_title fs-sm ft-medium mb-0 lh-1">Girls Solid A-Line Dress</h4>
-										<p class="mb-2"><span class="text-dark ft-medium small">30</span>, <span class="text-dark small">Blue</span></p>
-										<h4 class="fs-md ft-medium mb-0 lh-1">$100</h4>
-									</div>
-								</div>
-								<div class="fls_last"><button class="close_slide gray"><i class="ti-close"></i></button></div>
-							</div>
+							@php
+								$sub_total += $wish->rel_with_product->after_discount * $wish->quantity;
+								@endphp
+							@endforeach
 							
 						</div>
 						
