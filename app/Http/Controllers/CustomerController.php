@@ -54,7 +54,7 @@ class CustomerController extends Controller
                     'country' => $request->country,
                     'address' => $request->address,
                 ]);
-                return back()->with('success_one', 'Inforamtion Updated Successfully');
+                return back()->with('success_one', 'Information Updated Successfully');
             }
             //password not blank 
             else{
@@ -88,14 +88,15 @@ class CustomerController extends Controller
                     'address' => $request->address,
                     'photo' => $file_name,
                 ]);
-                return back()->with('success_one', 'Inforamtion Updated Successfully');
+                return back()->with('success_one', 'Information Updated Successfully');
             }
             //password not blank 
             else {
                 if (Hash::check($request->old_password, Auth::guard('customerlogin')->user()->password)) {
                     //image processing and update
                     $photo = $request->photo;
-                    $extension = $photo->getClientoriginalExtension();
+                    //$extension = $photo->getClientOriginalExtension();
+                    $extension = $request->file('image')->getClientOriginalExtension();
                     $file_name = Auth::guard('customerlogin')->id() . '.' . $extension;
                     Image::make($photo)->save(public_path('uploads/customer/' . $file_name)); 
                     CustomerLogin::find(Auth::guard('customerlogin')->id())->update([

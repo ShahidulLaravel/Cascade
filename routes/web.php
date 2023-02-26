@@ -1,17 +1,18 @@
 <?php
 
-use App\Http\Controllers\BrandController;
-use App\Http\Controllers\CartController;
-use App\Http\Controllers\CategoryController;
-use App\Http\Controllers\CustomerController;
-use App\Http\Controllers\DeleteController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\CartController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\BrandController;
+use App\Http\Controllers\CuponController;
+use App\Http\Controllers\DeleteController;
+use App\Http\Controllers\ProductController;
+use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\FrontEndController;
 use App\Http\Controllers\InventoryController;
-use App\Http\Controllers\ProductController;
 use App\Http\Controllers\SubCategoryController;
 use App\Http\Controllers\UpdateProdcutController;
 
@@ -146,4 +147,17 @@ Route::get('/remove/cart/{cart_id}', [CartController::class, 'remove_cart'])->na
 
 Route::post('add/cart', [CartController::class, 'add_cart'])->name('add_cart');
 
+Route::get('/wishlist/delete/{wish_id}',[CartController::class, 'remove_wishlist'])->name('wishlist.delete');
+
+Route::get('/view/cart',[CartController::class, 'view_cart'])->name('view.cart');
+
+Route::post('/update/cart/',[CartController::class, 'update_cart'])->name('update.cart');
+
+Route::get('/cart/remove/{id}',[CartController::class, 'cart_remove'])->name('cart.remove');
+
+
+// Cupon 
+
+Route::get('/add/cupon/', [CuponController::class, 'add_cupon'])->name('product.cupon');
+Route::post('/store/cupon/', [CuponController::class, 'store_cupon'])->name('cupon.store');
 

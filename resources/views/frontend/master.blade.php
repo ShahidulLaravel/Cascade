@@ -369,7 +369,9 @@
 										<h4 class="fs-md ft-medium mb-0 lh-1">&#2547;{{$wish->rel_with_product->after_discount}}</h4>
 									</div>
 								</div>
-								<div class="fls_last"><button class="close_slide gray"><i class="ti-close"></i></button></div>
+								<div class="fls_last"><a href="{{route('wishlist.delete', $wish->id)}}" class="close_slide gray">
+									<i class="ti-close"></i>
+								</a></div>
 							</div>
 							@php
 								$sub_total += $wish->rel_with_product->after_discount * $wish->quantity;
@@ -437,7 +439,7 @@
 						
 						<div class="cart_action px-3 py-3">
 							<div class="form-group">
-								<button type="button" class="btn d-block full-width btn-dark-light">View Cart</button>
+								<a href={{route('view.cart')}} class="btn d-block full-width btn-dark-light">View Cart</a>
 							</div>
 						</div>
 						

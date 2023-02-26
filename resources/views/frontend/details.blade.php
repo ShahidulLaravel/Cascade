@@ -461,5 +461,15 @@
 			toastr.success("{{session('wish_success')}}");
 	@endif
 </script>
+<script>
+	@if(Session::has('wish_delete'))
+			toastr.options =
+			{
+				"closeButton" : true,
+				"progressBar" : true
+			}
+			toastr.success("{{session('wish_delete')}}");
+	@endif
+</script>
 		
 @endsection

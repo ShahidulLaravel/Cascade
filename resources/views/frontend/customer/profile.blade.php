@@ -35,7 +35,7 @@
                                             <img src="{{ Avatar::create(Auth::guard('customerlogin')->user()->name)->toBase64() }}" />
                                         @else
 
-                                            <img style="width: 140px; height:140px;" src="" alt="profile here" class="avatar-img rounded-circle">
+                                            <img style="width: 140px; height:140px;" src="{{asset('uploads/customer')}}/{{Auth::guard('customerlogin')->user()->photo}}" alt="profile here" class="avatar-img rounded-circle">
                                             
                                         @endif
 									</div>
@@ -73,8 +73,8 @@
 							@endif
 
 							<div class="row align-items-center">
-								<form action="{{route('customer_info.update')}}"class="row m-0" method="POST" enctype="multipart/form-data
-								">
+								<form action="{{route('customer_info.update')}}"class="row m-0" method="POST" enctype="multipart/form-data" 
+								>
 									@csrf 
 									<div class="col-xl-6 col-lg-6 col-md-12 col-sm-12">
 										
