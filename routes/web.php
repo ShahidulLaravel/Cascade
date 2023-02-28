@@ -10,6 +10,7 @@ use App\Http\Controllers\CuponController;
 use App\Http\Controllers\DeleteController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\FrontEndController;
 use App\Http\Controllers\InventoryController;
@@ -163,3 +164,8 @@ Route::get('/cart/remove/{id}',[CartController::class, 'cart_remove'])->name('ca
 Route::get('/add/cupon/', [CuponController::class, 'add_cupon'])->name('product.cupon');
 Route::post('/store/cupon/', [CuponController::class, 'store_cupon'])->name('cupon.store');
 
+//checkout contrller
+
+Route::get('/checkout/', [CheckoutController::class, 'view_chekout'])->name('checkout');
+
+Route::post('/checkout/store', [CheckoutController::class, 'chekout_store'])->name('checkout.store');

@@ -22,6 +22,10 @@ class Cart extends Model
 
     function rel_with_sizes()
     {
-        return $this->belongsTo(Size::class, 'size_id');
+        return $this->belongsTo(Cart::class, 'size_id');
+    }
+    function rel_with_wishlist()
+    {
+        return $this->belongsTo(Wishlist::class, 'size_id');
     }
 }

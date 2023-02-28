@@ -148,8 +148,13 @@
 								</ul>
 							  </div>
 							</div>
-							
-							<a class="btn btn-block btn-dark mb-3" href="checkout.html">Proceed to Checkout</a>
+							@php
+								session([
+									'discount' => $after_discount,
+									'sub_total' => $sub_total,
+								])
+							@endphp
+							<a class="btn btn-block btn-dark mb-3" href="{{route('checkout')}}">Proceed to Checkout</a>
 							
 							<a class="btn-link text-dark ft-medium" href="{{route('frontEnd')}}">
 							  <i class="ti-back-left mr-2"></i> Continue Shopping
