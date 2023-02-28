@@ -149,6 +149,8 @@ Route::post('add/cart', [CartController::class, 'add_cart'])->name('add_cart');
 
 Route::get('/wishlist/delete/{wish_id}',[CartController::class, 'remove_wishlist'])->name('wishlist.delete');
 
+Route::get('/wishlist/',[CartController::class, 'view_wishlist'])->name('product.wishlist');
+
 Route::get('/view/cart',[CartController::class, 'view_cart'])->name('view.cart');
 
 Route::post('/update/cart/',[CartController::class, 'update_cart'])->name('update.cart');

@@ -63,28 +63,25 @@ class CartController extends Controller
         $type = '';
         $mesg = '';    
 
-        if(Cupon::where('cupon_name', $request->cupon_name)->exists()){
-            if(Carbon::now()->format('Y-m-d') <= Cupon::where('cupon_name', $request->cupon_name)->first()->expiry_date){
-                if(Cupon::where('cupon_name', $request->cupon_name)->first()->type == 1){
- 
-                    $discount = Cupon::where('cupon_name', $request->cupon_name)->first()->amount;
-                    $type = 1;
-                
-                }else{              
-                    $discount = Cupon::where('cupon_name', $request->cupon_name)->first()->amount;
-                    $type = 2;
-                }
+       if(isset($request->cupon_name)){
+            if (Cupon::where('cupon_name', $request->cupon_name)->exists()) {
+                if (Carbon::now()->format('Y-m-d') <= Cupon::where('cupon_name', $request->cupon_name)->first()->expiry_date) {
+                    if (Cupon::where('cupon_name', $request->cupon_name)->first()->type == 1) {
 
-            }else{
-                
-               // return back()->with('warn_one', 'Cupon Expired');
+                        $discount = Cupon::where('cupon_name', $request->cupon_name)->first()->amount;
+                        $type = 1;
+                    } else {
+                        $discount = Cupon::where('cupon_name', $request->cupon_name)->first()->amount;
+                        $type = 2;
+                    }
+                } else {
+                    $mesg = 'Cupon Code Expired';
+                }
+            } else {
+                $mesg = 'Cupon Code Doesnot Exists';
             }
 
-        }else{
-            
-            //return back()->with('warn_two', 'Cupon Doesnot Exist');
-        }
-
+       }
         $carts = Cart::where('customer_id', Auth::guard('customerlogin')->id());
         return view('frontend.view_cart',[
             'carts' => $carts,
@@ -108,5 +105,10 @@ class CartController extends Controller
     public function cart_remove(Request $request){
         Cart::where('id', $request->id)->delete();
         return back();
+    }
+
+    public function view_wishlist(){
+        return view('frontend.wishlist', [   
+        ]);
     }
 }

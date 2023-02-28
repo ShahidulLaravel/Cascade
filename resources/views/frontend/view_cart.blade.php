@@ -92,18 +92,11 @@
 						</div>
 						
 						<div class="col-12 col-md-12 col-lg-4">
-							@if(session('warn_one'))
-								<div class="alert alert-danger">
-									{{session('warn_one')}}
-								</div>
+							@if($mesg)
+							<div class="alert alert-danger">
+								{{$mesg}}
+							</div>
 							@endif
-							@if(session('warn_two'))
-								<div class="alert alert-danger">
-									{{session('warn_two')}}
-								</div>
-							@endif
-
-
 
 							<form action="{{route('view.cart')}}" method="GET" class="mb-8 mb-md-0">
 								
@@ -111,7 +104,7 @@
 								<div class="row form-row">
 									<div class="col">
 										
-										<input name="cupon_name" class="form-control" type="text" placeholder="Enter coupon code*">
+										<input name="cupon_name" class="form-control" type="text" placeholder="Enter coupon code*" value="{{@$_GET['cupon_name']}}">
 									</div>
 									<div class="col-auto">
 										<button class="btn btn-dark" type="submit">Apply</button>
@@ -122,16 +115,28 @@
 							<div class="mt-3 card mb-4 gray mfliud">
 							  <div class="card-body">
 								<ul class="list-group list-group-sm list-group-flush-y list-group-flush-x">
+									
+									
 								  <li class="list-group-item d-flex text-dark fs-sm ft-regular">
 									<span>Subtotal</span> <span class="ml-auto text-dark ft-medium">&#2547;{{$sub_total}}</span>
 								  </li>
+
 								  <li class="list-group-item d-flex text-dark fs-sm ft-regular">
-									<span>Discount</span> <span class="ml-auto text-dark ft-medium">{{$discount}}</span>
+									<span>Discount</span>
+									@php
+										if($type == 1){
+											$after_discount = $sub_total * $discount /(100);
+											
+										}else{
+											$after_discount = $discount;
+										}
+									@endphp
+									 <span class="ml-auto text-dark ft-medium">&#2547;{{$after_discount}}</span>
 								  </li>
 
 								  <li class="list-group-item d-flex text-dark fs-sm ft-regular">
 												
-									<span>Total</span> <span class="ml-auto text-dark ft-medium">&#2547;
+									<span>Total</span> <span class="ml-auto text-dark ft-medium">&#2547;{{$sub_total - $after_discount}}
 										
 									</span>
 
@@ -146,7 +151,7 @@
 							
 							<a class="btn btn-block btn-dark mb-3" href="checkout.html">Proceed to Checkout</a>
 							
-							<a class="btn-link text-dark ft-medium" href="shop.html">
+							<a class="btn-link text-dark ft-medium" href="{{route('frontEnd')}}">
 							  <i class="ti-back-left mr-2"></i> Continue Shopping
 							</a>
 						</div>

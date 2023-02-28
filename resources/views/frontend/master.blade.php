@@ -60,7 +60,7 @@
 									<i class="fa fa-angle-down medium text-muted"></i>
 								</a>
 								<ul class="dropdown-menu popup-content link">
-									<li class="current"><a href="javascript:void(0);" class="dropdown-item medium text-muted"><img src="{{asset('Ecom/img/1.jpg')}}" alt="en" width="16" height="11" /><span>English</span></a></li>
+									<li class="current"><a href="" class="dropdown-item medium text-muted"><img src="{{asset('Ecom/img/1.jpg')}}" alt="en" width="16" height="11" /><span>English</span></a></li>
 									<li><a href="javascript:void(0);" class="dropdown-item medium text-muted"><img src="{{asset('Ecom/img/2.jpg')}}" alt="fr" width="16" height="11" /><span>Français</span></a></li>
 								</ul>
 							</div>
@@ -92,7 +92,7 @@
 							<div class="headd-sty-wrap d-flex align-items-center justify-content-between py-3">
 								<div class="headd-sty-left d-flex align-items-center">
 									<div class="headd-sty-01">
-										<a class="nav-brand py-0" href="#">
+										<a class="nav-brand py-0" href="{{route('frontEnd')}}">
 											<img src="{{asset('Ecom/img/logo.png')}}" class="logo" alt="" />
 										</a>
 									</div>
@@ -365,7 +365,7 @@
 									</div>
 									<div class="cart_single_caption pl-2">
 										<h4 class="product_title fs-sm ft-medium mb-0 lh-1">{{$wish->rel_with_product->product_name}}</h4>
-										<p class="mb-2"><span class="text-dark ft-medium small">{{$wish->rel_with_sizes->size_name}}</span>, <span class="text-dark small">{{$wish->rel_with_colors->color_name}}</span></p>
+										<p class="mb-2"><span class="text-dark ft-medium small">{{$wish->rel_with_product->size_name}}</span>, <span class="text-dark small">{{$wish->rel_with_colors->color_name}}</span></p>
 										<h4 class="fs-md ft-medium mb-0 lh-1">&#2547;{{$wish->rel_with_product->after_discount}}</h4>
 									</div>
 								</div>
@@ -375,17 +375,16 @@
 							</div>
 							@php
 								$sub_total += $wish->rel_with_product->after_discount * $wish->quantity;
-								@endphp
+							@endphp
 							@endforeach
 							
 						</div>
 						
 						<div class="cart_action px-3 py-3">
 							<div class="form-group">
-								<button type="button" class="btn d-block full-width btn-dark-light">View Whishlist</button>
+								<a href="{{route('product.wishlist')}}" class="btn d-block full-width btn-dark-light">View Wishlist</a>
 							</div>
-						</div>
-						
+						</div>				
 					</div>
 				</div>
 			</div>

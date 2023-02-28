@@ -90,13 +90,13 @@
 											
 										@if($size->size_id == 1)
 											<div class="form-check size-option form-option form-check-inline mb-2">
-											<input checked class="form-check-input" type="radio" name="size_id" id="size_id" >
+											<input checked class="form-check-input" type="radio" name="size_id" id="size_id" value="{{$size->size_id}}">
 
 											<label class="form-option-label" for="size_id">{{$size->size_rel->size_name}}</label>
 										</div>
 										@else
 											<div class="form-check size-option form-option form-check-inline mb-2">
-											<input class="form-check-input" type="radio" name="size_id" id="size_id" >
+											<input class="form-check-input" type="radio" name="size_id" id="size_id" value="{{$size->size_id}}">
 
 											<label class="form-option-label" for="size_id">{{$size->size_rel->size_name}}</label>
 										</div>
