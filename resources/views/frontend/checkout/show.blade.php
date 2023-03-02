@@ -1,6 +1,17 @@
 @extends('frontend.master')
 
 
+@section('style')
+<style>
+	.con{
+		height:52px important!;
+		padding: 10px 15px;
+		border-radius: 1px;
+		border-color: #e5e5e5;
+	}
+</style>
+@endsection
+
 
 @section('content')
 
@@ -27,16 +38,23 @@
 				<div class="container">
 				
 					<div class="row">
+
 						<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
 							<div class="text-center d-block mb-5">
 								<h2>Checkout</h2>
 							</div>
+						
 						</div>
+						
 					</div>
 					
 					<div class="row justify-content-between">
+						
 						<div class="col-12 col-lg-7 col-md-12">
-							<form action="{{route('checkout.store')}}" method="POST">
+						@if (session('success'))	
+							<div class="mb-3 mt-2 alert alert-success">{{session('success')}}</div>
+						@endif
+							<form action="{{route('order.store')}}" method="POST">
                                 @csrf
 								<h5 class="mb-4 ft-medium">Billing Details</h5>
 								<div class="row mb-2">
@@ -44,13 +62,13 @@
 									<div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
 										<div class="form-group">
 											<label class="text-dark">Full Name *</label>
-											<input name="name" readonly type="text" class="form-control" placeholder="First Name" value="{{Auth::guard('customerlogin')->user()->name}}" />
+											<input readonly type="text" class="form-control" placeholder="First Name" value="{{Auth::guard('customerlogin')->user()->name}}" />
 										</div>
 									</div>
 									<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
 										<div class="form-group">
 											<label class="text-dark">Email *</label>
-											<input name="email" disabled type="email" class="form-control" placeholder="Email" value="{{Auth::guard('customerlogin')->user()->email}}"/>
+											<input disabled type="email" class="form-control" placeholder="Email" value="{{Auth::guard('customerlogin')->user()->email}}"/>
 										</div>
 									</div>
 									
@@ -63,7 +81,7 @@
 									<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
 										<div class="form-group">
 											<label class="text-dark">Mobile Number *</label>
-											<input name="bill_phone" type="number" class="form-control" placeholder="Mobile Number" />
+											<input name="billing_mobile" type="number" class="form-control" placeholder="Mobile Number" />
 										</div>
 									</div>
                                     	
@@ -73,30 +91,25 @@
                                 <h5 class="mb-4 ft-medium">Shipping Details</h5>
                                     
                                 <div class="row">
-                                    	<div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
+                                    	<div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12">
 										<div class="form-group">
 											<label class="text-dark">Full Name *</label>
-											<input name="ship_name" type="text" class="form-control" placeholder="Shipping Name"/>
+											<input name="name" type="text" class="form-control" placeholder="Shipping Name"/>
 										</div>
 									</div>
-									<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+									<div class="col-xl-4 col-lg-4 col-md-6 col-sm-6 col-12">
 										<div class="form-group">
 											<label class="text-dark">Email *</label>
-											<input name="ship_email" type="email" class="form-control" placeholder="Shipping Email" />
+											<input name="email" type="email" class="form-control" placeholder="Shipping Email" />
 										</div>
 									</div>
-                                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                                    <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6 col-12">
 										<div class="form-group">
 											<label class="text-dark">Mobile Number *</label>
-											<input name="ship_phone" type="number" class="form-control" placeholder="Mobile Number" />
+											<input name="shipping_mobile" type="number" class="form-control" placeholder="Mobile Number" />
 										</div>
 									</div>
-                                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-										<div class="form-group">
-											<label class="text-dark">Additional Mobile Number *</label>
-											<input name="additional_phone" type="number" class="form-control" placeholder="Additional Mobile Number" />
-										</div>
-									</div>							
+                                    						
 									<div class="col-xl-7 col-lg-7 col-md-6 col-sm-12 col-12">
 										<div class="form-group">
 											<label class="text-dark">Address *</label>
@@ -105,15 +118,15 @@
 									</div>
 									
 									<div class="col-xl-5 col-lg-5 col-md-6 col-sm-12 col-12">
-										<div class="form-group">
+										<div  class="con form-group">
 											<label class="text-dark">Country *</label>
-											<select name="country" class="custom-select">
+											<select name="country_id"
+
+											class="country country_select custom-select">
 											  <option value="">-- Select Country --</option>
-											  <option value="1" selected="">Bangladesh</option>
-											  <option value="2">United State</option>
-											  <option value="3">United Kingdom</option>
-											  <option value="4">China</option>
-											  <option value="5">Pakistan</option>
+											  @foreach ($countries as $country)
+												<option value="{{$country->id}}">{{$country->name}}</option>
+											  @endforeach
 											</select>
 										</div>
 									</div>
@@ -121,25 +134,30 @@
 									<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
 										<div class="form-group">
 											<label class="text-dark">City / Town *</label>
-											<input name="city" type="text" class="form-control" placeholder="City / Town" />
+											<select name="city_id"
+
+											class="city city_two country_select custom-select">
+											  <option value="">-- Select City --</option>
+											  
+											</select>
 										</div>
 									</div>
 									      
 									<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
 										<div class="form-group">
 											<label class="text-dark">ZIP / Postcode *</label>
-											<input name="zip_code" type="text" class="form-control" placeholder="Zip / Postcode" />
+											<input name="zip_code" type="text" class="form-control" placeholder="Zip Code">
 										</div>
 									</div>
 									
 									<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
 										<div class="form-group">
 											<label class="text-dark">Additional Information</label>
-											<textarea name="additional" class="form-control ht-50"></textarea>
+											<textarea name="notes" class="form-control ht-50"></textarea>
 										</div>
 									</div>
                                 </div>	
-							</form>
+							
 						</div>
 						
 						<!-- Sidebar -->
@@ -195,15 +213,15 @@
 									<h6>Select Payment Method</h6>
 									<ul class="no-ul-list">
 										<li>
-											<input id="c3" class="radio-custom" name="payment_method" type="radio">
+											<input id="c3" value="1" class="radio-custom" name="payment_method" type="radio">
 											<label for="c3" class="radio-custom-label">Cash on Delivery</label>
 										</li>
 										<li>
-											<input id="c4" class="radio-custom" name="payment_method" type="radio">
+											<input id="c4" value="2" class="radio-custom" name="payment_method" type="radio">
 											<label for="c4" class="radio-custom-label">Pay With SSLCommerz</label>
 										</li>
 										<li>
-											<input id="c5" class="radio-custom" name="payment_method" type="radio">
+											<input id="c5" value="3" class="radio-custom" name="payment_method" type="radio">
 											<label for="c5" class="radio-custom-label">Pay With Stripe</label>
 										</li>
 									</ul>
@@ -233,10 +251,12 @@
                             <input type="hidden" name="sub_total" class="sub_total" value="{{$sub_total}}">
 
                             <input type="hidden" name="discount" class="discount" value="{{session('discount')}}">
+
+							 <input type="hidden" name="grand_total"  value="{{$sub_total-session('discount')}}">
 							
-							<a class="btn btn-block btn-dark mb-3" href="#">Place Your Order</a>
-						</div>
-						
+							<button class="btn btn-block btn-dark mb-3" type="submit">Place Your Order</button>
+						</div>	
+					</form>
 					</div>
 					
 				</div>
@@ -244,6 +264,7 @@
 			<!-- ======================= Product Detail End ======================== -->
 
 @endsection
+
 
 @section('javascript')
 
@@ -256,6 +277,36 @@
         $('#grand_total').html(total);
         $('#charge').html(charge);
     });
+
+	// select 2
+	$(document).ready(function() {
+		$('.country_select').select2();
+	});
 </script>
 
+<script>
+		$('.country').change(function(){
+			var country_id = $(this).val();
+
+			$.ajaxSetup({
+				headers: {
+					'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+				}
+			});
+
+			$.ajax({
+				type:'POST',
+				url:'/getCity',
+				data:{'country_id' : country_id},
+				success:function(data){
+					 $('.city').html(data);					
+				}
+			});
+		});
+</script>
+
+	
 @endsection
+
+
+	

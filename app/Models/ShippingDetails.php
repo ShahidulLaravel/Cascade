@@ -5,9 +5,9 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Checkout extends Model
+class ShippingDetails extends Model
 {
     use HasFactory;
 
-    protected $guard = ['id'];
+    protected $guraded = ['id'];
 }

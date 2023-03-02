@@ -11,6 +11,7 @@
         <title> Kumo - Fashion eCommerce </title> 
         <!-- Custom CSS -->
         <link href="{{asset('Ecom/css/plugins/animation.css')}}" rel="stylesheet">
+		<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
         <link href="{{asset('Ecom/css/plugins/bootstrap.min.css')}}" rel="stylesheet">
         <link href="{{asset('Ecom/css/plugins/flaticon.css')}}" rel="stylesheet">
         <link href="{{asset('Ecom/css/plugins/font-awesome.css')}}" rel="stylesheet">
@@ -23,7 +24,7 @@
         <link href="{{asset('Ecom/css/plugins/snackbar.min.css')}}" rel="stylesheet">
         <link href="{{asset('Ecom/css/plugins/themify.css')}}" rel="stylesheet">
         <link href="{{asset('Ecom/css/styles.css')}}" rel="stylesheet">
-		
+		@yield('style')
     </head>
 	
     <body>
@@ -468,6 +469,7 @@
 		<script src="{{asset('Ecom/js/snackbar.min.js')}}"></script>
 		<script src="{{asset('Ecom/js/jQuery.style.switcher.js')}}"></script>
 		<script src="{{asset('Ecom/js/custom.js')}}"></script>
+		<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 
 		 <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
 		

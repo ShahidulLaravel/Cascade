@@ -168,4 +168,6 @@ Route::post('/store/cupon/', [CuponController::class, 'store_cupon'])->name('cup
 
 Route::get('/checkout/', [CheckoutController::class, 'view_chekout'])->name('checkout');
 
-Route::post('/checkout/store', [CheckoutController::class, 'chekout_store'])->name('checkout.store');
+Route::post('/order/store', [CheckoutController::class, 'order_store'])->name('order.store');
+
+Route::post('/getCity', [CheckoutController::class, 'get_city']);
