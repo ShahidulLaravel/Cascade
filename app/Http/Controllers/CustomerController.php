@@ -3,8 +3,12 @@
 namespace App\Http\Controllers;
 
 use Carbon\Carbon;
+use App\Models\Cart;
+use App\Models\Size;
+use App\Models\OrderProduct;
 use Illuminate\Http\Request;
 use App\Models\CustomerLogin;
+use App\Models\Order;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Intervention\Image\Facades\Image;
@@ -115,4 +119,5 @@ class CustomerController extends Controller
             }
         }
     }
+
 }

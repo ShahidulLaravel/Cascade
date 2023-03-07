@@ -142,6 +142,8 @@ Route::get('/customer/profile', [CustomerController::class, 'customer_profile'])
 Route::post('/customer/information/update',[CustomerController::class, 'customer_profile_update'])->name('customer_info.update');
 
 
+
+
 // cart controller 
 
 Route::get('/remove/cart/{cart_id}', [CartController::class, 'remove_cart'])->name('remove.cart');
@@ -171,3 +173,5 @@ Route::get('/checkout/', [CheckoutController::class, 'view_chekout'])->name('che
 Route::post('/order/store', [CheckoutController::class, 'order_store'])->name('order.store');
 
 Route::post('/getCity', [CheckoutController::class, 'get_city']);
+
+Route::get('/order/success/{order_id}', [CheckoutController::class, 'order_success'])->name('order.success');

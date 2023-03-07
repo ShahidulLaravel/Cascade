@@ -9,6 +9,7 @@ use App\Models\City;
 use App\Models\Order;
 use App\Models\Country;
 use App\Models\Checkout;
+use App\Models\OrderProduct;
 use App\Models\ShippingDetail;
 use App\Models\ShippingDetails;
 use Illuminate\Support\Str;
@@ -73,8 +74,31 @@ class CheckoutController extends Controller
             'country_id' => $request->country_id,
             'city_id' => $request->city_id,
        ]);
-       return back()->with('success','Congratulations ! Your Order Have been Placed'); 
+     //   return back()->with('success','Congratulations ! Your Order Have been Placed'); 
 
+     $carts = Cart::where('customer_id', Auth::guard('customerlogin')->id())->get();
+
+          foreach($carts as $cart){
+          OrderProduct::insert([
+               'order_id' => $order_id,
+               'customer_id' => Auth::guard('customerlogin')->id(),
+               'product_id' => $cart->product_id,
+               'color_id' => $cart->color_id,
+               'size_id' => $cart->size_id,
+               'quantity' => $cart->quantity,
+               'price' => $cart->rel_with_product->after_discount,
+               'created_at' => Carbon::now(),
+               ]); 
+          Cart::find($cart->id)->delete(); 
+          }
+          return redirect()->route('order.success', $order_id)->withSuccess('Your Order Is Placed !!');
     }
 
+    public function order_success($order_id){
+          if(session('success')){
+               return view('frontend.order_success', compact('order_id'));
+          }else{
+               return view('frontend.error');
+          }   
+    }
 }
