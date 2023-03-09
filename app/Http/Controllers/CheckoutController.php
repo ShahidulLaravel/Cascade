@@ -46,6 +46,7 @@ class CheckoutController extends Controller
        $city = City::find($request->city_id);
        $order_id = Str::upper(substr($city->name,'0','3')) . '-' . rand(10, 100000);
 
+
        Order::insert([
             'order_id' => $order_id,
             'customer_id' => Auth::guard('customerlogin')->id(),
@@ -95,7 +96,7 @@ class CheckoutController extends Controller
 
           Product::where('color_id', $cart->color_id)->where('size_id', $cart->size_id)->where('id', $cart->product_id)->decrement('quantity', $cart->quantity);
 
-          Cart::find($cart->id)->delete(); 
+          // Cart::find($cart->id)->delete(); 
           }
 
           //sendinng customer invoice email hjere

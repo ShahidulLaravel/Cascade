@@ -12,15 +12,16 @@ use Illuminate\Queue\SerializesModels;
 class CustomerInvoiceMail extends Mailable
 {
     use Queueable, SerializesModels;
+    public $order_id;
 
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($order_id)
     {
-        //
+        $this->order_id = $order_id;
     }
 
     /**
@@ -43,6 +44,7 @@ class CustomerInvoiceMail extends Mailable
     public function content()
     {
         return new Content(
+            
             view: 'frontend.customer.invoice',
         );
     }
