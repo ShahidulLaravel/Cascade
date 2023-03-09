@@ -97,9 +97,11 @@ class ProductController extends Controller
 
     public function show_product(){
         $all_prodcuts = Product::Paginate(7);
+        $all_prodcuts_two = Product::all();
         $brands = Brand::all();
         return view('admin.product.show', [
             'all_prodcuts' => $all_prodcuts,
+            'all_prodcuts_two' => $all_prodcuts_two,
             'brands' => $brands,
         ]);
     }

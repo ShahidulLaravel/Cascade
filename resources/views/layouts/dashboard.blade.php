@@ -185,20 +185,7 @@
               </ul>
             </li>
             {{-- copy end --}}
-            {{-- copy this --}}
-            <li class="nav-item dropdown">
-              <a href="#variation" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle nav-link">
-                <i class="fe fe-box fe-16"></i>
-                <span class="ml-3 item-text">Product Variation</span>
-              </a>
-              <ul class="collapse list-unstyled pl-4 w-100" id="variation">
-                <li class="nav-item">
-                  <a class="nav-link pl-3" href="{{route('product.variation')}}"><span class="ml-1 item-text">Add Size and Colors</span>
-                  </a>
-                </li>
-              </ul>
-            </li>
-            {{-- copy end --}}
+            
 
             {{-- copy this --}}
             <li class="nav-item dropdown">
@@ -210,7 +197,7 @@
                 <li class="nav-item">
                   <a class="nav-link pl-3" href="{{route('product.cupon')}}"><span class="ml-1 item-text">Add Cupon</span>
                   </a>
-                </li>
+                </li> 
               </ul>
             </li>
             {{-- copy end --}}

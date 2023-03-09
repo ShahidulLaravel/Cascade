@@ -49,7 +49,34 @@
     </div>
 </div>
 
+<div class="row">
+        <div class="col-lg-12">
+            <div class="card">
+                <div class="card-header">
+                    <h2>Available Inventory</h2>
+                </div>
 
+                <div class="card-body">
+                    <table class="table table-bordered">
+                        <tr>
+                            <th>Product Name</th>
+                            <th>Color Name</th>
+                            <th>Size</th>
+                            <th>Available Quantity</th>
+                        </tr>
+                        @foreach ($all_prodcuts_two as $product)
+                            <tr>
+                                <td>{{$product->product_name}}</td>
+                                <td>{{$product->color_rel->color_name}}</td>
+                                <td>{{$product->size_rel->size_name}}</td>
+                                <td>{{$product->quantity}} Pcs </td>
+                            </tr>
+                        @endforeach
+                    </table>
+                </div>
+            </div>
+        </div>
+</div>
 
 @endsection
 

@@ -80,8 +80,7 @@
 									</div>                                 
 								</div>
 								
-								<div class="prt_04 mb-4">
-									
+								<div class="prt_04 mb-4">	
 									<p class="d-flex align-items-center mb-0 text-dark ft-medium">Size:</p>
 									<div class="text-left pb-0 pt-2" id="size">
 										
@@ -105,6 +104,12 @@
                                                                            
                                         @endforeach
 									</div>
+								</div>
+
+								<div class="prt_04 mb-4">	
+									<p class="d-flex align-items-center mb-0 text-dark ft-medium"><h5 class="d-inline">Available in Stock</h5> : {{$product_info->quantity == 0 ? 'Stock Out' : $product_info->quantity}} 
+
+										<span>{{$product_info->quantity == 0 ? '' : 'Pcs'}} </span></p>			
 								</div>
 								
 								<div class="prt_05 mb-4">

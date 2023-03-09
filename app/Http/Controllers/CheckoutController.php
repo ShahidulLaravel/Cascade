@@ -2,19 +2,22 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\BillingDetails;
+use App\Mail\CustomerInvoiceMail;
 use Carbon\Carbon;
 use App\Models\Cart;
 use App\Models\City;
 use App\Models\Order;
 use App\Models\Country;
+use App\Models\Product;
 use App\Models\Checkout;
+use Illuminate\Support\Str;
 use App\Models\OrderProduct;
+use Illuminate\Http\Request;
+use App\Models\BillingDetails;
 use App\Models\ShippingDetail;
 use App\Models\ShippingDetails;
-use Illuminate\Support\Str;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 
 class CheckoutController extends Controller
 {
@@ -89,8 +92,16 @@ class CheckoutController extends Controller
                'price' => $cart->rel_with_product->after_discount,
                'created_at' => Carbon::now(),
                ]); 
+
+          Product::where('color_id', $cart->color_id)->where('size_id', $cart->size_id)->where('id', $cart->product_id)->decrement('quantity', $cart->quantity);
+
           Cart::find($cart->id)->delete(); 
           }
+
+          //sendinng customer invoice email hjere
+          $mail = Auth::guard('customerlogin')->user()->email;
+          Mail::to($mail)->send(new CustomerInvoiceMail($order_id));
+
           return redirect()->route('order.success', $order_id)->withSuccess('Your Order Is Placed !!');
     }
 
