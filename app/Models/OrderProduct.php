@@ -33,8 +33,10 @@ class OrderProduct extends Model
     {
         return $this->belongsTo(OrderProduct::class, 'order_id');
     }
+
     function rel_with_grand()
     {
         return $this->belongsTo(Order::class, 'order_id');
     }
+
 }

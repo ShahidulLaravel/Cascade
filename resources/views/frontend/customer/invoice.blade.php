@@ -61,7 +61,7 @@
                       <table width="220" border="0" cellpadding="0" cellspacing="0" align="left" class="col">
                         <tbody>
                           <tr>
-                            <td align="left"> <img src="{{asset('Ecom/img/logo.png')}}" width="50" height="60" alt="logo" border="0" /></td>
+                            <td align="left"> <img src="{{asset('Ecom/img/logo.png')}}" width="50" height="20" alt="logo" border="0" /></td>
                           </tr>
                           <tr class="hiddenMobile">
                             <td height="40"></td>
@@ -141,6 +141,8 @@
                         <th style="font-size: 12px; font-family: 'Open Sans', sans-serif; color: #5b5b5b; font-weight: normal; line-height: 1; vertical-align: top; padding: 0 10px 7px 0;" width="52%" align="left">
                           Item
                         </th>
+                        
+                        </th>
                         <th style="font-size: 12px; font-family: 'Open Sans', sans-serif; color: #5b5b5b; font-weight: normal; line-height: 1; vertical-align: top; padding: 0 0 7px;" align="left">
                           <small>SKU</small>
                         </th>
@@ -157,26 +159,23 @@
                       <tr>
                         <td height="10" colspan="4"></td>
                       </tr>
+                      
+                      @foreach (App\Models\OrderProduct::where('order_id', $order_id)->get() as $product)
                       <tr>
                         <td style="font-size: 12px; font-family: 'Open Sans', sans-serif; color: #ff0000;  line-height: 18px;  vertical-align: top; padding:10px 0;" class="article">
-                          Beats Studio Over-Ear Headphones
+                         {{$product->rel_with_product->product_name}}
                         </td>
-                        <td style="font-size: 12px; font-family: 'Open Sans', sans-serif; color: #646a6e;  line-height: 18px;  vertical-align: top; padding:10px 0;"><small>MH792AM/A</small></td>
-                        <td style="font-size: 12px; font-family: 'Open Sans', sans-serif; color: #646a6e;  line-height: 18px;  vertical-align: top; padding:10px 0;" align="center">1</td>
-                        <td style="font-size: 12px; font-family: 'Open Sans', sans-serif; color: #1e2b33;  line-height: 18px;  vertical-align: top; padding:10px 0;" align="right">$299.95</td>
+                         
+                        <td style="font-size: 12px; font-family: 'Open Sans', sans-serif; color: #646a6e;  line-height: 18px;  vertical-align: top; padding:10px 0;"><small>{{$product->rel_with_product->sku}}</small></td>
+                        <td style="font-size: 12px; font-family: 'Open Sans', sans-serif; color: #646a6e;  line-height: 18px;  vertical-align: top; padding:10px 0;" align="center">{{$product->quantity}}</td>
+                        <td style="font-size: 12px; font-family: 'Open Sans', sans-serif; color: #1e2b33;  line-height: 18px;  vertical-align: top; padding:10px 0;" align="right">&#2547;{{$product->price*$product->quantity}}</td>
                       </tr>
+
+                      @endforeach
                       <tr>
                         <td height="1" colspan="4" style="border-bottom:1px solid #e4e4e4"></td>
                       </tr>
-                      <tr>
-                        <td style="font-size: 12px; font-family: 'Open Sans', sans-serif; color: #ff0000;  line-height: 18px;  vertical-align: top; padding:10px 0;" class="article">Beats RemoteTalk Cable</td>
-                        <td style="font-size: 12px; font-family: 'Open Sans', sans-serif; color: #646a6e;  line-height: 18px;  vertical-align: top; padding:10px 0;"><small>MHDV2G/A</small></td>
-                        <td style="font-size: 12px; font-family: 'Open Sans', sans-serif; color: #646a6e;  line-height: 18px;  vertical-align: top; padding:10px 0;" align="center">1</td>
-                        <td style="font-size: 12px; font-family: 'Open Sans', sans-serif; color: #1e2b33;  line-height: 18px;  vertical-align: top; padding:10px 0;" align="right">$29.95</td>
-                      </tr>
-                      <tr>
-                        <td height="1" colspan="4" style="border-bottom:1px solid #e4e4e4"></td>
-                      </tr>
+                  
                     </tbody>
                   </table>
                 </td>
@@ -211,35 +210,37 @@
                           Subtotal
                         </td>
                         <td style="font-size: 12px; font-family: 'Open Sans', sans-serif; color: #646a6e; line-height: 22px; vertical-align: top; text-align:right; white-space:nowrap;" width="80">
-                          $329.90
+                          &#2547;{{$product->price*$product->quantity}}
                         </td>
                       </tr>
                       <tr>
                         <td style="font-size: 12px; font-family: 'Open Sans', sans-serif; color: #646a6e; line-height: 22px; vertical-align: top; text-align:right; ">
-                          Shipping &amp; Handling
+                          Shipping Charge
                         </td>
                         <td style="font-size: 12px; font-family: 'Open Sans', sans-serif; color: #646a6e; line-height: 22px; vertical-align: top; text-align:right; ">
-                          $15.00
+                          &#2547;{{App\Models\Order::where('order_id', $order_id)->first()->charge}}
+                        </td>
+                      </tr>
+                      <tr>
+                        <td style="font-size: 12px; font-family: 'Open Sans', sans-serif; color: #646a6e; line-height: 22px; vertical-align: top; text-align:right; ">
+                          Available Discount 
+                        </td>
+                        <td style="font-size: 12px; font-family: 'Open Sans', sans-serif; color: #646a6e; line-height: 22px; vertical-align: top; text-align:right; ">
+                          &#2547;{{App\Models\Order::where('order_id', $order_id)->first()->discount}}
                         </td>
                       </tr>
                       <tr>
                         <td style="font-size: 12px; font-family: 'Open Sans', sans-serif; color: #000; line-height: 22px; vertical-align: top; text-align:right; ">
-                          <strong>Grand Total (Incl.Tax)</strong>
+                          <strong>Grand Total </strong>
                         </td>
                         <td style="font-size: 12px; font-family: 'Open Sans', sans-serif; color: #000; line-height: 22px; vertical-align: top; text-align:right; ">
-                          <strong>$344.90</strong>
+                          <strong>&#2547;{{App\Models\Order::where('order_id', $order_id)->first()->grand_total}}</strong>
                         </td>
                       </tr>
-                      <tr>
-                        <td style="font-size: 12px; font-family: 'Open Sans', sans-serif; color: #b0b0b0; line-height: 22px; vertical-align: top; text-align:right; "><small>TAX</small></td>
-                        <td style="font-size: 12px; font-family: 'Open Sans', sans-serif; color: #b0b0b0; line-height: 22px; vertical-align: top; text-align:right; ">
-                          <small>$72.40</small>
-                        </td>
-                      </tr>
+                      {{-- end --}}
                     </tbody>
                   </table>
                   <!-- /Table Total -->
-
                 </td>
               </tr>
             </tbody>
@@ -249,7 +250,6 @@
     </tbody>
   </table>
   <!-- /Total -->
-
 
 
   <!-- Information -->
