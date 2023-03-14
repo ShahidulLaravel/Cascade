@@ -26,6 +26,7 @@ Route::get('/products/all', [FrontEndController::class, 'show_all'])->name('prod
 
 // Backend / Dashboard Controller
 Route::get('/home', [HomeController::class, 'index'])->name('home');
+Route::get('/admin/logout', [HomeController::class, 'admin_logout'])->name('admin.logout');
 
 
 // user maintain Controller

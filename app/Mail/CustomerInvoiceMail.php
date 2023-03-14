@@ -12,7 +12,7 @@ use Illuminate\Queue\SerializesModels;
 class CustomerInvoiceMail extends Mailable
 {
     use Queueable, SerializesModels;
-    public $order_id;
+    public $order_id = '';
 
     /**
      * Create a new message instance.

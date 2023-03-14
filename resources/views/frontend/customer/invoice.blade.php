@@ -61,7 +61,7 @@
                       <table width="220" border="0" cellpadding="0" cellspacing="0" align="left" class="col">
                         <tbody>
                           <tr>
-                            <td align="left"> <img src="http://www.supah.it/dribbble/017/logo.png" width="32" height="32" alt="logo" border="0" /></td>
+                            <td align="left"> <img src="{{asset('Ecom/img/logo.png')}}" width="50" height="60" alt="logo" border="0" /></td>
                           </tr>
                           <tr class="hiddenMobile">
                             <td height="40"></td>
@@ -71,7 +71,7 @@
                           </tr>
                           <tr>
                             <td style="font-size: 12px; color: #5b5b5b; font-family: 'Open Sans', sans-serif; line-height: 18px; vertical-align: top; text-align: left;">
-                              Hello, Philip Brooks.
+                              Hello, <strong>{{App\Models\BillingDetails::where('order_id', $order_id)->first()->name}}</strong>
                               <br> Thank you for shopping from our store and for your order.
                             </td>
                           </tr>
@@ -87,7 +87,7 @@
                           </tr>
                           <tr>
                             <td style="font-size: 21px; color: #ff0000; letter-spacing: -1px; font-family: 'Open Sans', sans-serif; line-height: 1; vertical-align: top; text-align: right;">
-                              Invoice
+                              Customer Invoice
                             </td>
                           </tr>
                           <tr>
@@ -99,8 +99,8 @@
                           </tr>
                           <tr>
                             <td style="font-size: 12px; color: #5b5b5b; font-family: 'Open Sans', sans-serif; line-height: 18px; vertical-align: top; text-align: right;">
-                              <small>ORDER</small> #800000025<br />
-                              <small>MARCH 4TH 2016</small>
+                              <small>Your Order ID:</small> {{$order_id}}<br />
+                              <small>{{App\Models\Order::where('order_id', $order_id)->first()->created_at}}</small>
                             </td>
                           </tr>
                         </tbody>
@@ -116,6 +116,9 @@
     </tr>
   </table>
   <!-- /Header -->
+
+
+
   <!-- Order Details -->
   <table width="100%" border="0" cellpadding="0" cellspacing="0" align="center" class="fullTable" bgcolor="#e1e1e1">
     <tbody>
@@ -188,6 +191,8 @@
     </tbody>
   </table>
   <!-- /Order Details -->
+
+
   <!-- Total -->
   <table width="100%" border="0" cellpadding="0" cellspacing="0" align="center" class="fullTable" bgcolor="#e1e1e1">
     <tbody>
@@ -244,6 +249,9 @@
     </tbody>
   </table>
   <!-- /Total -->
+
+
+
   <!-- Information -->
   <table width="100%" border="0" cellpadding="0" cellspacing="0" align="center" class="fullTable" bgcolor="#e1e1e1">
     <tbody>
@@ -277,7 +285,12 @@
                               </tr>
                               <tr>
                                 <td style="font-size: 12px; font-family: 'Open Sans', sans-serif; color: #5b5b5b; line-height: 20px; vertical-align: top; ">
-                                  Philip Brooks<br> Public Wales, Somewhere<br> New York NY<br> 4468, United States<br> T: 202-555-0133
+                                  {{App\Models\BillingDetails::where('order_id', $order_id)->first()->name}}<br> 
+                                  @php
+                                    $bill_address = App\Models\BillingDetails::where('order_id', $order_id)->first()->address
+                                  @endphp
+                                  {{$bill_address == '' ? 'Billing Address Same as Shipping Address' : $bill_address}}<br> 
+                                  {{App\Models\BillingDetails::where('order_id', $order_id)->first()->billing_mobile}}
                                 </td>
                               </tr>
                             </tbody>
@@ -299,7 +312,24 @@
                               </tr>
                               <tr>
                                 <td style="font-size: 12px; font-family: 'Open Sans', sans-serif; color: #5b5b5b; line-height: 20px; vertical-align: top; ">
-                                  Credit Card<br> Credit Card Type: Visa<br> Worldpay Transaction ID: <a href="#" style="color: #ff0000; text-decoration:underline;">4185939336</a><br>
+                                  @php
+                                    $payment_method = App\Models\Order::where('order_id', $order_id)->first()->payment_method;
+                                  @endphp
+                                  @if ($payment_method == 1)
+                                  COD - Cash on Delivery
+                                  @elseif ($payment_method == 2)
+                                  SSL Commerz Pay
+                                  @else
+                                  Stripe Payment 
+                                  @endif
+                                  <br>Transaction ID : <span style="color: #ff0000;">
+                                  @if ($payment_method == 1)
+                                  Not Appliable for COD Method
+                                  @elseif ($payment_method == 2)
+                                  {{App\Models\Order::where('order_id', $order_id)->first()->tran_id}}
+                                  @else
+                                  {{App\Models\Order::where('order_id', $order_id)->first()->tran_id}}
+                                  @endif</span><br>
                                   <a href="#" style="color:#b0b0b0;">Right of Withdrawal</a>
                                 </td>
                               </tr>
@@ -335,36 +365,22 @@
                               </tr>
                               <tr>
                                 <td style="font-size: 12px; font-family: 'Open Sans', sans-serif; color: #5b5b5b; line-height: 20px; vertical-align: top; ">
-                                  Sup Inc<br> Another Place, Somewhere<br> New York NY<br> 4468, United States<br> T: 202-555-0171
+                                  @php
+                                    $city_id = App\Models\ShippingDetails::where('order_id', $order_id)->first()->city_id
+                                  @endphp
+                                  @php
+                                    $country_id = App\Models\ShippingDetails::where('order_id', $order_id)->first()->country_id
+                                  @endphp
+
+                                  {{App\Models\ShippingDetails::where('order_id', $order_id)->first()->name}}<br>
+
+                                  {{App\Models\City::where('id', $city_id)->first()->name}}<br> {{App\Models\ShippingDetails::where('order_id', $order_id)->first()->zip_code}},
+                                   {{App\Models\Country::where('id', $country_id)->first()->name}}<br> Mobile No: {{App\Models\ShippingDetails::where('order_id', $order_id)->first()->shipping_mobile}}
                                 </td>
                               </tr>
                             </tbody>
                           </table>
-
-
-                          <table width="220" border="0" cellpadding="0" cellspacing="0" align="right" class="col">
-                            <tbody>
-                              <tr class="hiddenMobile">
-                                <td height="35"></td>
-                              </tr>
-                              <tr class="visibleMobile">
-                                <td height="20"></td>
-                              </tr>
-                              <tr>
-                                <td style="font-size: 11px; font-family: 'Open Sans', sans-serif; color: #5b5b5b; line-height: 1; vertical-align: top; ">
-                                  <strong>SHIPPING METHOD</strong>
-                                </td>
-                              </tr>
-                              <tr>
-                                <td width="100%" height="10"></td>
-                              </tr>
-                              <tr>
-                                <td style="font-size: 12px; font-family: 'Open Sans', sans-serif; color: #5b5b5b; line-height: 20px; vertical-align: top; ">
-                                  UPS: U.S. Shipping Services
-                                </td>
-                              </tr>
-                            </tbody>
-                          </table>
+                          {{-- main table end here --}}
                         </td>
                       </tr>
                     </tbody>
@@ -395,7 +411,7 @@
                 <tbody>
                   <tr>
                     <td style="font-size: 12px; color: #5b5b5b; font-family: 'Open Sans', sans-serif; line-height: 18px; vertical-align: top; text-align: left;">
-                      Have a nice day.
+                      Have a nice day Sir. Thank you for shopping with Kumo
                     </td>
                   </tr>
                 </tbody>
