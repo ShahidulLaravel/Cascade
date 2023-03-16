@@ -14,6 +14,7 @@ use Illuminate\Support\Str;
 use App\Models\OrderProduct;
 use Illuminate\Http\Request;
 use App\Models\BillingDetails;
+use App\Models\Logo;
 use App\Models\ShippingDetail;
 use App\Models\ShippingDetails;
 use Illuminate\Support\Facades\Auth;
@@ -45,7 +46,7 @@ class CheckoutController extends Controller
     public function order_store(Request $request){
        $city = City::find($request->city_id);
        $order_id = Str::upper(substr($city->name,'0','3')) . '-' . rand(10, 100000);
-
+       $logo = Logo::all();
 
        Order::insert([
             'order_id' => $order_id,
@@ -96,12 +97,12 @@ class CheckoutController extends Controller
 
           Product::where('color_id', $cart->color_id)->where('size_id', $cart->size_id)->where('id', $cart->product_id)->decrement('quantity', $cart->quantity);
 
-          // Cart::find($cart->id)->delete(); 
+          Cart::find($cart->id)->delete(); 
           }
 
           //sendinng customer invoice email hjere
           $mail = Auth::guard('customerlogin')->user()->email;
-          Mail::to($mail)->send(new CustomerInvoiceMail($order_id));
+          Mail::to($mail)->send(new CustomerInvoiceMail($order_id, $logo));
 
           return redirect()->route('order.success', $order_id)->withSuccess('Your Order Is Placed !!');
     }

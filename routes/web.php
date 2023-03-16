@@ -7,7 +7,6 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\BrandController;
 use App\Http\Controllers\CuponController;
-use App\Http\Controllers\DeleteController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CheckoutController;
@@ -27,6 +26,8 @@ Route::get('/products/all', [FrontEndController::class, 'show_all'])->name('prod
 // Backend / Dashboard Controller
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 Route::get('/admin/logout', [HomeController::class, 'admin_logout'])->name('admin.logout');
+Route::get('/add/logo', [HomeController::class, 'add_logo'])->name('add.logo');
+Route::post('/store/logo', [HomeController::class, 'store_logo'])->name('logo.store');
 
 
 // user maintain Controller

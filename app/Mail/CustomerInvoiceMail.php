@@ -13,15 +13,17 @@ class CustomerInvoiceMail extends Mailable
 {
     use Queueable, SerializesModels;
     public $order_id = '';
+    public $logo;
 
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct($order_id)
+    public function __construct($order_id, $logo)
     {
         $this->order_id = $order_id;
+        $this->logo = $logo;
     }
 
     /**

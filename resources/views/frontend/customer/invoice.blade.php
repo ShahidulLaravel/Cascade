@@ -60,9 +60,9 @@
                     <td>
                       <table width="220" border="0" cellpadding="0" cellspacing="0" align="left" class="col">
                         <tbody>
-                          <tr>
-                            <td align="left"> <img src="{{asset('Ecom/img/logo.png')}}" width="50" height="20" alt="logo" border="0" /></td>
-                          </tr>
+                            <tr>
+                                <td><h4>Kumo E-Commerce</h4></td>
+                            </tr>      
                           <tr class="hiddenMobile">
                             <td height="40"></td>
                           </tr>
