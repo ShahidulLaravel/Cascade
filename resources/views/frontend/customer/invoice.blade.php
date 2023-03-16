@@ -61,7 +61,7 @@
                       <table width="220" border="0" cellpadding="0" cellspacing="0" align="left" class="col">
                         <tbody>
                             <tr>
-                                <td><h4>Kumo E-Commerce</h4></td>
+                                <td><h3>Kumo E-Commerce</h3></td>
                             </tr>      
                           <tr class="hiddenMobile">
                             <td height="40"></td>
@@ -72,7 +72,8 @@
                           <tr>
                             <td style="font-size: 12px; color: #5b5b5b; font-family: 'Open Sans', sans-serif; line-height: 18px; vertical-align: top; text-align: left;">
                               Hello, <strong>{{App\Models\BillingDetails::where('order_id', $order_id)->first()->name}}</strong>
-                              <br> Thank you for shopping from our store and for your order.
+                              <br> <br>
+                              Thank you for shopping from our store and for your order.
                             </td>
                           </tr>
                         </tbody>
@@ -100,7 +101,7 @@
                           <tr>
                             <td style="font-size: 12px; color: #5b5b5b; font-family: 'Open Sans', sans-serif; line-height: 18px; vertical-align: top; text-align: right;">
                               <small>Your Order ID:</small> {{$order_id}}<br />
-                              <small>{{App\Models\Order::where('order_id', $order_id)->first()->created_at}}</small>
+                              <small>{{App\Models\Order::where('order_id', $order_id)->first()->created_at->format('d-M-y')}}</small>
                             </td>
                           </tr>
                         </tbody>

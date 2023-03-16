@@ -30,7 +30,7 @@
 
 								<div class="card-body p-0">
 									<div class="shop_thumb position-relative">
-										<a class="card-img-top d-block overflow-hidden" href="{{route('details',$product->id)}}"><img style="width:162px;height:162px;" class="card-img-top" src="{{asset('uploads/Products/preview')}}/{{$product->preview}}" alt="img here"></a>
+										<a class="card-img-top d-block overflow-hidden" href="{{route('details',$product->id)}}" target="__blank"><img style="width:162px;height:162px;" class="card-img-top" src="{{asset('uploads/Products/preview')}}/{{$product->preview}}" alt="img here"></a>
 									</div>
 								</div>
                                 

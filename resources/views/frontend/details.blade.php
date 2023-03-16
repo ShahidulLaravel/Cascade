@@ -189,11 +189,9 @@
 								
 								<!-- Additional Content -->
 								<div class="tab-pane fade" id="information" role="tabpanel" aria-labelledby="information-tab">
-									<div class="additionals">
-										@if ($product_info->additional_info != null)
+									<div class="additionals">										
                                         <p class="p-0 mb-2">{!!$product_info->additional_info!!}</p>                                 
-                                        @endif
-                                         <strong class="p-0 mb-2">No Info Found !!</strong> 
+                                        
 									</div>
 								</div>
 								
@@ -371,7 +369,7 @@
 						<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
 							<div class="sec_title position-relative text-center">
 								<h2 class="off_title">Similar Products</h2>
-								<h3 class="ft-bold pt-3">Matching Producta</h3>
+								<h3 class="ft-bold pt-3">Matching Products</h3>
 							</div>
 						</div>
 					</div>
