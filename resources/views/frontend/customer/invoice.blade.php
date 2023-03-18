@@ -211,7 +211,7 @@
                           Subtotal
                         </td>
                         <td style="font-size: 12px; font-family: 'Open Sans', sans-serif; color: #646a6e; line-height: 22px; vertical-align: top; text-align:right; white-space:nowrap;" width="80">
-                          &#2547;{{$product->price*$product->quantity}}
+                         &#2547;{{App\Models\Order::where('order_id', $order_id)->first()->sub_total}}
                         </td>
                       </tr>
                       <tr>
@@ -235,7 +235,7 @@
                           <strong>Grand Total </strong>
                         </td>
                         <td style="font-size: 12px; font-family: 'Open Sans', sans-serif; color: #000; line-height: 22px; vertical-align: top; text-align:right; ">
-                          <strong>&#2547;{{App\Models\Order::where('order_id', $order_id)->first()->grand_total}}</strong>
+                          <strong>&#2547;{{App\Models\Order::where('order_id', $order_id)->first()->grand_total + App\Models\Order::where('order_id', $order_id)->first()->charge}}</strong>
                         </td>
                       </tr>
                       {{-- end --}}
