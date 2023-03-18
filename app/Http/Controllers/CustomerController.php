@@ -41,8 +41,7 @@ class CustomerController extends Controller
 
     public function customer_logout(){
         Auth::guard('customerlogin')->logout();
-
-        return back();
+        return redirect('/');
     }
 
     public function customer_profile(){
@@ -118,6 +117,14 @@ class CustomerController extends Controller
                 }
             }
         }
+    }
+    public function myorder()
+    {
+        $myorders = Order::where('customer_id', Auth::guard('customerlogin')->id())->get();
+
+        return view('frontend.customer.myorder', [
+            'myorders' => $myorders,
+        ]);
     }
 
 }

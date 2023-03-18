@@ -13,6 +13,7 @@ use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\FrontEndController;
 use App\Http\Controllers\InventoryController;
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\SubCategoryController;
 use App\Http\Controllers\UpdateProdcutController;
 
@@ -143,7 +144,7 @@ Route::get('/customer/profile', [CustomerController::class, 'customer_profile'])
 
 Route::post('/customer/information/update',[CustomerController::class, 'customer_profile_update'])->name('customer_info.update');
 
-
+Route::get('/myorder/show/', [CustomerController::class, 'myorder'])->name('myorder')->middleware();
 
 
 // cart controller 
@@ -154,7 +155,7 @@ Route::post('add/cart', [CartController::class, 'add_cart'])->name('add_cart');
 
 Route::get('/wishlist/delete/{wish_id}',[CartController::class, 'remove_wishlist'])->name('wishlist.delete');
 
-Route::get('/wishlist/',[CartController::class, 'view_wishlist'])->name('product.wishlist');
+Route::get('/wishlist',[CartController::class, 'view_wishlist'])->name('product.wishlist');
 
 Route::get('/view/cart',[CartController::class, 'view_cart'])->name('view.cart');
 
@@ -170,10 +171,16 @@ Route::post('/store/cupon/', [CuponController::class, 'store_cupon'])->name('cup
 
 //checkout contrller
 
-Route::get('/checkout/', [CheckoutController::class, 'view_chekout'])->name('checkout');
+Route::get('/checkout', [CheckoutController::class, 'view_chekout'])->name('checkout');
 
 Route::post('/order/store', [CheckoutController::class, 'order_store'])->name('order.store');
 
 Route::post('/getCity', [CheckoutController::class, 'get_city']);
 
 Route::get('/order/success/{order_id}', [CheckoutController::class, 'order_success'])->name('order.success');
+
+//order controller
+Route::get('/orders', [OrderController::class, 'orders'])->name('orders');
+
+
+

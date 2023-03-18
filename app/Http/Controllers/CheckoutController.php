@@ -16,7 +16,6 @@ use Illuminate\Http\Request;
 use App\Models\BillingDetails;
 use App\Models\Logo;
 use App\Models\ShippingDetail;
-use App\Models\ShippingDetails;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 
@@ -118,7 +117,6 @@ class CheckoutController extends Controller
                "number" => $number,
                "message" => $message
           ];
-
           $ch = curl_init();
           curl_setopt($ch, CURLOPT_URL, $url);
           curl_setopt($ch, CURLOPT_POST, 1);
