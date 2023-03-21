@@ -182,5 +182,11 @@ Route::get('/order/success/{order_id}', [CheckoutController::class, 'order_succe
 //order controller
 Route::get('/orders', [OrderController::class, 'orders'])->name('orders');
 
+Route::post('/order/track/', [OrderController::class, 'track_order'])->name('track.order'); 
+
+Route::get('/invoice/download/{order_id}', [OrderController::class, 'dowonload_invoice'])->name('dowlonad.invoice'); 
+ 
+
+
 
 

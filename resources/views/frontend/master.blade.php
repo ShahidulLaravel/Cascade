@@ -10,6 +10,7 @@
      href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
         <title> Kumo - Fashion eCommerce </title> 
         <!-- Custom CSS -->
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
         <link href="{{asset('Ecom/css/plugins/animation.css')}}" rel="stylesheet">
 		<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
         <link href="{{asset('Ecom/css/plugins/bootstrap.min.css')}}" rel="stylesheet">
@@ -63,15 +64,21 @@
 								<ul class="dropdown-menu popup-content link">
 									<li class="current"><a href="" class="dropdown-item medium text-muted"><img src="{{asset('Ecom/img/1.jpg')}}" alt="en" width="16" height="11" /><span>English</span></a></li>
 									<li><a href="javascript:void(0);" class="dropdown-item medium text-muted"><img src="{{asset('Ecom/img/2.jpg')}}" alt="fr" width="16" height="11" /><span>Français</span></a></li>
+								
 								</ul>
 							</div>
 							
-							<div class="currency-selector dropdown js-dropdown float-right mr-3">
+								<div class="currency-selector dropdown js-dropdown float-right mr-3">
+								
 								@auth('customerlogin')
 								<div class="dropdown">
+								<a href="#" style="cursor:pointer" class="mr-4" type=""  aria-expanded="false">
+									Track My Order
+								</a>
 								<a style="cursor:pointer" class="dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">
 									{{Auth::guard('customerlogin')->user()->name}}
 								</a>
+
 								<div class="dropdown-menu">
 									<a class="dropdown-item" href="{{route('customer.profile')}}">My Porofile</a>
 									<a class="dropdown-item" href="{{route('customer.logout')}}">Logout</a>

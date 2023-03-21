@@ -3,7 +3,7 @@
 @section('content')
 
 <div class="row">
-    <div class="col-lg-10 m-auto">
+    <div class="col-lg-12 m-auto">
         <div class="card">
             <div class="card-header">
                 <h3>Order Details</h3>
@@ -11,6 +11,7 @@
             <div class="card-body">
                 <table class="table table-bordered">
                     <tr>
+
                         <th>Order ID</th>
                         <th>Total</th>
                         <th>Order Date</th>
@@ -20,6 +21,7 @@
                     </tr>
                     @foreach ($myorder as $order)
                         <tr>
+
                             <td>{{$order->order_id}}</td>
                             <td>&#2547;{{$order->grand_total}}</td>
                             <td>{{$order->created_at->diffForHumans()}}</td>
@@ -56,15 +58,20 @@
                             <td>
 
                                 <div class="dropdown">
-                                    <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                                   <form action="{{route('track.order')}}" method="POST">
+                                    @csrf
+                                    <input type="hidden" name="order_id" value="{{$order->order_id}}">
+                                     <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
                                         Order Status
                                     </button>
                                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                                        <li><a class="dropdown-item" href="#">Placed</a></li>
-                                        <li><a class="dropdown-item" href="#">Processing</a></li>
-                                        <li><a class="dropdown-item" href="#">Pick Up the Product</a></li>
-                                        <li><a class="dropdown-item" href="#">Ready to Delivered</a></li><li><a class="dropdown-item" href="#">Delivered</a></li>
+                                        <li><button value="0" name="status" class="dropdown-item" href="#">Placed</button></li>
+                                        <li><button value="1" name="status" class="dropdown-item" href="#">Processing</button></li>
+                                        <li><button value="2" name="status" class="dropdown-item" href="#">Pick Up the Product</button></li>
+                                        <li><button value="3" name="status" class="dropdown-item" href="#">Ready to Delivered</button></li>
+                                        <li><button value="4" name="status" class="dropdown-item" href="#">Delivered</button></li>
                                     </ul>
+                                   </form>
                                 </div>
                             </td>
                         </tr>
@@ -73,8 +80,6 @@
             </div>
         </div>
     </div>
-
-    
 </div>
 
 @endsection

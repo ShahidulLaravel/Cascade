@@ -66,10 +66,31 @@
 										<p class="m-0 p-0"><span class="text-muted">Order Number </span></p>
 										<h6 class="mb-0 ft-medium">{{$order->order_id}}</h6>
 									</div>	
-                                    <div class="col-xl-2 col-lg-2 col-md-2 col-12 ml-auto">
+                                    <div class="col-xl-3 col-lg-3 col-md-4 col-12 ml-auto">
 											<p class="mb-1 p-0"><span class="text-muted">Status</span></p>
-											<div class="delv_status"><span class="ft-medium small text-warning bg-light-warning rounded px-3 py-1">Completed</span></div>
-										</div>	
+											<div class="delv_status"><span class="ft-medium small text-warning bg-light-warning rounded px-3 py-1">
+												@php
+													if($order->status == 0){
+														echo 'Placed';
+													}
+													elseif($order->status == 1){
+														echo 'Processing';	
+													}
+													elseif($order->status == 2){
+														echo 'Picked Up';
+													}
+													elseif($order->status == 3){
+														echo 'Ready for Delivered';
+													}	
+													elseif($order->status == 4){
+														echo 'Delivered';
+													}else{
+														echo 'No Records Found';
+													}
+												@endphp
+											</span></div>
+											<div class="mt-3"><a href="{{route('dowlonad.invoice', $order->id)}}" class="btn btn-sm btn-light">Download Invoice <i class="fa-solid fa-download"></i></a></div>
+									</div>	
 								</div>
                                 
 								<div class="ord_list_body text-left">
