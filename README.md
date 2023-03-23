@@ -5,8 +5,9 @@
 
 Fetures - 
 
-* Login
-* Register
+* Customer Login
+* Customer Registration
+* Admin Panel
 * User List
 * Edit Profile
 * Category Add
