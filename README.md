@@ -6,7 +6,7 @@
 Fetures - 
 
 * Login
-* Regsiter
+* Register
 * User List
 * Edit Profile
 * Category Add
@@ -15,7 +15,14 @@ Fetures -
 * Payement Gateway
 * Password Confirmation Mail
 * Email Confirmation
-* Invoice generate and Many more 
+* Invoice generate
+* Send Mobile SMS
+* Order Tracking
+* Order History
+* Cart
+* Wishlist
+* Social Login
+* User Role Management
 
 
 ## Developed By : Shahidul Islam Shovon
