@@ -72,7 +72,7 @@
 								
 								@auth('customerlogin')
 								<div class="dropdown">
-								<a href="#" style="cursor:pointer" class="mr-4" type=""  aria-expanded="false">
+								<a href="{{route('track.detail')}}" target="__blank" style="cursor:pointer" class="mr-4" type=""  aria-expanded="false">
 									Track My Order
 								</a>
 								<a style="cursor:pointer" class="dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">

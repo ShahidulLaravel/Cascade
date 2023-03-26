@@ -118,13 +118,27 @@ class CustomerController extends Controller
             }
         }
     }
+
+    //my order
     public function myorder()
     {
-        $myorders = Order::where('customer_id', Auth::guard('customerlogin')->id())->get();
+        $myorders = Order::where('customer_id', Auth::guard('customerlogin')->id())->orderBy('created_at', 'DESC')->get();
 
         return view('frontend.customer.myorder', [
             'myorders' => $myorders,
         ]);
+    }
+    
+    public function clear_myorder(){
+        
+    }
+
+    public function detail_tracking(){
+        return view('frontend.customer.track');
+    }
+
+    public function search_tracking(Request $request){
+        
     }
 
 }

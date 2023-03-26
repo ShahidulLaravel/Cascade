@@ -94,6 +94,7 @@
                                     	<div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12">
 										<div class="form-group">
 											<label class="text-dark">Full Name *</label>
+											<input name="customer_id" type="hidden" class="form-control" value="{{Auth::guard('customerlogin')->id()}}" placeholder="Shipping Name"/>
 											<input name="name" type="text" class="form-control" placeholder="Shipping Name"/>
 										</div>
 									</div>

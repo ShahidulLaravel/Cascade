@@ -7,15 +7,16 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\BrandController;
 use App\Http\Controllers\CuponController;
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\FrontEndController;
 use App\Http\Controllers\InventoryController;
-use App\Http\Controllers\OrderController;
 use App\Http\Controllers\SubCategoryController;
 use App\Http\Controllers\UpdateProdcutController;
+use App\Http\Controllers\SslCommerzPaymentController;
 
 //For Auth
 Auth::routes();
@@ -146,6 +147,8 @@ Route::post('/customer/information/update',[CustomerController::class, 'customer
 
 Route::get('/myorder/show/', [CustomerController::class, 'myorder'])->name('myorder')->middleware();
 
+Route::get('/clear/order', [CustomerController::class, 'clear_myorder'])->name('clear.order')->middleware();
+
 
 // cart controller 
 
@@ -184,9 +187,25 @@ Route::get('/orders', [OrderController::class, 'orders'])->name('orders');
 
 Route::post('/order/track/', [OrderController::class, 'track_order'])->name('track.order'); 
 
-Route::get('/invoice/download/{order_id}', [OrderController::class, 'dowonload_invoice'])->name('dowlonad.invoice'); 
- 
+Route::get('/invoice/download/{order_id}', [OrderController::class, 'dowonload_invoice'])->name('dowlonad.invoice');
 
+// SSLCOMMERZ Start
 
+Route::get('/pay', [SslCommerzPaymentController::class, 'index']);
+Route::post('/pay-via-ajax', [SslCommerzPaymentController::class, 'payViaAjax']);
+
+Route::post('/success', [SslCommerzPaymentController::class, 'success']);
+Route::post('/fail', [SslCommerzPaymentController::class, 'fail']);
+Route::post('/cancel', [SslCommerzPaymentController::class, 'cancel']);
+
+Route::post('/ipn', [SslCommerzPaymentController::class, 'ipn']);
+//SSLCOMMERZ END
+
+//track order
+Route::get('/detail/track', [CustomerController::class, 'detail_tracking'])->name
+('track.detail');
+
+Route::post('/search/order', [CustomerController::class, 'search_tracking'])->name
+('order.search');
 
 

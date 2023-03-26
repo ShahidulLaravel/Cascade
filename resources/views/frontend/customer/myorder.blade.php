@@ -120,14 +120,13 @@
 								<div class="ord_list_footer d-flex align-items-center justify-content-between br-top px-3">
 									<div class="col-xl-12 col-lg-12 col-md-12 pl-0 py-2 olf_flex d-flex align-items-center justify-content-between">
 										<div class="olf_flex_inner"><p class="m-0 p-0"><span class="text-muted medium text-left">Order Date: {{$order->created_at->format('d M y')}}</span></p></div>
-										<div class="olf_inner_right"><h5 class="mb-0 fs-sm ft-bold">Total: &#2547;{{$order->grand_total}}</h5></div>
+										<div class="olf_inner_right"><h5 class="mb-0 fs-sm ft-bold">Total: &#2547;{{$order->sub_total}}</h5></div>
 									</div>
-								</div>
+								</div>								
 							</div>
 							<!-- End Order List -->
 							@endforeach
-						</div>
-						
+						</div>						
 					</div>
 				</div>
 			</section>
