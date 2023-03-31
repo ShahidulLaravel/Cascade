@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Order;
-use Barryvdh\DomPDF\PDF;
 use App\Models\OrderProduct;
 use Illuminate\Http\Request;
+use PDF;
 use Illuminate\Support\Facades\Auth;
 
 class OrderController extends Controller

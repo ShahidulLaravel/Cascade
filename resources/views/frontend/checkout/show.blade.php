@@ -221,10 +221,6 @@
 											<input id="c4" value="2" class="radio-custom" name="payment_method" type="radio">
 											<label for="c4" class="radio-custom-label">Pay With SSLCommerz</label>
 										</li>
-										<li>
-											<input id="c5" value="3" class="radio-custom" name="payment_method" type="radio">
-											<label for="c5" class="radio-custom-label">Pay With Stripe</label>
-										</li>
 									</ul>
 								</div>
 							</div>

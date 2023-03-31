@@ -327,7 +327,7 @@
                                   @if ($payment_method == 1)
                                   Not Appliable for COD Method
                                   @elseif ($payment_method == 2)
-                                    {{App\Models\Sslorder::where('customer_id', Auth::guard('customerlogin')->id())->first()->transaction_id}}
+                                    {{-- {{App\Models\Sslorder::where('customer_id', Auth::guard('customerlogin')->id())->first()->transaction_id}} --}}
                                   @else
                                   {{App\Models\Order::where('order_id', $order_id)->first()->tran_id}}
                                   @endif</span><br>
