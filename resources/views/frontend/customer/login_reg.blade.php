@@ -54,7 +54,9 @@
 								<div class="form-group">
 									<div class="d-flex align-items-center justify-content-between">
 										<div class="eltio_k2">
-											<a href="#">Lost Your Password?</a>
+
+											<a href="{{route('forgot.password')}} "target="__blank">Lost Your Password?</a>
+
 										</div>	
 									</div>
 								</div>

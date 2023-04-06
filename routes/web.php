@@ -15,6 +15,7 @@ use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\FrontEndController;
 use App\Http\Controllers\InventoryController;
 use App\Http\Controllers\SubCategoryController;
+use App\Http\Controllers\PasswordResetController;
 use App\Http\Controllers\UpdateProdcutController;
 use App\Http\Controllers\SslCommerzPaymentController;
 
@@ -126,7 +127,7 @@ Route::get('/product/delete/{delete_id_product}', [InventoryController::class, '
 
 // single page show
 
-Route::get('/product/details/{product_id}', [FrontEndController::class, 'details'])->name('details');
+Route::get('/product/details/{slug}', [FrontEndController::class, 'details'])->name('details');
 
 Route::post('/getSize', [FrontEndController::class, 'getSize']);
 
@@ -212,5 +213,8 @@ Route::post('/search/order', [CustomerController::class, 'search_tracking'])->na
 
 Route::post('/store/rating', [CustomerController::class, 'store_rating'])->name
 ('rating.store');
+
+//customer password reset
+Route::get('lost/password/', [PasswordResetController::class, 'forgot_password'])->name('forgot.password');
 
 

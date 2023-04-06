@@ -30,7 +30,7 @@
 
 								<div class="card-body p-0">
 									<div class="shop_thumb position-relative">
-										<a class="card-img-top d-block overflow-hidden" href="{{route('details',$product->id)}}" target="__blank"><img style="width:162px;height:162px;" class="card-img-top" src="{{asset('uploads/Products/preview')}}/{{$product->preview}}" alt="img here"></a>
+										<a class="card-img-top d-block overflow-hidden" href="{{route('details',$product->slug)}}" target="__blank"><img style="width:162px;height:162px;" class="card-img-top" src="{{asset('uploads/Products/preview')}}/{{$product->preview}}" alt="img here"></a>
 									</div>
 								</div>
                                 
@@ -39,7 +39,7 @@
 										<div class="text-left">
 								                              
                                             <div class="elso_titl"><span class="small"></span></div>
-											<h5 class="fs-md mb-0 lh-1 mb-1"><a href="{{route('details', $product->id)}}">{{$product->product_name}}</a></h5>
+											<h5 class="fs-md mb-0 lh-1 mb-1"><a href="{{route('details', $product->slug)}}">{{$product->product_name}}</a></h5>
                                             <span>Brand: {{$product->rel_to_brand->brand_name}}</span>
 											<p>{{$product->rel_to_cat->category_name}}</p>
 											<div class="star-rating align-items-center d-flex justify-content-left mb-2 p-0">

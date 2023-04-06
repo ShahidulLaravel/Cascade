@@ -32,4 +32,13 @@ class Product extends Model
     {
         return $this->belongsTo(Size::class, 'size_id');
     }
+    function product()
+    {
+        return $this->belongsTo(Product::class, 'product_id');
+    }
+
+    function rel_product()
+    {
+        return $this->belongsTo(Product::class, 'id');
+    }
 }

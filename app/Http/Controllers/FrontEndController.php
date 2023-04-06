@@ -20,11 +20,16 @@ class FrontEndController extends Controller
         $products = Product::take(8)->latest()->get();
         $brands = Brand::all();
         $sizes = Size::all();
+        $recent_products = Product::take(3)->latest()->get();
+        $best_selling = OrderProduct::groupBy('product_id')->selectRaw('sum(quantity) as sum, product_id')->orderBy('sum', 'DESC')->get();
+        
         return view('Frontend.index',[
             'categories' => $categories,
             'products' => $products,
             'brands' => $brands,
             'sizes' => $sizes,
+            'best_selling' => $best_selling,
+            'recent_products' => $recent_products,
         ]);
     }
 
@@ -41,7 +46,10 @@ class FrontEndController extends Controller
         ]);
     }
 
-    public function details($product_id){
+    public function details($slug){
+        $slug_info = Product::where('slug', $slug);
+        $product_id = $slug_info->first()->id;
+
         $product_info = Product::find($product_id);
         $product_gallery = ProductGallery::where('product_id',$product_id)->get();
         $related_product = Product::where('category_id', $product_info->category_id)->where('id', '!=', $product_id)->get();

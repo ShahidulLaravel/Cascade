@@ -48,7 +48,6 @@
 									else{
 										$avg = round($total_star / $all_star);
 									}
-
 								@endphp
 								<div class="prt_02 mb-3">
 									<h2 class="ft-bold mb-1">{{$product_info->product_name}}</h2>
@@ -358,13 +357,13 @@
 										<div class="badge bg-success text-white position-absolute ft-regular ab-left text-upper">Sale</div>
 										<div class="card-body p-0">
 											<div class="shop_thumb position-relative">
-												<a class="card-img-top d-block overflow-hidden" href="{{route('details', $matching->id)}}"><img class="card-img-top" src="{{asset('uploads/products/preview')}}/{{$matching->preview}}" alt="..."></a>
+												<a class="card-img-top d-block overflow-hidden" href="{{route('details', $matching->slug)}}"><img class="card-img-top" src="{{asset('uploads/products/preview')}}/{{$matching->preview}}" alt="..."></a>
 											</div>
 										</div>
 										<div class="card-footer b-0 p-3 pb-0 d-flex align-items-start justify-content-center">
 											<div class="text-left">
 												<div class="text-center">
-													<h5 class="fw-bolder fs-md mb-0 lh-1 mb-1"><a href="{{route('details', $matching->id)}}">{{$matching->product_name}}</a></h5>
+													<h5 class="fw-bolder fs-md mb-0 lh-1 mb-1"><a href="{{route('details', $matching->slug)}}">{{$matching->product_name}}</a></h5>
 													<div class="elis_rty"><span class="ft-medium text-muted line-through fs-md mr-2">&#2547;{{$product_info->price}}</span><span class="ft-bold theme-cl fs-lg mr-2">&#2547;{{$product_info->after_discount}}</span></div>
 												</div>
 											</div>

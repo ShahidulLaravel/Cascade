@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="zxx">
 <head>
@@ -515,6 +514,5 @@
 			}
 		</script>		
 
-	</body>
-
+</body>
 </html>
