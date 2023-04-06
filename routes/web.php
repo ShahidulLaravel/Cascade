@@ -208,4 +208,9 @@ Route::get('/detail/track', [CustomerController::class, 'detail_tracking'])->nam
 Route::post('/search/order', [CustomerController::class, 'search_tracking'])->name
 ('order.search');
 
+// submit a review
+
+Route::post('/store/rating', [CustomerController::class, 'store_rating'])->name
+('rating.store');
+
 

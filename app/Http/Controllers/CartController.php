@@ -3,10 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Cart;
-use App\Models\Size;
 use App\Models\Cupon;
-use App\Models\Colors;
-use App\Models\Product;
 use App\Models\Wishlist;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;

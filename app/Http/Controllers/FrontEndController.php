@@ -9,7 +9,9 @@ use App\Models\Category;
 use App\Models\SubCategory;
 use Illuminate\Http\Request;
 use App\Models\InventoryStore;
+use App\Models\OrderProduct;
 use App\Models\ProductGallery;
+use Illuminate\Support\Facades\Auth;
 
 class FrontEndController extends Controller
 {
@@ -52,13 +54,20 @@ class FrontEndController extends Controller
         ->groupBy('size_id')
         ->selectRaw('count(*) as total, size_id')
         ->get();
-
+        $all_review = OrderProduct::where('product_id', $product_id)->whereNotNull('review')->get();
+        $all_star = OrderProduct::where('product_id', $product_id)->whereNotNull('review')->count();
+        $total_star = OrderProduct::where('product_id', $product_id)->whereNotNull('review')->sum('star');
+       
         return view('frontend.details',[
             'product_info' => $product_info,
             'product_gallery' => $product_gallery,
             'related_product' => $related_product,
             'colors' => $colors,
             'sizes' => $sizes,
+            'all_review' => $all_review,
+            'all_star' => $all_star,
+            'total_star' => $total_star,
+
         ]);
     }
 

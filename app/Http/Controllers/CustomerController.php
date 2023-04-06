@@ -41,6 +41,7 @@ class CustomerController extends Controller
 
     public function customer_logout(){
         Auth::guard('customerlogin')->logout();
+        return back();
     }
 
     public function customer_profile(){
@@ -136,8 +137,13 @@ class CustomerController extends Controller
         return view('frontend.customer.track');
     }
 
-    public function search_tracking(Request $request){
-        
+    public function store_rating(Request $request){
+        OrderProduct::where('customer_id', Auth::guard('customerlogin')->id())->where('product_id', $request->product_id)->update([
+            'review' => $request->review,
+            'star' => $request->rating,
+        ]);
+        return back();
     }
+
 
 }

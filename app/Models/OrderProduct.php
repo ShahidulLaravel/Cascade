@@ -39,6 +39,8 @@ class OrderProduct extends Model
         return $this->belongsTo(Order::class, 'order_id');
     }
 
-
+    function rel_to_customer(){
+        return $this->belongsTo(CustomerLogin::class, 'customer_id');
+    }
 
 }

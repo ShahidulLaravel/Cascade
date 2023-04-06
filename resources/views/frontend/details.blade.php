@@ -27,8 +27,7 @@
 					<div class="row justify-content-between">
 					
 						<div class="col-xl-5 col-lg-6 col-md-12 col-sm-12">
-							<div class="quick_view_slide">
-                                
+							<div class="quick_view_slide">                 
 								@foreach ($product_gallery as $gal)
                                     <div class="single_view_slide"><a href="{{asset('uploads/products/gallery')}}/{{$gal->product_gallery}}" data-lightbox="roadtrip" class="d-block mb-4"><img src="{{asset('uploads/products/gallery')}}/{{$gal->product_gallery}}" class="img-fluid rounded" alt="" />
                                 </a>
@@ -41,16 +40,28 @@
 							<div class="prd_details pl-3">
 								
 								<div class="prt_01 mb-1"><span class="text-light bg-info rounded px-2 py-1">{{$product_info->rel_to_cat->category_name}}</span></div>
+								@php
+									
+									if($all_star == 0){
+										$avg = 0;
+									}
+									else{
+										$avg = round($total_star / $all_star);
+									}
+
+								@endphp
 								<div class="prt_02 mb-3">
 									<h2 class="ft-bold mb-1">{{$product_info->product_name}}</h2>
 									<div class="text-left">
 										<div class="star-rating align-items-center d-flex justify-content-left mb-1 p-0">
+											@for ($i =1; $i <= $avg; $i++ )
 											<i class="fas fa-star filled"></i>
-											<i class="fas fa-star filled"></i>
-											<i class="fas fa-star filled"></i>
-											<i class="fas fa-star filled"></i>
+											@endfor
+											@for ($i = $avg; $i <= 4; $i++ )
 											<i class="fas fa-star"></i>
-											<span class="small">(412 Reviews)</span>
+											@endfor
+											<span class="small"> 
+												{{$all_star}} Reviews</span>
 										</div>
 										<div class="elis_rty"><span class="ft-medium text-muted line-through fs-md mr-2">&#2547;{{$product_info->price}}</span><span class="ft-bold theme-cl fs-lg mr-2">&#2547;{{$product_info->after_discount}}</span></div>
 									</div>
@@ -197,99 +208,112 @@
 								
 								<!-- Reviews Content -->
 								<div class="tab-pane fade" id="reviews" role="tabpanel" aria-labelledby="reviews-tab">
+									@foreach ($all_review as $review)
 									<div class="reviews_info">
-
+										
 										<div class="single_rev d-flex align-items-start br-bottom py-3">
-											<div class="single_rev_thumb"><img src="assets/img/team-1.jpg" class="img-fluid circle" width="90" alt="" /></div>
+											<div class="single_rev_thumb"><img src="assets/img/team-1.jpg" class="img-fluid circle" width="90" alt=""/></div>
+
 											<div class="single_rev_caption d-flex align-items-start pl-3">
 												<div class="single_capt_left">
-													<h5 class="mb-0 fs-md ft-medium lh-1">Daniel Rajdesh</h5>
-													<span class="small">30 jul 2021</span>
-													<p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum</p>
+													<h5 class="mb-0 fs-md ft-medium lh-1">{{$review->rel_to_customer->name}}</h5>
+													<span class="small">{{$review->created_at->format('d M Y')}}</span>
+													<p>{{$review->review}}</p>
 												</div>
 												<div class="single_capt_right">
 													<div class="star-rating align-items-center d-flex justify-content-left mb-1 p-0">
+														@for ($i = 1; $i <= $review->star; $i++)
 														<i class="fas fa-star filled"></i>
-														<i class="fas fa-star filled"></i>
-														<i class="fas fa-star filled"></i>
-														<i class="fas fa-star filled"></i>
-														<i class="fas fa-star filled"></i>
+														@endfor
+														@for ($i = $review->star; $i < 5; $i++)
+														<i class="fas fa-star "></i>
+														@endfor
 													</div>
 												</div>
 											</div>
 										</div>
-								
+										
 									</div>
+									@endforeach
 									
 			<div class="reviews_rate">
 				@auth('customerlogin')
 				@if (App\Models\OrderProduct::where('customer_id', Auth::guard('customerlogin')->id())->where('product_id', $product_info->id)->exists())
-					<form class="row" action="" method="POST">
+				@if (App\Models\OrderProduct::where('customer_id', Auth::guard('customerlogin')->id())->where('product_id', $product_info->id)->whereNotNull('review')->first()== false)
+					
+					<form class="row" action="{{route('rating.store')}}" method="POST">
 						@csrf 
-						<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
-							<h4>Submit Rating</h4>
+							<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+								<h4>Submit Rating</h4>
+							</div>
+							
+							<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+								<div class="revie_stars d-flex align-items-center justify-content-between px-2 py-2 gray rounded mb-2 mt-1">
+									<div class="srt_013">
+										
+						<div class="submit-rating">
+							<input type="hidden" name="product_id" value="{{$product_info->id}}">
+							<input class="rating" id="star-5" type="radio" name="rating" value="5" />
+							<label for="star-5" title="5 stars">
+							<i class="active fa fa-star" aria-hidden="true"></i>
+							</label>
+							<input class="rating" id="star-4" type="radio" name="rating" value="4" />
+							<label for="star-4" title="4 stars">
+							<i class="active fa fa-star" aria-hidden="true"></i>
+							</label>
+							<input class="rating" id="star-3" type="radio" name="rating" value="3" />
+							<label for="star-3" title="3 stars">
+							<i class="active fa fa-star" aria-hidden="true"></i>
+							</label>
+							<input class="rating" id="star-2" type="radio" name="rating" value="2" />
+							<label for="star-2" title="2 stars">
+							<i class="active fa fa-star" aria-hidden="true"></i>
+							</label>
+							<input class="rating" id="star-1" type="radio" name="rating" value="1" />
+							<label for="star-1" title="1 star">
+							<i class="active fa fa-star" aria-hidden="true"></i>
+							</label>
 						</div>
-						
-						<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
-							<div class="revie_stars d-flex align-items-center justify-content-between px-2 py-2 gray rounded mb-2 mt-1">
-								<div class="srt_013">
-									<div class="submit-rating">
-										<input id="star-5" type="radio" name="rating" value="star-5" />
-										<label for="star-5" title="5 stars">
-										<i class="active fa fa-star" aria-hidden="true"></i>
-										</label>
-										<input id="star-4" type="radio" name="rating" value="star-4" />
-										<label for="star-4" title="4 stars">
-										<i class="active fa fa-star" aria-hidden="true"></i>
-										</label>
-										<input id="star-3" type="radio" name="rating" value="star-3" />
-										<label for="star-3" title="3 stars">
-										<i class="active fa fa-star" aria-hidden="true"></i>
-										</label>
-										<input id="star-2" type="radio" name="rating" value="star-2" />
-										<label for="star-2" title="2 stars">
-										<i class="active fa fa-star" aria-hidden="true"></i>
-										</label>
-										<input id="star-1" type="radio" name="rating" value="star-1" />
-										<label for="star-1" title="1 star">
-										<i class="active fa fa-star" aria-hidden="true"></i>
-										</label>
+									</div>
+									
+									<div class="srt_014">
+										<input type="hidden" name="rating" value="" id="rating_value">
+										<h6 class="mb-0"><span id="rating">0</span> Star</h6>
 									</div>
 								</div>
-								
-								<div class="srt_014">
-									<h6 class="mb-0">4 Star</h6>
+							</div>
+							
+							<div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
+								<div class="form-group">
+									<label class="medium text-dark ft-medium">Full Name</label>
+									<input value="{{Auth::guard('customerlogin')->user()->name}}" type="text" class="form-control" />
 								</div>
 							</div>
-						</div>
-						
-						<div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
-							<div class="form-group">
-								<label class="medium text-dark ft-medium">Full Name</label>
-								<input value="{{Auth::guard('customerlogin')->user()->name}}" type="text" class="form-control" />
+							
+							<div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
+								<div class="form-group">
+									<label class="medium text-dark ft-medium">Email Address</label>
+									<input value="{{Auth::guard('customerlogin')->user()->email}}" type="email" class="form-control" />
+								</div>
 							</div>
-						</div>
-						
-						<div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
-							<div class="form-group">
-								<label class="medium text-dark ft-medium">Email Address</label>
-								<input value="{{Auth::guard('customerlogin')->user()->email}}" type="email" class="form-control" />
+							
+							<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+								<div class="form-group">
+									<label class="medium text-dark ft-medium">Description</label>
+									<textarea name="review" class="form-control"></textarea>
+								</div>
 							</div>
-						</div>
-						
-						<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
-							<div class="form-group">
-								<label class="medium text-dark ft-medium">Description</label>
-								<textarea class="form-control"></textarea>
-							</div>
-						</div>
-						
-						<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
-							<div class="form-group m-0">
-								<a class="btn btn-white stretched-link hover-black">Submit Review <i class="lni lni-arrow-right"></i></a>
-							</div>
-						</div>	
+							
+							<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+								<div class="form-group m-0">
+									<button class="btn btn-white stretched-link hover-black">Submit Review <i class="lni lni-arrow-right"></i></button>
+								</div>
+							</div>	
 					</form>
+					@else
+					<div class="alert alert-warning">
+					<h5 class="d-flex justify-content-between align-items-center"><strong>You Already Give e Review !!</strong></h5>
+					@endif
 				@else
 					<div class="alert alert-warning">
 					<h5 class="d-flex justify-content-between align-items-center"><strong>You Need to Buy this Product for submit a Review</strong><a class="btn btn-success" href="{{route('frontEnd')}}">Shop More</a></h5>
@@ -423,6 +447,15 @@
 			}
 			toastr.success("{{session('wish_delete')}}");
 	@endif
+</script>
+
+{{-- custom script --}}
+<script>
+	$('.rating').click(function(){
+		let rating = $(this).val();
+		$('#rating').html(rating);
+		$('#rating_value').attr('value', rating);
+	});
 </script>
 		
 @endsection
