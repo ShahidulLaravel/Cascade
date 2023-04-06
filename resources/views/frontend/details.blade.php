@@ -223,72 +223,78 @@
 									
 			<div class="reviews_rate">
 				@auth('customerlogin')
-				<form class="row" action="" method="POST">
-					@csrf 
-					<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
-						<h4>Submit Rating</h4>
-					</div>
-					
-					<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
-						<div class="revie_stars d-flex align-items-center justify-content-between px-2 py-2 gray rounded mb-2 mt-1">
-							<div class="srt_013">
-								<div class="submit-rating">
-									<input id="star-5" type="radio" name="rating" value="star-5" />
-									<label for="star-5" title="5 stars">
-									<i class="active fa fa-star" aria-hidden="true"></i>
-									</label>
-									<input id="star-4" type="radio" name="rating" value="star-4" />
-									<label for="star-4" title="4 stars">
-									<i class="active fa fa-star" aria-hidden="true"></i>
-									</label>
-									<input id="star-3" type="radio" name="rating" value="star-3" />
-									<label for="star-3" title="3 stars">
-									<i class="active fa fa-star" aria-hidden="true"></i>
-									</label>
-									<input id="star-2" type="radio" name="rating" value="star-2" />
-									<label for="star-2" title="2 stars">
-									<i class="active fa fa-star" aria-hidden="true"></i>
-									</label>
-									<input id="star-1" type="radio" name="rating" value="star-1" />
-									<label for="star-1" title="1 star">
-									<i class="active fa fa-star" aria-hidden="true"></i>
-									</label>
+				@if (App\Models\OrderProduct::where('customer_id', Auth::guard('customerlogin')->id())->where('product_id', $product_info->id)->exists())
+					<form class="row" action="" method="POST">
+						@csrf 
+						<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+							<h4>Submit Rating</h4>
+						</div>
+						
+						<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+							<div class="revie_stars d-flex align-items-center justify-content-between px-2 py-2 gray rounded mb-2 mt-1">
+								<div class="srt_013">
+									<div class="submit-rating">
+										<input id="star-5" type="radio" name="rating" value="star-5" />
+										<label for="star-5" title="5 stars">
+										<i class="active fa fa-star" aria-hidden="true"></i>
+										</label>
+										<input id="star-4" type="radio" name="rating" value="star-4" />
+										<label for="star-4" title="4 stars">
+										<i class="active fa fa-star" aria-hidden="true"></i>
+										</label>
+										<input id="star-3" type="radio" name="rating" value="star-3" />
+										<label for="star-3" title="3 stars">
+										<i class="active fa fa-star" aria-hidden="true"></i>
+										</label>
+										<input id="star-2" type="radio" name="rating" value="star-2" />
+										<label for="star-2" title="2 stars">
+										<i class="active fa fa-star" aria-hidden="true"></i>
+										</label>
+										<input id="star-1" type="radio" name="rating" value="star-1" />
+										<label for="star-1" title="1 star">
+										<i class="active fa fa-star" aria-hidden="true"></i>
+										</label>
+									</div>
+								</div>
+								
+								<div class="srt_014">
+									<h6 class="mb-0">4 Star</h6>
 								</div>
 							</div>
-							
-							<div class="srt_014">
-								<h6 class="mb-0">4 Star</h6>
+						</div>
+						
+						<div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
+							<div class="form-group">
+								<label class="medium text-dark ft-medium">Full Name</label>
+								<input value="{{Auth::guard('customerlogin')->user()->name}}" type="text" class="form-control" />
 							</div>
 						</div>
-					</div>
-					
-					<div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
-						<div class="form-group">
-							<label class="medium text-dark ft-medium">Full Name</label>
-							<input type="text" class="form-control" />
+						
+						<div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
+							<div class="form-group">
+								<label class="medium text-dark ft-medium">Email Address</label>
+								<input value="{{Auth::guard('customerlogin')->user()->email}}" type="email" class="form-control" />
+							</div>
 						</div>
-					</div>
-					
-					<div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
-						<div class="form-group">
-							<label class="medium text-dark ft-medium">Email Address</label>
-							<input type="email" class="form-control" />
+						
+						<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+							<div class="form-group">
+								<label class="medium text-dark ft-medium">Description</label>
+								<textarea class="form-control"></textarea>
+							</div>
 						</div>
-					</div>
-					
-					<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
-						<div class="form-group">
-							<label class="medium text-dark ft-medium">Description</label>
-							<textarea class="form-control"></textarea>
-						</div>
-					</div>
-					
-					<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
-						<div class="form-group m-0">
-							<a class="btn btn-white stretched-link hover-black">Submit Review <i class="lni lni-arrow-right"></i></a>
-						</div>
-					</div>	
-				</form>
+						
+						<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+							<div class="form-group m-0">
+								<a class="btn btn-white stretched-link hover-black">Submit Review <i class="lni lni-arrow-right"></i></a>
+							</div>
+						</div>	
+					</form>
+				@else
+					<div class="alert alert-warning">
+					<h5 class="d-flex justify-content-between align-items-center"><strong>You Need to Buy this Product for submit a Review</strong><a class="btn btn-success" href="{{route('frontEnd')}}">Shop More</a></h5>
+				</div>
+				@endif
 				@else
 				<div class="alert alert-warning">
 					<h5 class="d-flex justify-content-between align-items-center"><strong>You Need to Login first for submit a Review</strong><a class="btn btn-success" href="{{route('customer.register.login')}}">Login First</a></h5>

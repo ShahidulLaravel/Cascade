@@ -41,7 +41,6 @@ class CustomerController extends Controller
 
     public function customer_logout(){
         Auth::guard('customerlogin')->logout();
-        return redirect('/');
     }
 
     public function customer_profile(){
