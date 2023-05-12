@@ -10,7 +10,7 @@
                 <h3>Password Reset Request</h3>
             </div>
             <div class="card-body">
-                <form action="" method="POST">
+                <form action="{{route('password.request')}}" method="POST">
                     @csrf
                     <div class="mb-3">
                         <label for="" class="form-label">Enter your Registered Email</label>

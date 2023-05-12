@@ -354,15 +354,10 @@
 
 													$total_review = App\Models\OrderProduct::where('product_id', $best->product_id)->whereNotNull('review')->count();
 
-													$average = round($total_star / $total_review);
+													//$average = round($total_star / $total_review);
 												@endphp
 
-												@for($i = 1; $i <= $average; $i++)
-												<i class="fas fa-star filled"></i>	
-												@endfor
-												@for($i = $average; $i < 5; $i++)
-												<i class="fas fa-star"></i>	
-												@endfor	
+												
 												
 											</div>
 											<div class="elis_rty"><span class="ft-bold text-dark fs-sm">&#2547;{{$best->rel_with_product->after_discount}}</span></div>
@@ -470,15 +465,15 @@
 
 													$total_review = App\Models\OrderProduct::where('product_id', $best->product_id)->whereNotNull('review')->count();
 
-													$average = round($total_star / $total_review);
+													//$average = round($total_star / $total_review);
 												@endphp
 
-												@for($i = 1; $i <= $average; $i++)
+												{{-- @for($i = 1; $i <= $average; $i++)
 												<i class="fas fa-star filled"></i>	
 												@endfor
 												@for($i = $average; $i < 5; $i++)
 												<i class="fas fa-star"></i>	
-												@endfor
+												@endfor --}}
 											</div>
 											<div class="elis_rty"><span class="ft-bold text-dark fs-sm">&#2547;{{$recent->rel_product->after_discount}}</span></div>
 										</div>

@@ -21,6 +21,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 use App\Library\SslCommerz\SslCommerzNotification;
+use App\Models\ShippingDetails;
 
 class SslCommerzPaymentController extends Controller
 {
@@ -201,7 +202,7 @@ class SslCommerzPaymentController extends Controller
             'order_id' => $order_id,
             'customer_id' => $data->first()->customer_id,
             'sub_total' => $data->first()->sub_total,
-            'grand_total' => $data->first()->amount,
+            'grandtotal' => $data->first()->amount,
             'discount' => $data->first()->discount,
             'charge' => $data->first()->charge,
             'payment_method' => 2,
@@ -222,7 +223,6 @@ class SslCommerzPaymentController extends Controller
             'name' => $data->first()->shipping_name,
             'email' => $data->first()->shipping_email,
             'shipping_mobile' => $data->first()->shipping_phone,
-            'address' => $data->first()->address,
             'zip_code' => $data->first()->zip_code,
             'notes' => $data->first()->notes,
             'country_id' => $data->first()->country_id,

@@ -217,4 +217,6 @@ Route::post('/store/rating', [CustomerController::class, 'store_rating'])->name
 //customer password reset
 Route::get('lost/password/', [PasswordResetController::class, 'forgot_password'])->name('forgot.password');
 
+Route::post('/pasword/reset/request', [PasswordResetController::class, 'send_request'])->name('password.request');
+
 

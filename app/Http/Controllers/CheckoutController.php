@@ -16,6 +16,7 @@ use Illuminate\Http\Request;
 use App\Models\BillingDetails;
 use App\Models\Logo;
 use App\Models\ShippingDetail;
+use App\Models\ShippingDetails;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 
@@ -45,7 +46,7 @@ class CheckoutController extends Controller
     public function order_store(Request $request){
        $city = City::find($request->city_id);
        $order_id = Str::upper(substr($city->name,'0','3')) . '-' . rand(10, 100000);
-       $logo = Logo::all();
+       $logo = 0;
 
        //payment system condition
        if($request->payment_method == 1){
@@ -53,7 +54,7 @@ class CheckoutController extends Controller
                     'order_id' => $order_id,
                     'customer_id' => Auth::guard('customerlogin')->id(),
                     'sub_total' => $request->sub_total,
-                    'grand_total' => $request->grand_total,
+                    'grandtotal' => $request->grand_total,
                     'discount' => $request->discount,
                     'charge' => $request->charge,
                     'payment_method' => $request->payment_method,
@@ -103,7 +104,7 @@ class CheckoutController extends Controller
 
                //sendinng customer invoice email here
                $mail = Auth::guard('customerlogin')->user()->email;
-               Mail::to($mail)->send(new CustomerInvoiceMail($order_id, $logo));
+               Mail::to($mail)->send(new CustomerInvoiceMail($order_id,$logo));
 
                //sending sms to our users
                // $total = $request->sub_total + $request->charge - ($request->discount);
