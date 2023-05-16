@@ -9,7 +9,13 @@
             <div class="card-header">
                 <h3>Password Reset Request</h3>
             </div>
+            
             <div class="card-body">
+                @if(session('error'))
+                    <div class="alert alert-danger">
+                        <strong>{{session('error')}}</strong>
+                    </div>
+                @endif
                 <form action="{{route('password.request')}}" method="POST">
                     @csrf
                     <div class="mb-3">

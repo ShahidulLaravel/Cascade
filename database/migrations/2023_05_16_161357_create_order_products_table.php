@@ -15,15 +15,6 @@ return new class extends Migration
     {
         Schema::create('order_products', function (Blueprint $table) {
             $table->id();
-            $table->string('order_id');
-            $table->integer('customer_id');
-            $table->integer('product_id');
-            $table->integer('color_id');
-            $table->integer('size_id');
-            $table->integer('quantity');
-            $table->integer('price');
-            $table->integer('review')->nullable();
-            $table->integer('star')->nullable();
             $table->timestamps();
         });
     }
