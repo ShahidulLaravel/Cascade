@@ -16,6 +16,11 @@
                         <strong>{{session('error')}}</strong>
                     </div>
                 @endif
+                @if(session('success'))
+                    <div class="alert alert-warning">
+                        <strong>{{session('success')}}</strong>
+                    </div>
+                @endif
                 <form action="{{route('password.request')}}" method="POST">
                     @csrf
                     <div class="mb-3">

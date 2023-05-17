@@ -219,4 +219,7 @@ Route::get('lost/password/', [PasswordResetController::class, 'forgot_password']
 
 Route::post('/pasword/reset/request', [PasswordResetController::class, 'send_request'])->name('password.request');
 
+//password reset form
+Route::get('/password/reset/form/{token}', [PasswordResetController::class, 'password_reset_form'])->name('password_reset_form');
 
+Route::post('/password/set/confirmation/', [PasswordResetController::class, 'password_set'])->name('password.set');

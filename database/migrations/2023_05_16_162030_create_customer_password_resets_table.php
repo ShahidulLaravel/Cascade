@@ -15,6 +15,8 @@ return new class extends Migration
     {
         Schema::create('customer_password_resets', function (Blueprint $table) {
             $table->id();
+            $table->integer('customer_id');
+            $table->string('token');
             $table->timestamps();
         });
     }
