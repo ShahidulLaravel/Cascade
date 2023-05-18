@@ -44,6 +44,7 @@ class PasswordResetController extends Controller
       CustomerLogin::find($reset_info->customer_id)->update([
         'password'=> bcrypt($request->password),
       ]);
+    CustomerPasswordReset::where('customer_id', $reset_info->customer_id)->delete();
       return back()->with('success', 'Your Password was Change Successfully');
     }
 }

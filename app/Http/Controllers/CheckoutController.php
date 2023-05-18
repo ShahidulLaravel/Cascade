@@ -9,14 +9,11 @@ use App\Models\City;
 use App\Models\Order;
 use App\Models\Country;
 use App\Models\Product;
-use App\Models\Checkout;
 use Illuminate\Support\Str;
 use App\Models\OrderProduct;
 use Illuminate\Http\Request;
 use App\Models\BillingDetails;
-use App\Models\Logo;
 use App\Models\ShippingDetail;
-use App\Models\ShippingDetails;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 
@@ -148,4 +145,5 @@ class CheckoutController extends Controller
                return view('frontend.error');
           }   
     }
+
 }
