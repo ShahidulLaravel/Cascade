@@ -16,6 +16,7 @@ use App\Http\Controllers\FrontEndController;
 use App\Http\Controllers\InventoryController;
 use App\Http\Controllers\SubCategoryController;
 use App\Http\Controllers\PasswordResetController;
+use App\Http\Controllers\SearchController;
 use App\Http\Controllers\UpdateProdcutController;
 use App\Http\Controllers\SslCommerzPaymentController;
 
@@ -25,12 +26,17 @@ Auth::routes();
 //Front end Controller
 Route::get('/', [FrontEndController::class, 'frontEnd'])->name('frontEnd');
 Route::get('/products/all', [FrontEndController::class, 'show_all'])->name('products.all');
+Route::get('/search/product', [SearchController::class, 'show_searchPage'])->name('search.product');
+Route::get('/about', [FrontEndController::class, 'about'])->name('about');
+Route::get('/contact', [FrontEndController::class, 'contact'])->name('contact');
+
 
 // Backend / Dashboard Controller
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 Route::get('/admin/logout', [HomeController::class, 'admin_logout'])->name('admin.logout');
 Route::get('/add/logo', [HomeController::class, 'add_logo'])->name('add.logo');
 Route::post('/store/logo', [HomeController::class, 'store_logo'])->name('logo.store');
+
 
 
 // user maintain Controller

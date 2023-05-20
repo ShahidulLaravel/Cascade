@@ -14,7 +14,7 @@
         <div>+88-01631903731</div>
         <div><a href="mailto:company@example.com">kumo@developer.com</a></div>
       </div>
-     
+
     </header>
     <main>
 
@@ -32,7 +32,7 @@
         <tbody>
 
         @foreach ( App\Models\OrderProduct::where('order_id', $order_id)->get() as $key=>$product )
-                
+
           <tr>
             <td class="service">{{$key + 1}}</td>
             <td class="desc">{{$product->rel_with_product->product_name}}</td>
@@ -62,7 +62,7 @@
           </tr>
         </tbody>
       </table>
-      
+
       <div id="notices mt-4">
          <table width="220" border="0" cellpadding="0" cellspacing="0" align="left" class="col">
 
@@ -77,11 +77,11 @@
                 </tr>
                 <tr>
                 <td style="">
-                    {{App\Models\BillingDetails::where('order_id', $order_id)->first()->name}}<br> 
+                    {{App\Models\BillingDetails::where('order_id', $order_id)->first()->name}}<br>
                     @php
                     $bill_address = App\Models\BillingDetails::where('order_id', $order_id)->first()->address
                     @endphp
-                    {{$bill_address == '' ? 'Billing Address Same as Shipping Address' : $bill_address}}<br> 
+                    {{$bill_address == '' ? 'Billing Address Same as Shipping Address' : $bill_address}}<br>
                     {{App\Models\BillingDetails::where('order_id', $order_id)->first()->billing_mobile}}
                 </td>
                 </tr>
@@ -111,7 +111,7 @@
                     @elseif ($payment_method == 2)
                     SSL Commerz Pay
                     @else
-                    Stripe Payment 
+                    Stripe Payment
                     @endif
                     <br>Transaction ID : <span style="color: #ff0000;">
                     @if ($payment_method == 1)
@@ -163,7 +163,7 @@
             {{-- main table end here --}}
 
       </div>
-      
+
     <footer class="mt-5 float-right">
      Thank you for Shopping with Us. Have a nice day.
     </footer>

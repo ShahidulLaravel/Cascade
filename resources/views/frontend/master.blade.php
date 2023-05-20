@@ -5,9 +5,9 @@
 		<meta name="author" content="Themezhub"/>
 		<meta name="csrf-token" content="{{ csrf_token()}}">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<link rel="stylesheet" type="text/css" 
+		<link rel="stylesheet" type="text/css"
      href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
-        <title> Kumo - Fashion eCommerce </title> 
+        <title> Kumo - Fashion eCommerce </title>
         <!-- Custom CSS -->
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
         <link href="{{asset('Ecom/css/plugins/animation.css')}}" rel="stylesheet">
@@ -26,19 +26,19 @@
         <link href="{{asset('Ecom/css/styles.css')}}" rel="stylesheet">
 		@yield('style')
     </head>
-	
+
     <body>
-	
+
 		 <!-- ============================================================== -->
         <!-- Preloader - style you can find in spinners.css -->
         <!-- ============================================================== -->
        <div class="preloader"></div>
-		
+
         <!-- ============================================================== -->
         <!-- Main wrapper - style you can find in pages.scss -->
         <!-- ============================================================== -->
         <div id="main-wrapper">
-		
+
             <!-- ============================================================== -->
             <!-- Top header  -->
             <!-- ============================================================== -->
@@ -46,11 +46,11 @@
 			<div class="py-2 br-bottom">
 				<div class="container">
 					<div class="row">
-						
+
 						<div class="col-xl-7 col-lg-6 col-md-6 col-sm-12 hide-ipad">
 							<div class="top_second"><p class="medium text-muted m-0 p-0"><i class="lni lni-phone fs-sm"></i></i> Hotline <a href="#" class="medium text-dark text-underline">0(800) 123-456</a></p></div>
 						</div>
-						
+
 						<!-- Right Menu -->
 						<div class="col-xl-5 col-lg-6 col-md-12 col-sm-12">
 							<!-- Choose Language -->
@@ -63,12 +63,12 @@
 								<ul class="dropdown-menu popup-content link">
 									<li class="current"><a href="" class="dropdown-item medium text-muted"><img src="{{asset('Ecom/img/1.jpg')}}" alt="en" width="16" height="11" /><span>English</span></a></li>
 									<li><a href="javascript:void(0);" class="dropdown-item medium text-muted"><img src="{{asset('Ecom/img/2.jpg')}}" alt="fr" width="16" height="11" /><span>Français</span></a></li>
-								
+
 								</ul>
 							</div>
-							
+
 								<div class="currency-selector dropdown js-dropdown float-right mr-3">
-								
+
 								@auth('customerlogin')
 								<div class="dropdown">
 								<a href="{{route('track.detail')}}" target="__blank" style="cursor:pointer" class="mr-4" type=""  aria-expanded="false">
@@ -83,15 +83,15 @@
 									<a class="dropdown-item" href="{{route('customer.logout')}}">Logout</a>
 								</div>
 								</div>
-							</div>	
+							</div>
 								@else
-								<a href="{{route('customer.register.login')}}" class="text-muted medium"><i class="lni lni-user mr-1"></i>Sign In / Register</a>	
+								<a href="{{route('customer.register.login')}}" class="text-muted medium"><i class="lni lni-user mr-1"></i>Sign In / Register</a>
 								@endauth
-						</div>	
+						</div>
 					</div>
 				</div>
 			</div>
-			
+
 			<div class="headd-sty header">
 				<div class="container">
 					<div class="row">
@@ -132,7 +132,7 @@
 													<i class="fas fa-shopping-basket fs-lg"></i><span class="dn-counter theme-bg">{{App\Models\Cart::where('customer_id', Auth::guard('customerlogin')->id())->count()}}</span>
 												</div>
 										</a>
-									</ul>	
+									</ul>
 								</div>
 								<div class="mobile_nav">
 									<ul>
@@ -163,7 +163,7 @@
 					</div>
 				</div>
 			</div>
-			
+
             <!-- Start Navigation -->
 			<div class="headerd header-dark head-style-2">
 				<div class="container">
@@ -172,10 +172,10 @@
 							<div class="nav-toggle"></div>
 							<div class="nav-menus-wrapper">
 								<ul class="nav-menu">
-									<li><a href="#" class="pl-0">Home</a></li>
-									<li><a href="#">Shop</a></li>
-									<li><a href="#">About Us</a></li>
-									<li><a href="#">Contact</a></li>
+									<li><a href="{{route('frontEnd')}}" class="pl-0">Home</a></li>
+									<li><a href="{{route('search.product')}}">Search Product</a></li>
+									<li><a href="{{route('about')}}">About Us</a></li>
+									<li><a href="{{route('contact')}}">Contact</a></li>
 								</ul>
 							</div>
 						</div>
@@ -184,7 +184,7 @@
 			</div>
 			<!-- End Navigation -->
 			<div class="clearfix"></div>
-			
+
 			{{-- our site main content start here --}}
 
             @yield('content')
@@ -196,7 +196,7 @@
 			<section class="px-0 py-3 br-top">
 				<div class="container">
 					<div class="row">
-						
+
 						<div class="col-xl-3 col-lg-3 col-md-6 col-sm-6">
 							<div class="d-flex align-items-center justify-content-start py-2">
 								<div class="d_ico">
@@ -208,7 +208,7 @@
 								</div>
 							</div>
 						</div>
-						
+
 						<div class="col-xl-3 col-lg-3 col-md-6 col-sm-6">
 							<div class="d-flex align-items-center justify-content-start py-2">
 								<div class="d_ico">
@@ -220,7 +220,7 @@
 								</div>
 							</div>
 						</div>
-						
+
 						<div class="col-xl-3 col-lg-3 col-md-6 col-sm-6">
 							<div class="d-flex align-items-center justify-content-start py-2">
 								<div class="d_ico">
@@ -232,7 +232,7 @@
 								</div>
 							</div>
 						</div>
-						
+
 						<div class="col-xl-3 col-lg-3 col-md-6 col-sm-6">
 							<div class="d-flex align-items-center justify-content-start py-2">
 								<div class="d_ico">
@@ -244,24 +244,24 @@
 								</div>
 							</div>
 						</div>
-						
+
 					</div>
 				</div>
 			</section>
 			<!-- ======================= Customer Features ======================== -->
-			
+
 			<!-- ============================ Footer Start ================================== -->
 			<footer class="dark-footer skin-dark-footer style-2">
 				<div class="footer-middle">
 					<div class="container">
 						<div class="row">
-							
+
 							<div class="col-xl-3 col-lg-3 col-md-3 col-sm-12">
 								<div class="footer_widget">
 									<img src="{{asset('Ecom/img/logo-light.png')}}" class="img-footer small mb-2" alt="" />
-									
+
 									<div class="address mt-3">
-										3298 Grant Street Longview, TX<br>United Kingdom 75601	
+										3298 Grant Street Longview, TX<br>United Kingdom 75601
 									</div>
 									<div class="address mt-3">
 										1-202-555-0106<br>help@shopper.com
@@ -277,7 +277,7 @@
 									</div>
 								</div>
 							</div>
-							
+
 							<div class="col-xl-2 col-lg-2 col-md-2 col-sm-12">
 								<div class="footer_widget">
 									<h4 class="widget_title">Supports</h4>
@@ -290,7 +290,7 @@
 									</ul>
 								</div>
 							</div>
-									
+
 							<div class="col-xl-2 col-lg-2 col-md-2 col-sm-12">
 								<div class="footer_widget">
 									<h4 class="widget_title">Shop</h4>
@@ -303,7 +303,7 @@
 									</ul>
 								</div>
 							</div>
-					
+
 							<div class="col-xl-2 col-lg-2 col-md-2 col-sm-12">
 								<div class="footer_widget">
 									<h4 class="widget_title">Company</h4>
@@ -315,7 +315,7 @@
 									</ul>
 								</div>
 							</div>
-							
+
 							<div class="col-xl-3 col-lg-3 col-md-3 col-sm-12">
 								<div class="footer_widget">
 									<h4 class="widget_title">Subscribe</h4>
@@ -334,11 +334,11 @@
 									</div>
 								</div>
 							</div>
-								
+
 						</div>
 					</div>
 				</div>
-				
+
 				<div class="footer-bottom">
 					<div class="container">
 						<div class="row align-items-center">
@@ -350,7 +350,7 @@
 				</div>
 			</footer>
 			<!-- ============================ Footer End ================================== -->
-			
+
 			<!-- Wishlist -->
 			<div class="w3-ch-sideBar w3-bar-block w3-card-2 w3-animate-right" style="display:none;right:0;" id="Wishlist">
 				<div class="rightMenu-scroll">
@@ -384,18 +384,18 @@
 								$sub_total += $wish->rel_with_product->after_discount * $wish->quantity;
 							@endphp
 							@endforeach
-							
+
 						</div>
-						
+
 						<div class="cart_action px-3 py-3">
 							<div class="form-group">
 								<a href="{{route('product.wishlist')}}" class="btn d-block full-width btn-dark-light">View Wishlist</a>
 							</div>
-						</div>				
+						</div>
 					</div>
 				</div>
 			</div>
-			
+
 			<!-- Cart / header small cart -->
 			<div class="w3-ch-sideBar w3-bar-block w3-card-2 w3-animate-right" style="display:none;right:0;" id="Cart">
 				<div class="rightMenu-scroll">
@@ -403,7 +403,7 @@
 						<h4 class="cart_heading fs-md ft-medium mb-0">Products List</h4>
 						<button onclick="closeCart()" class="close_slide"><i class="ti-close"></i></button>
 					</div>
-					
+
 					<div class="right-ch-sideBar">
 						@php
 							$sub_total = 0;
@@ -434,27 +434,27 @@
 								@php
 								$sub_total += $cart->rel_with_product->after_discount * $cart->quantity;
 								@endphp
-							@endforeach													
+							@endforeach
 						</div>
 
-						
+
 						<div class="d-flex align-items-center justify-content-between br-top br-bottom px-3 py-3">
 							<h6 class="mb-0">Subtotal</h6>
 							<h3 class="mb-0 ft-medium">	&#2547;{{$sub_total}}</h3>
 						</div>
-						
+
 						<div class="cart_action px-3 py-3">
 							<div class="form-group">
 								<a href={{route('view.cart')}} class="btn d-block full-width btn-dark-light">View Cart</a>
 							</div>
 						</div>
-						
+
 					</div>
 				</div>
 			</div>
-			
+
 			<a id="back2Top" class="top-scroll" title="Back to top" href="#"><i class="ti-arrow-up"></i></a>
-			
+
 
 		</div>
 		<!-- ============================================================== -->
@@ -470,7 +470,7 @@
 		<script src="{{asset('Ecom/js/ion.rangeSlider.min.js')}}"></script>
 		<script src="{{asset('Ecom/js/slick.js')}}"></script>
 		<script src="{{asset('Ecom/js/slider-bg.js')}}"></script>
-		<script src="{{asset('Ecom/js/lightbox.js')}}"></script> 
+		<script src="{{asset('Ecom/js/lightbox.js')}}"></script>
 		<script src="{{asset('Ecom/js/smoothproducts.js')}}"></script>
 		<script src="{{asset('Ecom/js/snackbar.min.js')}}"></script>
 		<script src="{{asset('Ecom/js/jQuery.style.switcher.js')}}"></script>
@@ -478,14 +478,14 @@
 		<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 
 		 <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
-		
+
 
 
 		@yield('javascript')
 
 		<!-- ============================================================== -->
 		<!-- This page plugins -->
-		<!-- ============================================================== -->	
+		<!-- ============================================================== -->
 
 		<script>
 			function openWishlist() {
@@ -512,7 +512,7 @@
 			function closeSearch() {
 				document.getElementById("Search").style.display = "none";
 			}
-		</script>		
+		</script>
 
 </body>
 </html>

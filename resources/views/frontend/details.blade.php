@@ -20,28 +20,28 @@
 				</div>
 			</div>
 			<!-- ======================= Top Breadcrubms ======================== -->
-			
+
 			<!-- ======================= Product Detail ======================== -->
 			<section class="middle">
 				<div class="container">
 					<div class="row justify-content-between">
-					
+
 						<div class="col-xl-5 col-lg-6 col-md-12 col-sm-12">
-							<div class="quick_view_slide">                 
+							<div class="quick_view_slide">
 								@foreach ($product_gallery as $gal)
                                     <div class="single_view_slide"><a href="{{asset('uploads/products/gallery')}}/{{$gal->product_gallery}}" data-lightbox="roadtrip" class="d-block mb-4"><img src="{{asset('uploads/products/gallery')}}/{{$gal->product_gallery}}" class="img-fluid rounded" alt="" />
                                 </a>
-                                </div>	
-                                @endforeach							
+                                </div>
+                                @endforeach
 							</div>
 						</div>
-						
+
 						<div class="col-xl-7 col-lg-6 col-md-12 col-sm-12">
 							<div class="prd_details pl-3">
-								
+
 								<div class="prt_01 mb-1"><span class="text-light bg-info rounded px-2 py-1">{{$product_info->rel_to_cat->category_name}}</span></div>
 								@php
-									
+
 									if($all_star == 0){
 										$avg = 0;
 									}
@@ -59,13 +59,13 @@
 											@for ($i = $avg; $i <= 4; $i++ )
 											<i class="fas fa-star"></i>
 											@endfor
-											<span class="small"> 
+											<span class="small">
 												{{$all_star}} Reviews</span>
 										</div>
 										<div class="elis_rty"><span class="ft-medium text-muted line-through fs-md mr-2">&#2547;{{$product_info->price}}</span><span class="ft-bold theme-cl fs-lg mr-2">&#2547;{{$product_info->after_discount}}</span></div>
 									</div>
 								</div>
-								
+
 								<div class="prt_03 mb-4 text-dark">
 									<strong>{{$product_info->short_desp}}</strong>
 								</div>
@@ -73,30 +73,30 @@
 								{{-- form start --}}
 								<form action="{{route('add_cart')}}" method="POST">
 									@csrf
-									
+
 								<div class="prt_04 mb-2">
 									<p class="d-flex align-items-center mb-0 text-dark ft-medium">Color: </p>
-                                                         
-									<div class="text-left">                         
+
+									<div class="text-left">
                                         @foreach ($colors as $color)
-										
+
 											<div class="form-check form-option form-check-inline mb-1">
 											<input data-product="{{$product_info->id}}"class="color_id form-check-input" type="radio" value="{{$color->color_id}}" name="color_id" id="white{{$color->color_id}}">
 
 											<label class="form-option-label rounded-circle" for="white{{$color->color_id}}"><span class="form-option-color  rounded-circle" style="background:{{$color->color_rel->color_code}}"></span></label>
 
-										</div>							
-                                        @endforeach                                  
-									</div>                                 
+										</div>
+                                        @endforeach
+									</div>
 								</div>
-								
-								<div class="prt_04 mb-4">	
+
+								<div class="prt_04 mb-4">
 									<p class="d-flex align-items-center mb-0 text-dark ft-medium">Size:</p>
 									<div class="text-left pb-0 pt-2" id="size">
-										
+
 
                                         @foreach ($sizes as $size)
-											
+
 										@if($size->size_id == 1)
 											<div class="form-check size-option form-option form-check-inline mb-2">
 											<input checked class="form-check-input" type="radio" name="size_id" id="size_id" value="{{$size->size_id}}">
@@ -109,19 +109,19 @@
 
 											<label class="form-option-label" for="size_id">{{$size->size_rel->size_name}}</label>
 										</div>
-										
+
 										@endif
-                                                                           
+
                                         @endforeach
 									</div>
 								</div>
 
-								<div class="prt_04 mb-4">	
-									<p class="d-flex align-items-center mb-0 text-dark ft-medium"><h5 class="d-inline">Available in Stock</h5> : {{$product_info->quantity == 0 ? 'Stock Out' : $product_info->quantity}} 
+								<div class="prt_04 mb-4">
+									<p class="d-flex align-items-center mb-0 text-dark ft-medium"><h5 class="d-inline">Available in Stock</h5> : {{$product_info->quantity == 0 ? 'Stock Out' : $product_info->quantity}}
 
-										<span>{{$product_info->quantity == 0 ? '' : 'Pcs'}} </span></p>			
+										<span>{{$product_info->quantity == 0 ? '' : 'Pcs'}} </span></p>
 								</div>
-								
+
 								<div class="prt_05 mb-4">
 									<div class="form-row mb-7">
 										<div class="col-12 col-lg-auto">
@@ -147,7 +147,7 @@
 										</div>
 								  </div>
 								</div>
-								
+
 								<div class="prt_06">
 									<p class="mb-0 d-flex align-items-center">
 									  <span class="mr-4">Share:</span>
@@ -169,7 +169,7 @@
 				</div>
 			</section>
 			<!-- ======================= Product Detail End ======================== -->
-			
+
 			<!-- ======================= Product Description ======================= -->
 			<section class="middle">
 				<div class="container">
@@ -186,39 +186,39 @@
 									<a class="nav-link" href="#reviews" id="reviews-tab" data-toggle="tab" role="tab" aria-controls="reviews" aria-selected="false">Reviews</a>
 								</li>
 							</ul>
-							
+
 							<div class="tab-content" id="myTabContent">
-								
+
 								<!-- Description Content -->
 								<div class="tab-pane fade show active" id="description" role="tabpanel" aria-labelledby="description-tab">
 									<div class="description_info">
 										<p class="p-0 mb-2">{!!$product_info->long_desp!!}</p>
-										
+
 									</div>
 								</div>
-								
+
 								<!-- Additional Content -->
 								<div class="tab-pane fade" id="information" role="tabpanel" aria-labelledby="information-tab">
-									<div class="additionals">										
-                                        <p class="p-0 mb-2">{!!$product_info->additional_info!!}</p>                                 
-                                        
+									<div class="additionals">
+                                        <p class="p-0 mb-2">{!!$product_info->additional_info!!}</p>
+
 									</div>
 								</div>
-								
+
 								<!-- Reviews Content -->
 								<div class="tab-pane fade" id="reviews" role="tabpanel" aria-labelledby="reviews-tab">
 									@foreach ($all_review as $review)
 									<div class="reviews_info">
-										
+
 										<div class="single_rev d-flex align-items-start br-bottom py-3">
 											<div class="single_rev_thumb"><img src="assets/img/team-1.jpg" class="img-fluid circle" width="90" alt=""/></div>
 
 											<div class="single_rev_caption d-flex align-items-start pl-3">
-												<div class="single_capt_left">
+												{{-- <div class="single_capt_left">
 													<h5 class="mb-0 fs-md ft-medium lh-1">{{$review->rel_to_customer->name}}</h5>
 													<span class="small">{{$review->created_at->format('d M Y')}}</span>
 													<p>{{$review->review}}</p>
-												</div>
+												</div> --}}
 												<div class="single_capt_right">
 													<div class="star-rating align-items-center d-flex justify-content-left mb-1 p-0">
 														@for ($i = 1; $i <= $review->star; $i++)
@@ -231,25 +231,25 @@
 												</div>
 											</div>
 										</div>
-										
+
 									</div>
 									@endforeach
-									
+
 			<div class="reviews_rate">
 				@auth('customerlogin')
 				@if (App\Models\OrderProduct::where('customer_id', Auth::guard('customerlogin')->id())->where('product_id', $product_info->id)->exists())
 				@if (App\Models\OrderProduct::where('customer_id', Auth::guard('customerlogin')->id())->where('product_id', $product_info->id)->whereNotNull('review')->first()== false)
-					
+
 					<form class="row" action="{{route('rating.store')}}" method="POST">
-						@csrf 
+						@csrf
 							<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
 								<h4>Submit Rating</h4>
 							</div>
-							
+
 							<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
 								<div class="revie_stars d-flex align-items-center justify-content-between px-2 py-2 gray rounded mb-2 mt-1">
 									<div class="srt_013">
-										
+
 						<div class="submit-rating">
 							<input type="hidden" name="product_id" value="{{$product_info->id}}">
 							<input class="rating" id="star-5" type="radio" name="rating" value="5" />
@@ -274,40 +274,40 @@
 							</label>
 						</div>
 									</div>
-									
+
 									<div class="srt_014">
 										<input type="hidden" name="rating" value="" id="rating_value">
 										<h6 class="mb-0"><span id="rating">0</span> Star</h6>
 									</div>
 								</div>
 							</div>
-							
+
 							<div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
 								<div class="form-group">
 									<label class="medium text-dark ft-medium">Full Name</label>
 									<input value="{{Auth::guard('customerlogin')->user()->name}}" type="text" class="form-control" />
 								</div>
 							</div>
-							
+
 							<div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
 								<div class="form-group">
 									<label class="medium text-dark ft-medium">Email Address</label>
 									<input value="{{Auth::guard('customerlogin')->user()->email}}" type="email" class="form-control" />
 								</div>
 							</div>
-							
+
 							<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
 								<div class="form-group">
 									<label class="medium text-dark ft-medium">Description</label>
 									<textarea name="review" class="form-control"></textarea>
 								</div>
 							</div>
-							
+
 							<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
 								<div class="form-group m-0">
 									<button class="btn btn-white stretched-link hover-black">Submit Review <i class="lni lni-arrow-right"></i></button>
 								</div>
-							</div>	
+							</div>
 					</form>
 					@else
 					<div class="alert alert-warning">
@@ -324,7 +324,7 @@
 				</div>
 				@endauth
 			</div>
-									
+
 								</div>
 
 							</div>
@@ -337,7 +337,7 @@
             <!-- ======================= Similar Products Start ============================ -->
 			<section class="middle pt-0">
 				<div class="container">
-					
+
 					<div class="row justify-content-center">
 						<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
 							<div class="sec_title position-relative text-center">
@@ -346,10 +346,10 @@
 							</div>
 						</div>
 					</div>
-					
+
 					<div class="row">
 						<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
-							<div class="slide_items">		
+							<div class="slide_items">
 								<!-- single Item -->
                                 @forelse ( $related_product as $matching )
                                    <div class="single_itesm">
@@ -369,7 +369,7 @@
 											</div>
 										</div>
 									</div>
-								</div>	 
+								</div>
                                 @empty
                                     <div>
                                         <h4>No Matching Products Found !!</h4>
@@ -377,7 +377,7 @@
                                 @endforelse
 							</div>
 						</div>
-					</div>	
+					</div>
 				</div>
 			</section>
 @endsection
@@ -389,7 +389,7 @@
 			var color_id = $(this).val();
 			var product_id = $(this).attr('data-product');
 
-			
+
 			$.ajaxSetup({
 				headers: {
 					'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -401,7 +401,7 @@
 				url:'/getSize',
 				data:{'color_id' : color_id, 'product_id' : product_id},
 				success:function(data){
-					 $('#size').html(data);					
+					 $('#size').html(data);
 				}
 			});
 		});
@@ -456,5 +456,5 @@
 		$('#rating_value').attr('value', rating);
 	});
 </script>
-		
+
 @endsection

@@ -98,4 +98,14 @@ class FrontEndController extends Controller
         }
         echo $str;
     }
+
+    public function about()
+    {
+        return view('frontend.customer.about');
+    }
+
+    public function contact()
+    {
+        return view('frontend.customer.contact');
+    }
 }
