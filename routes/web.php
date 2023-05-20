@@ -223,3 +223,10 @@ Route::post('/pasword/reset/request', [PasswordResetController::class, 'send_req
 Route::get('/password/reset/form/{token}', [PasswordResetController::class, 'password_reset_form'])->name('password_reset_form');
 
 Route::post('/password/set/confirmation/', [PasswordResetController::class, 'password_set'])->name('password.set');
+
+//Email Verify
+Route::get('/email/verification/{token_no}', [CustomerController::class, 'email_verify'])->name('customer.email.verify');
+
+Route::get('/email/verify/again', [CustomerController::class, 'email_verify_again'])->name('email.verify.again');
+
+Route::post('/resend/email/verify/again', [CustomerController::class, 'resend_email_verify_again'])->name('email.resend.request');

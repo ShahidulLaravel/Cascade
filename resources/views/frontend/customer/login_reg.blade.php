@@ -38,6 +38,17 @@
 										<strong>{{session('warn')}}</strong>
 									</div>
 								@endif
+								@if(session('success_three'))
+									<div class="alert alert-success">
+										<strong>{{session('success_three')}}</strong>
+									</div>
+								@endif
+									@if (session('not_verified'))
+									<div class="alert alert-warning" role="alert">
+										<strong>{{session('not_verified')}} <a href="{{route('email.verify.again')}}" class="text-info">Resend Verification Mail</a></strong>
+									</div>
+								@endif
+								
 							</div>
 							<form action="{{route('customer.login')}}" method="POST" class="border p-3 rounded">	
 								@csrf			
@@ -75,6 +86,16 @@
 										<strong>{{session('success')}}</strong>
 									</div>
 								@endif
+								@if (session('success_one'))
+									<div class="alert alert-warning" role="alert">
+										<strong>{{session('success_one')}}</strong>
+									</div>
+								@endif
+								@if (session('success_two'))
+									<div class="alert alert-success" role="alert">
+										<strong>{{session('success_two')}}</strong>
+									</div>
+								@endif
 							</div>
 							
 							<form action="{{route('customer.register.store')}}" method="POST" class="border p-3 rounded">
@@ -89,6 +110,11 @@
 								<div class="form-group">
 									<label>Email *</label>
 									<input name="email" type="text" class="form-control" placeholder="Email*">
+									@error('email')
+										<strong class="text-danger">
+											{{$message}}
+										</strong>
+									@enderror
 								</div>
 								
 								<div class="row">

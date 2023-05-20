@@ -2,17 +2,18 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\CustomerEmailVerification;
 use Carbon\Carbon;
-use App\Models\Cart;
-use App\Models\Size;
+use Illuminate\Support\Facades\Notification as FacadesNotification;
 use App\Models\OrderProduct;
 use Illuminate\Http\Request;
 use App\Models\CustomerLogin;
 use App\Models\Order;
+use App\Notifications\CustomerEmailNoti;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Intervention\Image\Facades\Image;
-use App\Providers\RouteServiceProvider;
+use Illuminate\Auth\Notifications\VerifyEmail;
 
 class CustomerController extends Controller
 {
@@ -20,20 +21,40 @@ class CustomerController extends Controller
         return view('frontend.customer.login_reg');
     }
 
+    //store registerd user in DB
     public function customer_registration(Request $request){
-        CustomerLogin::insert([
+        $request->validate([
+            'email'=> 'required|unique:customer_logins',
+        ]);
+        $customer_id = CustomerLogin::insertGetId([
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
             'created_at' => Carbon::now(),
         ]);
+        $customer = CustomerLogin::find($customer_id);
+
+        CustomerEmailVerification::where('customer_id', $customer->id)->delete();
+
+        $info = CustomerEmailVerification::create([
+            'customer_id' => $customer->id,
+            'token_no' => uniqid(),
+            'created_at' => Carbon::now(),
+        ]);
+        
+        FacadesNotification::send($customer, new CustomerEmailNoti($info));
+        return back()->with('success_one', 'Please Verify Your Email First !!');
+        
         return back()->with('success', 'Your Account has been Created Successfully !!');
     }
 
     public function customer_login(Request $request){
         if(Auth::guard('customerlogin')->attempt(['email' => $request->email, 'password' => $request->password])){
-             return redirect('/');
-            
+            if(Auth::guard('customerlogin')->user()->email_verified_at == null){
+                return back()->with('not_verified', 'Your Email is not verified. please verify the email first');
+            }else{
+                return redirect('/');
+            }    
         }else{
             return back()->with('warning', 'Invalid Login Credintials ! Try Again');
         }
@@ -143,6 +164,37 @@ class CustomerController extends Controller
             'star' => $request->rating,
         ]);
         return back();
+    }
+
+    //Email Verify
+    public function email_verify($token_no){
+        $customer = CustomerEmailVerification::where('token_no', $token_no)->firstorFail();
+        CustomerLogin::find($customer->customer_id)->update([
+            'email_verified_at' => Carbon::now(),
+        ]);
+
+        return redirect()->route('customer.register.login')->with('success_two','Email Verified Successfully');
+    }
+
+    public function email_verify_again(){
+        return view('frontend.customer.email_resend');
+    }
+
+    public function resend_email_verify_again(Request $request){
+        if(CustomerLogin::where('email', $request->email)->exists()){
+            $customer = CustomerLogin::where('email', $request->email)->firstorFail();
+            CustomerEmailVerification::where('customer_id', $customer->id)->delete();
+            $info = CustomerEmailVerification::create([
+                'customer_id' => $customer->id,
+                'token_no' => uniqid(),
+                'created_at' => Carbon::now(),
+            ]);
+            FacadesNotification::send($customer, new CustomerEmailNoti($info));
+            return back()->with('success_three', 'We send a Verification mail in your email address');
+        }else{
+
+            return back()->with('warn', 'You didnot Registered Yet !!');
+        }
     }
 
 
