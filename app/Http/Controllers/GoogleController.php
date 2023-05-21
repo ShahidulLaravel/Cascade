@@ -4,18 +4,19 @@ namespace App\Http\Controllers;
 
 use App\Models\CustomerLogin;
 use Carbon\Carbon;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Laravel\Socialite\Facades\Socialite;
+use Socialite;
 
-class SocialLoginController extends Controller
+class GoogleController extends Controller
 {
-     //github login
-    public function github_redirect(){
-     return Socialite::driver('github')->redirect();
+    //google login
+    public function google_redirect(){
+     return Socialite::driver('google')->redirect();
     }
 
-    public function github_callback(){
-          $user = Socialite::driver('github')->user();
+    public function google_callback(){
+          $user = Socialite::driver('google')->user();
 
           if(CustomerLogin::where('email', $user->getEmail())->exists()){
                if(Auth::guard('customerlogin')->attempt(['email'=>$user->getEmail(), 'password'=>'@abc123'])){

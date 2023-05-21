@@ -86,7 +86,7 @@
 								</div>
                                         {{-- login with Gmail --}}
                                         <div class="form-group">
-									<a href="" class="btn btn-md full-width bg-warning text-light fs-md ft-medium"><i style="width:20px;" class="fa-brands fa-google"></i> Login with Google</a>
+									<a href="{{route('google.redirect')}}" class="btn btn-md full-width bg-warning text-light fs-md ft-medium"><i style="width:20px;" class="fa-brands fa-google"></i> Login with Google</a>
 								</div>
 							</form>
 						</div>

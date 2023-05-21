@@ -13,6 +13,7 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\FrontEndController;
+use App\Http\Controllers\GoogleController;
 use App\Http\Controllers\InventoryController;
 use App\Http\Controllers\SubCategoryController;
 use App\Http\Controllers\PasswordResetController;
@@ -193,8 +194,6 @@ Route::get('/order/success/{order_id}', [CheckoutController::class, 'order_succe
 //order controller
 Route::get('/orders', [OrderController::class, 'orders'])->name('orders');
 
-Route::post('/order/track/', [OrderController::class, 'track_order'])->name('track.order');
-
 Route::get('/invoice/download/{order_id}', [OrderController::class, 'dowonload_invoice'])->name('dowlonad.invoice');
 
 // SSLCOMMERZ Start
@@ -238,9 +237,22 @@ Route::get('/email/verify/again', [CustomerController::class, 'email_verify_agai
 
 Route::post('/resend/email/verify/again', [CustomerController::class, 'resend_email_verify_again'])->name('email.resend.request');
 
-//social login
+//social login with Github
 Route::get('/github/redirect', [SocialLoginController::class, 'github_redirect'])->name
 ('github.redirect');
 Route::get('/github/callback', [SocialLoginController::class, 'github_callback'])->name
 ('github.callback');
+
+//social login with Google
+Route::get('/google/redirect', [GoogleController::class, 'google_redirect'])->name
+('google.redirect');
+Route::get('/google/callback', [GoogleController::class, 'google_callback'])->name
+('google.callback');
+
+//send Message
+Route::post('/send/message', [CustomerController::class, 'send_message'])->name
+('send.message');
+
+Route::get('/send/message/see', [CustomerController::class, 'send_message_view'])->name
+('user.messages');
 

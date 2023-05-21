@@ -45,6 +45,19 @@
     </head>
 
     <body>
+     <!--Start of Tawk.to Script-->
+     <script type="text/javascript">
+          var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+          (function(){
+          var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+          s1.async=true;
+          s1.src='https://embed.tawk.to/646a42e974285f0ec46cc262/1h0vhaoeu';
+          s1.charset='UTF-8';
+          s1.setAttribute('crossorigin','*');
+          s0.parentNode.insertBefore(s1,s0);
+          })();
+     </script>
+     <!--End of Tawk.to Script-->
 
 		 <!-- ============================================================== -->
         <!-- Preloader - style you can find in spinners.css -->
@@ -65,32 +78,18 @@
 					<div class="row">
 
 						<div class="col-xl-7 col-lg-6 col-md-6 col-sm-12 hide-ipad">
-							<div class="top_second"><p class="medium text-muted m-0 p-0"><i class="lni lni-phone fs-sm"></i></i> Hotline <a href="#" class="medium text-dark text-underline">0(800) 123-456</a></p></div>
+							<div class="top_second"><p class="medium text-muted m-0 p-0"><i class="lni lni-phone fs-sm"></i></i> Hotline <a href="#" class="medium text-dark">+8801631903731</a></p></div>
 						</div>
 
 						<!-- Right Menu -->
 						<div class="col-xl-5 col-lg-6 col-md-12 col-sm-12">
 							<!-- Choose Language -->
-							<div class="language-selector-wrapper dropdown js-dropdown float-right mr-3">
-								<a class="popup-title" href="javascript:void(0)" data-toggle="dropdown" title="Language" aria-label="Language dropdown">
-									<span class="hidden-xl-down medium text-muted">Language:</span>
-									<span class="iso_code medium text-muted">English</span>
-									<i class="fa fa-angle-down medium text-muted"></i>
-								</a>
-								<ul class="dropdown-menu popup-content link">
-									<li class="current"><a href="" class="dropdown-item medium text-muted"><img src="{{asset('Ecom/img/1.jpg')}}" alt="en" width="16" height="11" /><span>English</span></a></li>
-									<li><a href="javascript:void(0);" class="dropdown-item medium text-muted"><img src="{{asset('Ecom/img/2.jpg')}}" alt="fr" width="16" height="11" /><span>Français</span></a></li>
-
-								</ul>
-							</div>
 
 								<div class="currency-selector dropdown js-dropdown float-right mr-3">
 
 								@auth('customerlogin')
 								<div class="dropdown">
-								<a href="{{route('track.detail')}}" target="__blank" style="cursor:pointer" class="mr-4" type=""  aria-expanded="false">
-									Track My Order
-								</a>
+
 								<a style="cursor:pointer" class="dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">
 									{{Auth::guard('customerlogin')->user()->name}}
 								</a>
@@ -137,7 +136,7 @@
 										<li>
 											<div class="call d-flex align-items-center text-left">
 												<i class="lni lni-phone fs-xl"></i>
-												<span class="text-muted small ml-3">Call Us Now:<strong class="d-block text-dark fs-md">0(800) 123-456</strong></span>
+												<span class="text-muted small ml-3">Call Us Now:<strong class="d-block text-dark fs-md">+8801631903731</strong></span>
 											</div>
 										</li>
 										<li>
@@ -279,18 +278,16 @@
 									<img src="{{asset('Ecom/img/logo-light.png')}}" class="img-footer small mb-2" alt="" />
 
 									<div class="address mt-3">
-										3298 Grant Street Longview, TX<br>United Kingdom 75601
+										Narayanganj, Dhaka<br>Bangladesh
 									</div>
 									<div class="address mt-3">
-										1-202-555-0106<br>help@shopper.com
+										01631903731<br>islamkhans148@gmail.com
 									</div>
 									<div class="address mt-3">
 										<ul class="list-inline">
-											<li class="list-inline-item"><a href="#"><i class="lni lni-facebook-filled"></i></a></li>
-											<li class="list-inline-item"><a href="#"><i class="lni lni-twitter-filled"></i></a></li>
-											<li class="list-inline-item"><a href="#"><i class="lni lni-youtube"></i></a></li>
-											<li class="list-inline-item"><a href="#"><i class="lni lni-instagram-filled"></i></a></li>
-											<li class="list-inline-item"><a href="#"><i class="lni lni-linkedin-original"></i></a></li>
+											<li class="list-inline-item"><a href="https://www.facebook.com/shahidulislam.khan.9279/"><i class="lni lni-facebook-filled"></i></a></li>
+
+											<li class="list-inline-item"><a href="https://www.linkedin.com/in/shahidul-islam-shovon/"><i class="lni lni-linkedin-original"></i></a></li>
 										</ul>
 									</div>
 								</div>
@@ -300,8 +297,8 @@
 								<div class="footer_widget">
 									<h4 class="widget_title">Supports</h4>
 									<ul class="footer-menu">
-										<li><a href="#">Contact Us</a></li>
-										<li><a href="#">About Page</a></li>
+										<li><a href="{{route('contact')}}">Contact Us</a></li>
+										<li><a href="{{route('about')}}">About Page</a></li>
 										<li><a href="#">Size Guide</a></li>
 										<li><a href="#">FAQ's Page</a></li>
 										<li><a href="#">Privacy</a></li>
@@ -313,11 +310,11 @@
 								<div class="footer_widget">
 									<h4 class="widget_title">Shop</h4>
 									<ul class="footer-menu">
-										<li><a href="#">Men's Shopping</a></li>
-										<li><a href="#">Women's Shopping</a></li>
-										<li><a href="#">Kids's Shopping</a></li>
-										<li><a href="#">Furniture</a></li>
-										<li><a href="#">Discounts</a></li>
+										<li><a href="{{route('products.all')}}">Television</a></li>
+										<li><a href="{{route('products.all')}}">Mobile</a></li>
+										<li><a href="{{route('products.all')}}">Laptop</a></li>
+										<li><a href="{{route('products.all')}}">Router</a></li>
+										<li><a href="{{route('products.all')}}">Printer</a></li>
 									</ul>
 								</div>
 							</div>
@@ -326,10 +323,10 @@
 								<div class="footer_widget">
 									<h4 class="widget_title">Company</h4>
 									<ul class="footer-menu">
-										<li><a href="#">About</a></li>
+										<li><a href="{{route('about')}}">About</a></li>
 										<li><a href="#">Blog</a></li>
 										<li><a href="#">Affiliate</a></li>
-										<li><a href="#">Login</a></li>
+										<li><a href="{{route('customer.register.login')}}">Login</a></li>
 									</ul>
 								</div>
 							</div>

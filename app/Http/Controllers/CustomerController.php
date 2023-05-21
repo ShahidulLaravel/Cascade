@@ -9,6 +9,7 @@ use App\Models\OrderProduct;
 use Illuminate\Http\Request;
 use App\Models\CustomerLogin;
 use App\Models\Order;
+use App\Models\UserMessage;
 use App\Notifications\CustomerEmailNoti;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -41,10 +42,10 @@ class CustomerController extends Controller
             'token_no' => uniqid(),
             'created_at' => Carbon::now(),
         ]);
-        
+
         FacadesNotification::send($customer, new CustomerEmailNoti($info));
         return back()->with('success_one', 'Please Verify Your Email First !!');
-        
+
         return back()->with('success', 'Your Account has been Created Successfully !!');
     }
 
@@ -54,7 +55,7 @@ class CustomerController extends Controller
                 return back()->with('not_verified', 'Your Email is not verified. please verify the email first');
             }else{
                 return redirect('/');
-            }    
+            }
         }else{
             return back()->with('warning', 'Invalid Login Credintials ! Try Again');
         }
@@ -80,7 +81,7 @@ class CustomerController extends Controller
                 ]);
                 return back()->with('success_one', 'Information Updated Successfully');
             }
-            //password not blank 
+            //password not blank
             else{
                 if(Hash::check($request->old_password, Auth::guard('customerlogin')->user()->password)){
                     CustomerLogin::find(Auth::guard('customerlogin')->id())->update([
@@ -92,19 +93,19 @@ class CustomerController extends Controller
                     ]);
                     return back()->with('success_two', 'Information Updated Successfully');
                 }else{
-                    return back()->with('old', 'Your Old Password is Invalid'); 
+                    return back()->with('old', 'Your Old Password is Invalid');
                 }
             }
         }
 
-        // image not blank - else body 
+        // image not blank - else body
         else{
             if ($request->password == '') {
                 // image processing
                 $photo = $request->photo;
                 $extension = $photo->getClientOriginalExtension();
                 $file_name = Auth::guard('customerlogin')->id(). '.'.$extension;
-                Image::make($photo)->save(public_path('uploads/customer/'. $file_name)); 
+                Image::make($photo)->save(public_path('uploads/customer/'. $file_name));
                 CustomerLogin::find(Auth::guard('customerlogin')->id())->update([
                     'name' => $request->name,
                     'email' => $request->email,
@@ -114,7 +115,7 @@ class CustomerController extends Controller
                 ]);
                 return back()->with('success_one', 'Information Updated Successfully');
             }
-            //password not blank 
+            //password not blank
             else {
                 if (Hash::check($request->old_password, Auth::guard('customerlogin')->user()->password)) {
                     //image processing and update
@@ -122,7 +123,7 @@ class CustomerController extends Controller
                     //$extension = $photo->getClientOriginalExtension();
                     $extension = $request->file('image')->getClientOriginalExtension();
                     $file_name = Auth::guard('customerlogin')->id() . '.' . $extension;
-                    Image::make($photo)->save(public_path('uploads/customer/' . $file_name)); 
+                    Image::make($photo)->save(public_path('uploads/customer/' . $file_name));
                     CustomerLogin::find(Auth::guard('customerlogin')->id())->update([
                         'name' => $request->name,
                         'email' => $request->email,
@@ -132,7 +133,7 @@ class CustomerController extends Controller
                         'photo' => $file_name,
                     ]);
                     return back()->with('success_two', 'Information Updated Successfully');
-                } 
+                }
                 else {
                     return back()->with('old', 'Your Old Password is Invalid');
                 }
@@ -149,9 +150,9 @@ class CustomerController extends Controller
             'myorders' => $myorders,
         ]);
     }
-    
+
     public function clear_myorder(){
-        
+
     }
 
     public function detail_tracking(){
@@ -197,5 +198,24 @@ class CustomerController extends Controller
         }
     }
 
+    public function send_message(Request $request){
+      $request->validate([
+          'email' => 'required|unique:user_messages',
+      ]);
+      UserMessage::insert([
+          'name' => $request->name,
+          'email' => $request->email,
+          'subject' => $request->subject,
+          'desp' => $request->desp,
+          'created_at' => Carbon::now(),
+      ]);
+      return back()->with('success', 'Message Send to Developer team Successfully');
+    }
 
+    public function send_message_view(){
+     $msg = UserMessage::all();
+     return view('admin.users.message',[
+          'msg' => $msg,
+     ]);
+    }
 }
