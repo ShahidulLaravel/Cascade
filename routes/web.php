@@ -26,7 +26,7 @@ Auth::routes();
 //Front end Controller
 Route::get('/', [FrontEndController::class, 'frontEnd'])->name('frontEnd');
 Route::get('/products/all', [FrontEndController::class, 'show_all'])->name('products.all');
-Route::get('/search/product', [SearchController::class, 'show_searchPage'])->name('search.product');
+Route::get('/search', [SearchController::class, 'search'])->name('search.product');
 Route::get('/about', [FrontEndController::class, 'about'])->name('about');
 Route::get('/contact', [FrontEndController::class, 'contact'])->name('contact');
 
@@ -157,7 +157,7 @@ Route::get('/myorder/show/', [CustomerController::class, 'myorder'])->name('myor
 Route::get('/clear/order', [CustomerController::class, 'clear_myorder'])->name('clear.order')->middleware();
 
 
-// cart controller 
+// cart controller
 
 Route::get('/remove/cart/{cart_id}', [CartController::class, 'remove_cart'])->name('remove.cart');
 
@@ -174,7 +174,7 @@ Route::post('/update/cart/',[CartController::class, 'update_cart'])->name('updat
 Route::get('/cart/remove/{id}',[CartController::class, 'cart_remove'])->name('cart.remove');
 
 
-// Cupon 
+// Cupon
 
 Route::get('/add/cupon/', [CuponController::class, 'add_cupon'])->name('product.cupon');
 Route::post('/store/cupon/', [CuponController::class, 'store_cupon'])->name('cupon.store');
@@ -192,7 +192,7 @@ Route::get('/order/success/{order_id}', [CheckoutController::class, 'order_succe
 //order controller
 Route::get('/orders', [OrderController::class, 'orders'])->name('orders');
 
-Route::post('/order/track/', [OrderController::class, 'track_order'])->name('track.order'); 
+Route::post('/order/track/', [OrderController::class, 'track_order'])->name('track.order');
 
 Route::get('/invoice/download/{order_id}', [OrderController::class, 'dowonload_invoice'])->name('dowlonad.invoice');
 

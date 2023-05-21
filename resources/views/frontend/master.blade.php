@@ -106,10 +106,11 @@
 									<div class="headd-sty-02 ml-3">
 										<form class="bg-white rounded-md border-bold">
 											<div class="input-group">
-												<input type="text" class="form-control custom-height b-0" placeholder="Search for products..." />
+												<input id="search_input" type="text" class="form-control custom-height b-0" placeholder="Search for products..." />
 												<div class="input-group-append">
-													<div class="input-group-text"><button class="btn bg-white text-danger custom-height rounded px-3" type="button"><i class="fas fa-search"></i></button></div>
-												</div>
+											<div class="input-group-text"><button id="search_btn" class="btn bg-white text-danger custom-height rounded px-3"
+                                                   type="button"><i class="fas fa-search"></i></button></div>
+										</div>
 											</div>
 										</form>
 									</div>
@@ -514,5 +515,17 @@
 			}
 		</script>
 
+          <script>
+               $('#search_btn').click(function(){
+                    var search_input = $('#search_input').val();
+                    var link = '{{route('search.product')}}'+'?searched='+search_input;
+                    var min = $('.min').val();
+                    var max = $('.max').val();
+                    var category_id = $('input[class="category_id"]:checked').attr('value');
+                    var brand = $('input[class="brand"]:checked').attr('value');
+                    var link = '{{route('search.product')}}'+'?searched='+search_input+'&min='+min+'&max='+max+'&category_id='+category_id+"&brand_id="+brand;
+                    window.location.href = link;
+               });
+          </script>
 </body>
 </html>

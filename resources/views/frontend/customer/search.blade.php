@@ -52,17 +52,17 @@
                                        <div class="row">
                                             <div class="col-lg-6 pr-1">
                                                  <div class="form-group pl-3">
-                                                      <input type="number" class="form-control" placeholder="Min">
+                                                      <input type="number" class="min form-control" placeholder="Min">
                                                  </div>
                                             </div>
                                             <div class="col-lg-6 pl-1">
                                                  <div class="form-group pr-3">
-                                                      <input type="number" class="form-control" placeholder="Max">
+                                                      <input type="number" class="max form-control" placeholder="Max">
                                                  </div>
                                             </div>
                                             <div class="col-lg-12">
                                                  <div class="form-group px-3">
-                                                      <button type="submit" class="btn form-control">Submit</button>
+                                                      <button name="range_btn" type="submit" class="btn form-control">Submit</button>
                                                  </div>
                                             </div>
                                        </div>
@@ -82,10 +82,10 @@
                                                       <div class="inner_widget_link">
                                                   <ul class="no-ul-list">
                                                        @foreach ($categories as $category)
-                    <li>
-                         <input id="cat{{$category->id}}" class="checkbox-custom" name="category_id" type="radio" value="{{$category->id}}">
-                         <label for="cat{{$category->id}}" class="checkbox-custom-label">{{$category->category_name}}<span>142</span></label>
-                    </li>
+                                                       <li>
+                                                            <input id="category{{$category->id}}" class="category_id" name="category_id" type="radio" value="{{$category->id}}" {{$category->id == @$_GET['category_id']?'checked':''}}>
+                                                            <label for="category{{$category->id}}" class="checkbox-custom-label">{{$category->category_name}}<span>{{App\Models\Product::where('category_id', $category->id)->count()}}</span></label>
+                                                        </li>
                                                        @endforeach
 
                                                            </ul>
@@ -110,10 +110,10 @@
                          <ul class="no-ul-list">
                          @foreach ($brands as $brand)
 
-                              <li>
-                                   <input id="brands{{$brand->id}}" class="checkbox-custom" name="brand_id" type="radio" value="{{$brand->id}}">
-                                   <label for="brands{{$brand->id}}" class="checkbox-custom-label">{{$brand->brand_name}}<span>142</span></label>
-                              </li>
+                         <li>
+                              <input id="brands{{$brand->id}}" class="brand" name="brand_id" type="radio" value="{{$brand->id}}" {{$brand->id == @$_GET['brand_id']?'checked':''}}>
+                              <label for="brands{{$brand->id}}" class="checkbox-custom-label">{{$brand->brand_name}}<span>{{App\Models\Product::where('id', $brand->id)->count()}}</span></label>
+                          </li>
 
                          @endforeach
                          </ul>
@@ -229,10 +229,23 @@
                         </div>
                         @endforeach
                    </div>
+                   <div class="row">
+                    <div class="col-lg-12">
+                         @if ($searched_products->count() == 0)
+                         <div class="alert alert-danger">
+                              <h4 class="text-center">No Product Found according to Your Search !! Try Again</h4>
+                         </div>
+                         @endif
+                    </div>
+                   </div>
                    <!-- row -->
               </div>
          </div>
     </div>
 </section>
+
+@endsection
+
+@section('javascript')
 
 @endsection
