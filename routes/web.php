@@ -17,6 +17,7 @@ use App\Http\Controllers\InventoryController;
 use App\Http\Controllers\SubCategoryController;
 use App\Http\Controllers\PasswordResetController;
 use App\Http\Controllers\SearchController;
+use App\Http\Controllers\SocialLoginController;
 use App\Http\Controllers\UpdateProdcutController;
 use App\Http\Controllers\SslCommerzPaymentController;
 
@@ -236,3 +237,10 @@ Route::get('/email/verification/{token_no}', [CustomerController::class, 'email_
 Route::get('/email/verify/again', [CustomerController::class, 'email_verify_again'])->name('email.verify.again');
 
 Route::post('/resend/email/verify/again', [CustomerController::class, 'resend_email_verify_again'])->name('email.resend.request');
+
+//social login
+Route::get('/github/redirect', [SocialLoginController::class, 'github_redirect'])->name
+('github.redirect');
+Route::get('/github/callback', [SocialLoginController::class, 'github_callback'])->name
+('github.callback');
+
