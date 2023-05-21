@@ -24,6 +24,23 @@
         <link href="{{asset('Ecom/css/plugins/snackbar.min.css')}}" rel="stylesheet">
         <link href="{{asset('Ecom/css/plugins/themify.css')}}" rel="stylesheet">
         <link href="{{asset('Ecom/css/styles.css')}}" rel="stylesheet">
+          <style>
+			.qty {
+				width: 40px;
+				height: 25px;
+				text-align: center;
+			}
+			input.qtyplus { width:25px; height:25px;}
+			input.qtyminus { width:25px; height:25px;}
+			.color_id:checked~.form-option-label {
+				border-color: #121212;
+				color: #121212;
+			}
+			.size_id:checked~.form-option-label {
+				border-color: #121212;
+				color: #121212;
+			}
+		</style>
 		@yield('style')
     </head>
 
@@ -106,7 +123,7 @@
 									<div class="headd-sty-02 ml-3">
 										<form class="bg-white rounded-md border-bold">
 											<div class="input-group">
-												<input id="search_input" type="text" class="form-control custom-height b-0" placeholder="Search for products..." />
+												<input id="search_input" type="text" class="form-control custom-height b-0" placeholder="Search for products..." value="{{@$_GET['searched']}}"/>
 												<div class="input-group-append">
 											<div class="input-group-text"><button id="search_btn" class="btn bg-white text-danger custom-height rounded px-3"
                                                    type="button"><i class="fas fa-search"></i></button></div>
@@ -523,7 +540,10 @@
                     var max = $('.max').val();
                     var category_id = $('input[class="category_id"]:checked').attr('value');
                     var brand = $('input[class="brand"]:checked').attr('value');
-                    var link = '{{route('search.product')}}'+'?searched='+search_input+'&min='+min+'&max='+max+'&category_id='+category_id+"&brand_id="+brand;
+                    var color_id = $('input[class="color_id"]:checked').attr('value');
+                    var size_id = $('input[class="size_id"]:checked').attr('value');
+                    var sorting = $('.sorting').val();
+                    var link = '{{route('search.product')}}'+'?searched='+search_input+'&min='+min+'&max='+max+'&category_id='+category_id+"&brand_id="+brand+"&color_id="+color_id+"&size_id="+size_id+"&sort="+sorting;
                     window.location.href = link;
                });
           </script>

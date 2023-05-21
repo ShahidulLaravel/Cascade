@@ -14,6 +14,25 @@ class SearchController extends Controller
 {
      public function search(Request $request){
      $data = $request->all();
+     //sorting
+     $sorting = 'created_at';
+     $type = 'DESC';
+
+        if (!empty($data['sort']) && $data['sort'] != '' && $data['sort'] != 'undefined') {
+            if ($data['sort'] == 1) {
+                $sorting = 'product_name';
+                $type = 'ASC';
+            } else if ($data['sort'] == 2) {
+                $sorting = 'product_name';
+                $type = 'DESC';
+            } else if ($data['sort'] == 3) {
+                $sorting = 'after_discount';
+                $type = 'ASC';
+            } else if ($data['sort'] == 4) {
+                $sorting = 'after_discount';
+                $type = 'DESC';
+            }
+        }
 
      $searched_products = Product::where(function($searched) use ($data){
 
@@ -50,7 +69,27 @@ class SearchController extends Controller
           if(!empty($data['brand_id']) && $data['brand_id'] != '' && $data['brand_id'] != 'undefined'){
                $searched->where('brand', $data['brand_id']);
            }
-     })->get();
+
+           //color and size
+           if(!empty($data['color_id']) && $data['color_id'] != '' && $data['color_id'] != 'undefined' || !empty($data['size_id']) && $data['size_id'] != '' && $data['size_id']){
+
+               $searched->whereHas('rel_product', function($searched) use ($data){
+                    if(!empty($data['color_id']) && $data['color_id'] != '' && $data['color_id'] != 'undefined')
+                    {
+                         $searched->whereHas('color_rel', function($searched) use ($data){
+                              $searched->where('colors.id', $data['color_id']);
+                         });
+                    }
+                    //size
+                    if(!empty($data['size_id']) && $data['size_id'] != '' && $data['size_id'] != 'undefined'){
+                         $searched->whereHas('size_rel', function ($searched) use ($data){
+                             $searched->where('sizes.id', $data['size_id']);
+                         });
+                     }
+               });
+           }
+
+     })->orderBy($sorting,$type)->get();
 
      //sending to search blade file
         $categories = Category::all();

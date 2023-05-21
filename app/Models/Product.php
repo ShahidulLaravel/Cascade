@@ -32,11 +32,15 @@ class Product extends Model
     {
         return $this->belongsTo(Size::class, 'size_id');
     }
+
+
+    //work as a inventory
     function product()
     {
         return $this->belongsTo(Product::class, 'product_id');
     }
 
+    //work as a inventory (working)
     function rel_product()
     {
         return $this->belongsTo(Product::class, 'id');

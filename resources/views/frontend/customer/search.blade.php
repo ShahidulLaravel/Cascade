@@ -52,12 +52,12 @@
                                        <div class="row">
                                             <div class="col-lg-6 pr-1">
                                                  <div class="form-group pl-3">
-                                                      <input type="number" class="min form-control" placeholder="Min">
+                                                      <input type="number" class="min form-control" placeholder="Min" value="{{@$_GET['min']}}">
                                                  </div>
                                             </div>
                                             <div class="col-lg-6 pl-1">
                                                  <div class="form-group pr-3">
-                                                      <input type="number" class="max form-control" placeholder="Max">
+                                                      <input type="number" class="max form-control" placeholder="Max" value="{{@$_GET['max']}}">
                                                  </div>
                                             </div>
                                             <div class="col-lg-12">
@@ -137,11 +137,9 @@
                          <div class="text-left">
                               @foreach ($colors as $color)
                               <div class="form-check form-option form-check-inline mb-1">
-                                   <input class="form-check-input" type="radio" name="color_id" id="color{{$color->id}}">
-                                   <label class="form-option-label
-
-                                   rounded-circle" for="color{{$color->id}}"><span class="form-option-color rounded-circle "style="background-color:{{$color->color_code}}"></span></label>
-                              </div>
+                                   <input class="color_id" type="radio" name="color_id" id="color{{$color->id}}" value="{{$color->id}}" {{$color->id == @$_GET['color_id']?'checked':''}}>
+                                   <label class="form-option-label rounded-circle" for="color{{$color->id}}"><span class="form-option-color rounded-circle" style="background-color: {{$color->color_code}}"></span></label>
+                               </div>
                               @endforeach
                          </div>
                     </div>
@@ -164,9 +162,9 @@
 
                          @foreach ($sizes as $size)
                          <div class="form-check form-option form-check-inline mb-2">
-                              <input class="form-check-input" type="radio" name="size_id" id="size{{$size->id}}">
+                              <input class="size_id" type="radio" name="size_id" id="size{{$size->id}}" value="{{$size->id}}" {{$size->id == @$_GET['size_id']?'checked':''}}>
                               <label class="form-option-label" for="size{{$size->id}}">{{$size->size_name}}</label>
-                         </div>
+                          </div>
                          @endforeach
                     </div>
                                                  </div>
@@ -190,17 +188,18 @@
                                        </div>
 
                                        <div class="col-xl-9 col-lg-8 col-md-7 col-sm-12">
-                                            <div class="filter_wraps d-flex align-items-center justify-content-end m-start">
-                                                 <div class="single_fitres mr-2 br-right">
-                                                      <select class="custom-select simple">
-                                                        <option value="1" selected="">Default Sorting</option>
-                                                        <option value="2">Sort by price: Low price</option>
-                                                        <option value="3">Sort by price: Hight price</option>
-                                                      </select>
-                                                 </div>
-
-                                            </div>
-                                       </div>
+                                        <div class="filter_wraps d-flex align-items-center justify-content-end m-start">
+                                            <div class="single_fitres mr-2 br-right">
+                                                <select class="custom-select simple sorting" >
+                                                  <option value="">Default Sorting</option>
+                                                  <option value="1">Sort by price: A-Z</option>
+                                                  <option value="2">Sort by price: Z-A</option>
+                                                  <option value="3">Sort by price: Low price</option>
+                                                  <option value="4">Sort by price: Hight price</option>
+                                                </select>
+                                             </div>
+                                        </div>
+                                    </div>
                                   </div>
                              </div>
                         </div>
