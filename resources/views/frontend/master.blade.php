@@ -535,7 +535,97 @@
           <script>
                $('#search_btn').click(function(){
                     var search_input = $('#search_input').val();
-                    var link = '{{route('search.product')}}'+'?searched='+search_input;
+                    var min = $('.min').val();
+                    var max = $('.max').val();
+                    var category_id = $('input[class="category_id"]:checked').attr('value');
+                    var brand = $('input[class="brand"]:checked').attr('value');
+                    var color_id = $('input[class="color_id"]:checked').attr('value');
+                    var size_id = $('input[class="size_id"]:checked').attr('value');
+                    var sorting = $('.sorting').val();
+                    var link = '{{route('search.product')}}'+'?searched='+search_input+'&min='+min+'&max='+max+'&category_id='+category_id+"&brand_id="+brand+"&color_id="+color_id+"&size_id="+size_id+"&sort="+sorting;
+                    window.location.href = link;
+               });
+
+               //for submit button
+               $('.range_btn').click(function(){
+                    var search_input = $('#search_input').val();
+                    var min = $('.min').val();
+                    var max = $('.max').val();
+                    var category_id = $('input[class="category_id"]:checked').attr('value');
+                    var brand = $('input[class="brand"]:checked').attr('value');
+                    var color_id = $('input[class="color_id"]:checked').attr('value');
+                    var size_id = $('input[class="size_id"]:checked').attr('value');
+                    var sorting = $('.sorting').val();
+                    var link = '{{route('search.product')}}'+'?searched='+search_input+'&min='+min+'&max='+max+'&category_id='+category_id+"&brand_id="+brand+"&color_id="+color_id+"&size_id="+size_id+"&sort="+sorting;
+                    window.location.href = link;
+               });
+               //category
+               $('.category_id').click(function(){
+                    var category_checked = '{{@$_GET['category_id']}}';
+                    var category_new_click = $(this).attr('value');
+                    if(category_checked == category_new_click){
+                         var category_id = '';
+                    }else{
+                         var category_id = category_new_click
+                    }
+                    var search_input = $('#search_input').val();
+                    var min = $('.min').val();
+                    var max = $('.max').val();
+                    var brand = $('input[class="brand"]:checked').attr('value');
+                    var color_id = $('input[class="color_id"]:checked').attr('value');
+                    var size_id = $('input[class="size_id"]:checked').attr('value');
+                    var sorting = $('.sorting').val();
+                    var link = '{{route('search.product')}}'+'?searched='+search_input+'&min='+min+'&max='+max+'&category_id='+category_id+"&brand_id="+brand+"&color_id="+color_id+"&size_id="+size_id+"&sort="+sorting;
+                    window.location.href = link;
+               });
+               //brands
+               $('.brand').click(function(){
+                    var search_input = $('#search_input').val();
+                    var brand_checked = '{{@$_GET['brand']}}';
+                    var brand_new_click = $(this).attr('value');
+                    if(brand_checked == brand_new_click){
+                         var brand = '';
+                    }else{
+                         var brand = brand_new_click
+                    }
+                    var min = $('.min').val();
+                    var max = $('.max').val();
+                    var category_id = $('input[class="category_id"]:checked').attr('value');
+                    var color_id = $('input[class="color_id"]:checked').attr('value');
+                    var size_id = $('input[class="size_id"]:checked').attr('value');
+                    var sorting = $('.sorting').val();
+                    var link = '{{route('search.product')}}'+'?searched='+search_input+'&min='+min+'&max='+max+'&category_id='+category_id+"&brand_id="+brand+"&color_id="+color_id+"&size_id="+size_id+"&sort="+sorting;
+                    window.location.href = link;
+               });
+               //color
+               $('.color_id').click(function(){
+                    var search_input = $('#search_input').val();
+                    var min = $('.min').val();
+                    var max = $('.max').val();
+                    var category_id = $('input[class="category_id"]:checked').attr('value');
+                    var brand = $('input[class="brand"]:checked').attr('value');
+                    var color_id = $('input[class="color_id"]:checked').attr('value');
+                    var size_id = $('input[class="size_id"]:checked').attr('value');
+                    var sorting = $('.sorting').val();
+                    var link = '{{route('search.product')}}'+'?searched='+search_input+'&min='+min+'&max='+max+'&category_id='+category_id+"&brand_id="+brand+"&color_id="+color_id+"&size_id="+size_id+"&sort="+sorting;
+                    window.location.href = link;
+               });
+               //size
+               $('.size_id').click(function(){
+                    var search_input = $('#search_input').val();
+                    var min = $('.min').val();
+                    var max = $('.max').val();
+                    var category_id = $('input[class="category_id"]:checked').attr('value');
+                    var brand = $('input[class="brand"]:checked').attr('value');
+                    var color_id = $('input[class="color_id"]:checked').attr('value');
+                    var size_id = $('input[class="size_id"]:checked').attr('value');
+                    var sorting = $('.sorting').val();
+                    var link = '{{route('search.product')}}'+'?searched='+search_input+'&min='+min+'&max='+max+'&category_id='+category_id+"&brand_id="+brand+"&color_id="+color_id+"&size_id="+size_id+"&sort="+sorting;
+                    window.location.href = link;
+               });
+               //sorting
+               $('.sorting').change(function(){
+                    var search_input = $('#search_input').val();
                     var min = $('.min').val();
                     var max = $('.max').val();
                     var category_id = $('input[class="category_id"]:checked').attr('value');

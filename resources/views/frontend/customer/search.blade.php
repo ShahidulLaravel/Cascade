@@ -62,7 +62,7 @@
                                             </div>
                                             <div class="col-lg-12">
                                                  <div class="form-group px-3">
-                                                      <button name="range_btn" type="submit" class="btn form-control">Submit</button>
+                                                      <button type="submit" class="range_btn btn form-control">Submit</button>
                                                  </div>
                                             </div>
                                        </div>
@@ -111,7 +111,7 @@
                          @foreach ($brands as $brand)
 
                          <li>
-                              <input id="brands{{$brand->id}}" class="brand" name="brand_id" type="radio" value="{{$brand->id}}" {{$brand->id == @$_GET['brand_id']?'checked':''}}>
+                              <input id="brands{{$brand->id}}" class="brand" name="brand" type="radio" value="{{$brand->id}}" {{$brand->id == @$_GET['brand']?'checked':''}}>
                               <label for="brands{{$brand->id}}" class="checkbox-custom-label">{{$brand->brand_name}}<span>{{App\Models\Product::where('id', $brand->id)->count()}}</span></label>
                           </li>
 
