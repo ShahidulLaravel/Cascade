@@ -1,5 +1,5 @@
-# Project Name : Cascade
-## An E-commerce Project
+# Project Name: Kumo E-Commerce 
+## A Complete E-commerce Website Project
 
 ## Creative IT Web Development - Batch 2205
 
@@ -24,6 +24,5 @@ Fetures -
 * Wishlist
 * Social Login
 * User Role Management
-
-## site still now Under Construction 
+ 
 ## Developed By : Shahidul Islam Shovon
